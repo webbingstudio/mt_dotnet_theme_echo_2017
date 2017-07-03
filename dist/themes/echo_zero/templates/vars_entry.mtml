@@ -15,7 +15,7 @@
 </mt:Ignore>
 <mt:EntryID setvar="ec_entry_id" note="記事のID" />
 <mt:EntryBasename setvar="ec_entry_basename" note="記事のベースネーム" />
-<mt:EcEntryPickup setvar="ec_entry_pickup" note="ピックアップが指定されていれば1" />
+<mt:CustomFieldValue identifier="EcEntryPickup" setvar="ec_entry_pickup" note="ピックアップが指定されていれば1" />
 
 <mt:Ignore>
 # -----------------------
@@ -76,22 +76,22 @@
 # META
 # -----------------------
 </mt:Ignore>
-<mt:If tag="EcEntryMetaTitle" note="METAのタイトルが別途指定されていれば">
-    <mt:EcEntryMetaTitle encode_html="1" setvar="ec_meta_title" note="title要素" />
+<mt:CustomFieldValue identifier="EcEntryMetaTitle" setvar="__entry_meta_title__" />
+<mt:If name="__entry_meta_title__" note="METAのタイトルが別途指定されていれば">
+    <mt:CustomFieldValue identifier="EcEntryMetaTitle" encode_html="1" setvar="ec_meta_title" note="title要素" />
 <mt:Else>
     <mt:SetVarBlock name="ec_meta_title" note="title要素"><mt:EntryTitle encode_html="1" /><mt:If name="ec_category_basename"> | <mt:Var name="ec_category_label" /></mt:If><mt:Unless name="ec_category_basename" eq="$ec_category_ancestor_basename"> | <mt:Var name="ec_category_ancestor_label" /></mt:Unless><mt:Var name="ec_blog_contents_label" /><mt:Var name="ec_website_suffix" /></mt:SetVarBlock>
 </mt:If>
+<mt:SetVar name="__entry_meta_title__" value="" />
 
 <mt:EntryExcerpt remove_html="1" encode_html="1" setvar="ec_meta_description" note="概要" />
 <mt:EntryPermalink setvar="ec_meta_permalink" class="完全なURL" />
 <mt:EntryDate format_name="iso8601" setvar="ec_meta_publish" note="再構築された時点のタイムスタンプ" />
 <mt:Var name="ec_category_label" setvar="ec_meta_category" note="分類" />
 
-<mt:If tag="EcEntryEyecatch">
-    <mt:EcEntryEyecatchAsset>
-        <mt:AssetURL setvar="ec_meta_eyecatch" note="アイキャッチ画像" />
-    </mt:EcEntryEyecatchAsset>
-</mt:If>
+<mt:CustomFieldAsset identifier="EcEntryEyecatchAsset">
+    <mt:AssetURL setvar="ec_meta_eyecatch" note="アイキャッチ画像" />
+</mt:CustomFieldAsset>
 
 <mt:Ignore>
 # -----------------------
@@ -103,11 +103,13 @@
 # SNSボタンでシェアしたときのタイトル: カテゴリー名を除外するため、別変数としている
 # -----------------------
 </mt:Ignore>
-<mt:If tag="EcEntryMetaTitle" note="METAのタイトルが別途指定されていれば">
-    <mt:EcEntryMetaTitle encode_html="1" setvar="ec_share_title" />
+<mt:CustomFieldValue identifier="EcEntryMetaTitle" setvar="__entry_meta_title__" />
+<mt:If name="__entry_meta_title__" note="METAのタイトルが別途指定されていれば">
+    <mt:CustomFieldValue identifier="EcEntryMetaTitle" encode_html="1" setvar="ec_share_title" />
 <mt:Else>
     <mt:SetVarBlock name="ec_share_title"><mt:EntryTitle encode_html="1" /><mt:Var name="ec_website_suffix" /></mt:SetVarBlock>
 </mt:If>
+<mt:SetVar name="__entry_meta_title__" value="" />
 
 <mt:Ignore>
 # SNSボタンでシェアしたときのURL: サイトの方針により末尾にクエリを付与するケースがあるため、別変数としている
