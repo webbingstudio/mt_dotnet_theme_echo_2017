@@ -55,31 +55,19 @@
 <mt:BlogURL setvar="ec_blog_url" note="ブログの完全なURL: ルートブログであればウェブサイトと同じ値となる" />
 <mt:BlogRelativeURL setvar="ec_blog_path" note="ブログのサーバー相対パス: ルートブログであればウェブサイトと同じ値となる" />
 
-<mt:If tag="EcBlogCommonTitle" note="サイト名の略称が指定されていれば">
-    <mt:SetVarBlock name="ec_blog_suffix" note="title要素の接尾辞"> | <mt:EcBlogCommonTitle encode_html="1" /></mt:SetVarBlock>
+<mt:CustomFieldValue identifier="EcBlogCommonTitle" setvar="__blog_common_title__" />
+<mt:If name="__blog_common_title__" note="サイト名の略称が指定されていれば">
+    <mt:SetVarBlock name="ec_blog_suffix" note="title要素の接尾辞"> | <mt:CustomFieldValue identifier="EcBlogCommonTitle" encode_html="1" /></mt:SetVarBlock>
 <mt:Else>
     <mt:SetVarBlock name="ec_blog_suffix" note="title要素の接尾辞"> | <mt:BlogName encode_html="1" /></mt:SetVarBlock>
 </mt:If>
+<mt:SetVar name="__blog_common_title__" value="" />
 
-<mt:If tag="BlogDescription" note="ブログの概要が指定されていれば">
-    <mt:BlogDescription remove_html="1" encode_html="1" setvar="ec_blog_description" note="ブログの概要" />
-</mt:If>
-
-<mt:If tag="EcBlogOgImage">
-    <mt:EcBlogOgImageAsset><mt:AssetThumbnailURL width="1200" setvar="ec_blog_ogimage" note="ブログのog:image" /></mt:EcBlogOgimageAsset>
-</mt:If>
-
-<mt:If tag="EcBlogTwitterID">
-    <mt:EcBlogTwitterID setvar="ec_blog_twitter" note="ブログのTwitterID" />
-</mt:If>
-
-<mt:If tag="EcBlogFbPage">
-    <mt:EcBlogFbPage setvar="ec_blog_fbpage" note="ブログのFacebookページURL" />
-</mt:If>
-
-<mt:If tag="EcBlogFbappid">
-    <mt:EcBlogFbappid setvar="ec_blog_fbappid" note="ブログのFacebookアプリケーションID" />
-</mt:If>
+<mt:BlogDescription remove_html="1" encode_html="1" setvar="ec_blog_description" note="ブログの概要" />
+<mt:CustomFieldAsset identifier="EcBlogOgImageAsset"><mt:AssetThumbnailURL width="1200" setvar="ec_blog_ogimage" note="ブログのog:image" /></mt:CustomFieldAsset>
+<mt:CustomFieldValue identifier="EcBlogTwitterID" setvar="ec_blog_twitter" note="ブログのTwitterID" />
+<mt:CustomFieldValue identifier="EcBlogFbPage" setvar="ec_blog_fbpage" note="ブログのFacebookページURL" />
+<mt:CustomFieldValue identifier="EcBlogFbappid" setvar="ec_blog_fbappid" note="ブログのFacebookアプリケーションID" />
 
 <mt:Ignore>
 # -----------------------
