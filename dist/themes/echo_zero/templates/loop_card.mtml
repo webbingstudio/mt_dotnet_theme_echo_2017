@@ -1,0 +1,27 @@
+<mt:Ignore>
+# =======================
+# 
+# 記事ループ-カード
+# 
+# 記事一覧で、記事を繰り返している部分のテンプレート。サムネイルが上に表示される形式で表示する。
+# 
+# usage:
+#   <mt:Include module="記事ループ-カード" />
+# 
+# usage (with options):
+#   <mt:SetVar name="__loop_tag__" value="p" />
+#   <mt:SetVar name="__loop_category__" value="0" />
+#   <mt:SetVar name="__loop_date__" value="0" />
+#   <mt:Include module="記事ループ-カード" />
+# 
+# options:
+#   __loop_tag__ = h3
+#   __loop_category__ = 1
+#   __loop_date__ = 1
+# 
+# =======================
+</mt:Ignore>
+<mt:Unless name="__loop_tag__"><mt:SetVar name="__loop_tag__" value="h3" /></mt:Unless>
+<mt:Unless name="__loop_category__" eq="0"><mt:SetVar name="__loop_category__" value="1" /></mt:Unless>
+<mt:Unless name="__loop_date__" eq="0"><mt:SetVar name="__loop_date__" value="1" /></mt:Unless>
+

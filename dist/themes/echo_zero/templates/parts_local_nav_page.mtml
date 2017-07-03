@@ -1,0 +1,25 @@
+<mt:Ignore>
+# =======================
+# 
+# パーツ-ローカルナビ-ページ
+# 
+# usage:
+#   <mt:Include module="パーツ-ローカルナビ-ページ" />
+# 
+# usage (with options):
+#   <mt:SetVar name="__folder_label__" value="任意のフォルダ名" />
+#   <mt:Include module="パーツ-ローカルナビ-ページ" />
+# 
+# options:
+#   __folder_label__ = 現在のフォルダ名
+# 
+# =======================
+</mt:Ignore>
+<mt:Unless name="__folder_label__"><mt:PageFolder><mt:FolderLabel setvar="__folder_label__" /></mt:PageFolder></mt:Unless>
+
+<mt:If name="__folder_label__">
+
+
+
+</mt:If>
+<mt:SetVar name="__folder_label__" value="" />

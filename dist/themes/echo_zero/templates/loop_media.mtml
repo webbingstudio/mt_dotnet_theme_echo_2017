@@ -1,0 +1,33 @@
+<mt:Ignore>
+# =======================
+# 
+# 記事ループ-メディア
+# 
+# 記事一覧で、記事を繰り返している部分のテンプレート。サムネイルが左に表示される形式で表示する。
+# 
+# usage:
+#   <mt:Include module="記事ループ-メディア" />
+# 
+# usage (with options):
+#   <mt:SetVar name="__loop_tag__" value="p" />
+#   <mt:SetVar name="__loop_thumbnail__" value="0" />
+#   <mt:SetVar name="__loop_category__" value="0" />
+#   <mt:SetVar name="__loop_date__" value="0" />
+#   <mt:SetVar name="__loop_excerpt__" value="0" />
+#   <mt:Include module="記事ループ-メディア" />
+# 
+# options:
+#   __loop_tag__ = h3
+#   __loop_thumbnail__ = 1
+#   __loop_category__ = 1
+#   __loop_date__ = 1
+#   __loop_excerpt__ = 1
+# 
+# =======================
+</mt:Ignore>
+<mt:Unless name="__loop_tag__"><mt:SetVar name="__loop_tag__" value="h3" /></mt:Unless>
+<mt:Unless name="__loop_thumbnail__" eq="0"><mt:SetVar name="__loop_thumbnail__" value="1" /></mt:Unless>
+<mt:Unless name="__loop_category__" eq="0"><mt:SetVar name="__loop_category__" value="1" /></mt:Unless>
+<mt:Unless name="__loop_date__" eq="0"><mt:SetVar name="__loop_date__" value="1" /></mt:Unless>
+<mt:Unless name="__loop_excerpt__" eq="0"><mt:SetVar name="__loop_excerpt__" value="1" /></mt:Unless>
+
