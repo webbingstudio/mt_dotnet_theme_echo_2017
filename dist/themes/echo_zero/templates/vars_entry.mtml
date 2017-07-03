@@ -7,3 +7,118 @@
 # 
 # =======================
 </mt:Ignore>
+
+<mt:Ignore>
+# -----------------------
+# 記事
+# -----------------------
+</mt:Ignore>
+<mt:EntryID setvar="ec_entry_id" note="記事のID" />
+<mt:EntryBasename setvar="ec_entry_basename" note="記事のベースネーム" />
+<mt:EcEntryPickup setvar="ec_entry_pickup" note="ピックアップが指定されていれば1" />
+
+<mt:Ignore>
+# -----------------------
+# カテゴリー
+# 
+# ローカル変数:
+#   __is_ancestor__
+# -----------------------
+</mt:Ignore>
+
+<mt:Ignore>
+# カテゴリー情報に関する変数を宣言
+# -----------------------
+</mt:Ignore>
+<mt:SetVar name="ec_category_basename" value="" note="カテゴリーのベースネーム" />
+<mt:SetVar name="ec_category_label" value="" note="カテゴリーの表示名" />
+<mt:SetVar name="ec_category_path" value="" note="カテゴリーのパス" />
+
+<mt:Ignore>
+# 主カテゴリーの情報
+# -----------------------
+</mt:Ignore>
+<mt:EntryPrimaryCategory>
+    <mt:CategoryBasename setvar="ec_category_basename" />
+    <mt:CategoryLabel encode_html="1" setvar="ec_category_label" />
+    <mt:CategoryArchiveLink setvar="ec_category_path" />
+</mt:EntryPrimaryCategory>
+
+<mt:Ignore>
+# 親・先祖カテゴリー情報を一旦現在のカテゴリー情報と同一にする
+# -----------------------
+</mt:Ignore>
+    <mt:Var name="ec_category_basename" setvar="ec_category_parent_basename" note="親カテゴリーのベースネーム" />
+    <mt:Var name="ec_category_label" setvar="ec_category_parent_label" note="親カテゴリーの表示名" />
+    <mt:Var name="ec_category_path" setvar="ec_category_parent_path" note="親カテゴリーの完全なURL" />
+    <mt:Var name="ec_category_basename" setvar="ec_category_ancestor_basename" note="先祖カテゴリーのベースネーム" />
+    <mt:Var name="ec_category_label" setvar="ec_category_ancestor_label" note="先祖カテゴリーの表示名" />
+    <mt:Var name="ec_category_path" setvar="ec_category_ancestor_path" note="先祖カテゴリーの完全なURL" />
+
+<mt:SetVar name="__is_ancestor__" value="0" />
+<mt:EntryPrimaryCategory>
+    <mt:ParentCategories exclude_current="1" note="親・先祖カテゴリー情報を取得する">
+        <mt:If name="__is_ancestor__" eq="0" value="先祖カテゴリー情報をまだ取得していなければ">
+            <mt:CategoryBasename setvar="ec_category_ancestor_basename" />
+            <mt:CategoryLabel encode_html="1" setvar="ec_category_ancestor_label" />
+            <mt:CategoryArchiveLink setvar="ec_category_ancestor_path" />
+            <mt:SetVar name="__is_ancestor__" value="1" />
+        </mt:If>
+        <mt:CategoryBasename setvar="ec_category_parent_basename" />
+        <mt:CategoryLabel encode_html="1" setvar="ec_category_parent_label" />
+        <mt:CategoryArchiveLink setvar="ec_category_parent_path" />
+    </mt:ParentCategories>
+</mt:EntryPrimaryCategory>
+<mt:SetVar name="__is_ancestor__" value="" />
+
+<mt:Ignore>
+# -----------------------
+# META
+# -----------------------
+</mt:Ignore>
+<mt:If tag="EcEntryMetaTitle" note="METAのタイトルが別途指定されていれば">
+    <mt:EcEntryMetaTitle encode_html="1" setvar="ec_meta_title" note="title要素" />
+<mt:Else>
+    <mt:SetVarBlock name="ec_meta_title" note="title要素"><mt:EntryTitle encode_html="1" /><mt:If name="ec_category_basename"> | <mt:Var name="ec_category_label" /></mt:If><mt:Unless name="ec_category_basename" eq="$ec_category_ancestor_basename"> | <mt:Var name="ec_category_ancestor_label" /></mt:Unless><mt:Var name="ec_blog_contents_label" /><mt:Var name="ec_website_suffix" /></mt:SetVarBlock>
+</mt:If>
+
+<mt:EntryExcerpt remove_html="1" encode_html="1" setvar="ec_meta_description" note="概要" />
+<mt:EntryPermalink setvar="ec_meta_permalink" class="完全なURL" />
+<mt:EntryDate format_name="iso8601" setvar="ec_meta_publish" note="再構築された時点のタイムスタンプ" />
+<mt:Var name="ec_category_label" setvar="ec_meta_category" note="分類" />
+
+<mt:If tag="EcEntryEyecatch">
+    <mt:EcEntryEyecatchAsset>
+        <mt:AssetURL setvar="ec_meta_eyecatch" note="アイキャッチ画像" />
+    </mt:EcEntryEyecatchAsset>
+</mt:If>
+
+<mt:Ignore>
+# -----------------------
+# SNS関連
+# -----------------------
+</mt:Ignore>
+
+<mt:Ignore>
+# SNSボタンでシェアしたときのタイトル: カテゴリー名を除外するため、別変数としている
+# -----------------------
+</mt:Ignore>
+<mt:If tag="EcEntryMetaTitle" note="METAのタイトルが別途指定されていれば">
+    <mt:EcEntryMetaTitle encode_html="1" setvar="ec_share_title" />
+<mt:Else>
+    <mt:SetVarBlock name="ec_share_title"><mt:EntryTitle encode_html="1" /><mt:Var name="ec_website_suffix" /></mt:SetVarBlock>
+</mt:If>
+
+<mt:Ignore>
+# SNSボタンでシェアしたときのURL: サイトの方針により末尾にクエリを付与するケースがあるため、別変数としている
+# -----------------------
+</mt:Ignore>
+    <mt:EntryPermalink setvar="ec_share_url" />
+
+<mt:Ignore>
+# -----------------------
+# その他
+# -----------------------
+</mt:Ignore>
+
+<mt:SetVarBlock name="ec_body_class" note="body要素のクラス名">blog singular <mt:ArchiveType lower_case="1" /> entry-<mt:Var name="ec_entry_id" /><mt:Unless name="ec_category_basename" eq=""> category-<mt:Var name="ec_category_basename" /></mt:Unless><mt:Unless name="ec_category_parent_basename" eq="$ec_category_basename"> category-<mt:Var name="ec_category_parent_basename" /></mt:Unless><mt:Unless name="ec_category_ancestor_basename" eq="$ec_category_parent_basename"> category-<mt:Var name="ec_category_ancestor_basename" /></mt:Unless></mt:SetVarBlock>
