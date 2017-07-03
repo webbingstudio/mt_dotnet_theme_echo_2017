@@ -7,3 +7,88 @@
 # 
 # =======================
 </mt:Ignore>
+
+<mt:Ignore>
+# -----------------------
+# デバッグモード
+# 
+# 公開時は0にすること
+# -----------------------
+</mt:Ignore>
+
+<mt:SetVar name="ec_debug" value="1" />
+
+<mt:Ignore>
+# -----------------------
+# フォーマット
+# 
+# 作成するウェブサイトにより任意で変更する
+# -----------------------
+</mt:Ignore>
+
+<mt:SetVar name="ec_blog_contents_label" value="ブログ" note="記事コンテンツの名称: お知らせ、新着情報など" />
+<mt:SetVar name="ec_breadcrumb_home_label" value="ホーム" note="トピックパスの起点の名称" />
+<mt:SetVar name="ec_entry_date" note="記事の年月日フォーマット" value="%Y-%m-%d" />
+<mt:SetVar name="ec_entry_time" note="記事の時分秒フォーマット" value="%H:%m:%S" />
+<mt:BlogRelativeURL setvar="ec_static_path" note="画像、CSS等の依存ファイルのパス: 異なる階層に設置する場合は変更する" />
+
+<mt:Ignore>
+# -----------------------
+# ウェブサイト情報
+# 
+# すべての子ブログで参照可能な値
+# -----------------------
+</mt:Ignore>
+<mt:BlogParentWebsite note="所属ウェブサイトの情報を参照する">
+    <mt:WebsiteName encode_html="1" setvar="ec_website_name" note="ウェブサイト名" />
+    <mt:WebsiteURL setvar="ec_website_url" note="ウェブサイトの完全なURL" />
+    <mt:WebsiteRelativeURL setvar="ec_website_path" note="ウェブサイトのサーバー相対パス" />
+    <mt:WebsitePath setvar="ec_website_fullpath" note="ウェブサイトのサーバーフルパス" />
+</mt:BlogParentWebsite>
+
+<mt:Ignore>
+# -----------------------
+# ブログ情報
+# -----------------------
+</mt:Ignore>
+<mt:BlogName encode_html="1" setvar="ec_blog_name" note="ブログ名: ルートブログであればウェブサイトと同じ値となる" />
+<mt:BlogURL setvar="ec_blog_url" note="ブログの完全なURL: ルートブログであればウェブサイトと同じ値となる" />
+<mt:BlogRelativeURL setvar="ec_blog_path" note="ブログのサーバー相対パス: ルートブログであればウェブサイトと同じ値となる" />
+
+<mt:If tag="EcBlogCommonTitle" note="サイト名の略称が指定されていれば">
+    <mt:SetVarBlock name="ec_blog_suffix" note="title要素の接尾辞"> | <mt:EcBlogCommonTitle encode_html="1" /></mt:SetVarBlock>
+<mt:Else>
+    <mt:SetVarBlock name="ec_blog_suffix" note="title要素の接尾辞"> | <mt:BlogName encode_html="1" /></mt:SetVarBlock>
+</mt:If>
+
+<mt:If tag="BlogDescription" note="ブログの概要が指定されていれば">
+    <mt:BlogDescription remove_html="1" encode_html="1" setvar="ec_blog_description" note="ブログの概要" />
+</mt:If>
+
+<mt:If tag="EcBlogOgImage">
+    <mt:EcBlogOgImageAsset><mt:AssetThumbnailURL width="1200" setvar="ec_blog_ogimage" note="ブログのog:image" /></mt:EcBlogOgimageAsset>
+</mt:If>
+
+<mt:If tag="EcBlogTwitterID">
+    <mt:EcBlogTwitterID setvar="ec_blog_twitter" note="ブログのTwitterID" />
+</mt:If>
+
+<mt:If tag="EcBlogFbPage">
+    <mt:EcBlogFbPage setvar="ec_blog_fbpage" note="ブログのFacebookページURL" />
+</mt:If>
+
+<mt:If tag="EcBlogFbappid">
+    <mt:EcBlogFbappid setvar="ec_blog_fbappid" note="ブログのFacebookアプリケーションID" />
+</mt:If>
+
+<mt:Ignore>
+# -----------------------
+# Itemscope
+# breadcrumb Microdata for schema.org
+# -----------------------
+</mt:Ignore>
+
+<mt:SetVar name="ec_itemscope_ol" value=' itemscope itemtype="http://schema.org/BreadcrumbList"' note="schema.orgに基づくol要素の属性" />
+<mt:SetVar name="ec_itemscope_li" value=' itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"' note="schema.orgに基づくli要素の属性" />
+<mt:SetVar name="ec_itemscope_a" value=' itemprop="item"' note="schema.orgに基づくa要素の属性" />
+<mt:SetVar name="ec_itemscope_span" value=' itemprop="name"' note="schema.orgに基づくリスト文字列の属性" />
