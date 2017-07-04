@@ -107,4 +107,4 @@
 
 <mt:SetVarBlock name="ec_body_class" note="body要素のクラス名">singular <mt:ArchiveType lower_case="1" /><mt:If name="ec_page_basename" eq="index"> <mt:ArchiveType lower_case="1" />-index</mt:If> page-<mt:PageID /><mt:If name="ec_folder_basename"> <mt:Var name="ec_folder_basename" /></mt:If><mt:Unless name="ec_folder_parent_basename" eq="$ec_folder_basename"> <mt:Var name="ec_folder_parent_basename" /></mt:Unless><mt:Unless name="ec_folder_ancestor_basename" eq="$ec_folder_parent_basename"> <mt:Var name="ec_folder_ancestor_basename" /></mt:Unless></mt:SetVarBlock>
 
-<mt:CustomFieldValue identifier="EcPageHtmlHead" setvar="ec_html_head_last" />
+<mt:CustomFieldValue identifier="EcPageHtmlHead" setvar="ec_singular_html_head" />
