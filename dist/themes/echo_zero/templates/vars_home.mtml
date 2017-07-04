@@ -7,3 +7,29 @@
 # 
 # =======================
 </mt:Ignore>
+
+<mt:Ignore>
+# -----------------------
+# META
+# -----------------------
+</mt:Ignore>
+
+<mt:Var name="ec_blog_name" setvar="ec_meta_title" note="接尾辞を除くtitle要素" />
+<mt:If tag="EcBlogHomeTitle" note="ブログのホームのtitle要素が指定されていれば">
+    <mt:EcBlogHomeTitle encode_html="1" setvar="ec_meta_title" note="接尾辞を除くtitle要素" />
+</mt:If>
+
+<mt:Var name="ec_website_description" setvar="ec_meta_description" note="概要" />
+<mt:If tag="EcBlogHomeDescription" note="ブログのホームの概要が指定されていれば">
+    <mt:EcBlogHomeDescription encode_html="1" setvar="ec_meta_description" note="概要" />
+</mt:If>
+
+<mt:Var name="ec_website_url" setvar="ec_meta_permalink" note="完全なURL" />
+<mt:Date format_name="iso8601" setvar="ec_meta_publish" note="再構築された時点のタイムスタンプ" />
+
+<mt:Ignore>
+# -----------------------
+# その他
+# -----------------------
+</mt:Ignore>
+<mt:SetVarBlock name="ec_body_class" note="body要素のクラス名">home</mt:SetVarBlock>
