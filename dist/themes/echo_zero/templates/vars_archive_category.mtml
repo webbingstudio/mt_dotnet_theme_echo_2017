@@ -7,3 +7,82 @@
 # 
 # =======================
 </mt:Ignore>
+
+<mt:ArchiveType setvar="ec_archive_type" note="アーカイブタイプ" />
+<mt:ArchiveTitle setvar="ec_archive_title" note="アーカイブタイトル" />
+
+<mt:Ignore>
+# -----------------------
+# Taxonomy(Category)
+# 
+# ローカル変数:
+#   __is_ancestor__
+# -----------------------
+</mt:Ignore>
+
+<mt:Ignore>
+# カテゴリー情報に関する変数を宣言
+# -----------------------
+</mt:Ignore>
+<mt:SetVar name="ec_category_basename" value="" note="カテゴリーのベースネーム" />
+<mt:SetVar name="ec_category_label" value="" note="カテゴリーの表示名" />
+<mt:SetVar name="ec_category_url" value="" note="カテゴリーのURL" />
+
+<mt:Ignore>
+# 現在のカテゴリーの情報
+# -----------------------
+</mt:Ignore>
+<mt:CategoryBasename setvar="ec_category_basename" note="カテゴリーのベースネーム（フォルダ名）" />
+<mt:CategoryLabel encode_html="1" setvar="ec_category_label" note="カテゴリーの表示名" />
+<mt:CategoryArchiveLink setvar="ec_category_url" note="カテゴリーアーカイブの完全なURL" />
+
+<mt:Ignore>
+# 親・先祖カテゴリー情報を一旦現在のカテゴリー情報と同一にする
+# -----------------------
+</mt:Ignore>
+<mt:Var name="ec_category_basename" setvar="ec_category_parent_basename" note="親カテゴリーのベースネーム（フォルダ名）" />
+<mt:Var name="ec_category_label" setvar="ec_category_parent_label" note="親カテゴリーの表示名" />
+<mt:Var name="ec_category_url" setvar="ec_category_parent_url" note="親カテゴリーの完全なURL" />
+
+<mt:Var name="ec_category_basename" setvar="ec_category_ancestor_basename" note="先祖カテゴリーのベースネーム（フォルダ名）" />
+<mt:Var name="ec_category_label" setvar="ec_category_ancestor_label" note="先祖カテゴリーの表示名" />
+<mt:Var name="ec_category_url" setvar="ec_category_ancestor_url" note="先祖カテゴリーの完全なURL" />
+
+<mt:SetVar name="__is_ancestor__" value="0" />
+<mt:ParentCategories exclude_current="1" note="親・先祖カテゴリーを取得する">
+    <mt:If name="__is_ancestor__" eq="0" value="先祖カテゴリー情報をまだ取得していなければ">
+        <mt:CategoryBasename setvar="ec_category_ancestor_basename" />
+        <mt:CategoryLabel encode_html="1" setvar="ec_category_ancestor_label" />
+        <mt:CategoryArchiveLink setvar="ec_category_ancestor_url" />
+        <mt:SetVar name="__is_ancestor__" value="1" />
+    </mt:If>
+    <mt:CategoryBasename setvar="ec_category_parent_basename" />
+    <mt:CategoryLabel encode_html="1" setvar="ec_category_parent_label" />
+    <mt:CategoryArchiveLink setvar="ec_category_parent_url" />
+</mt:ParentCategories>
+<mt:SetVar name="__is_ancestor__" value="" />
+
+<mt:Ignore>
+# -----------------------
+# META
+# -----------------------
+</mt:Ignore>
+<mt:SetVarBlock name="ec_meta_title" note="接尾辞を除くtitle要素"><mt:Var name="ec_category_label" /><mt:Unless name="ec_category_basename" eq="$ec_category_ancestor_basename"> | <mt:Var name="ec_category_ancestor_label" /></mt:Unless> | <mt:Var name="ec_blog_contents_label" /><mt:Var name="ec_website_suffix" /></mt:SetVarBlock>
+
+<mt:If tag="CategoryDescription" note="カテゴリー説明文が指定されていれば">
+    <mt:SetVarBlock name="ec_meta_description" note="概要"><mt:CategoryDescription remove_html="1" encode_html="1" /></mt:SetVarBlock>
+<mt:Else>
+    <mt:SetVarBlock name="ec_meta_description" note="概要">カテゴリー「<mt:CategoryLabel encode_html="1" />」の新着一覧です。</mt:SetVarBlock>
+</mt:If>
+
+<mt:Var name="ec_category_label" setvar="ec_meta_category" note="分類" />
+<mt:ArchiveLink setvar="ec_meta_permalink" note="完全なURL" />
+<mt:Date format_name="iso8601" setvar="ec_meta_publish" note="再構築された時点のタイムスタンプ" />
+
+<mt:Ignore>
+# -----------------------
+# その他
+# -----------------------
+</mt:Ignore>
+
+<mt:SetVarBlock name="ec_body_class" note="body要素のクラス名">blog archive <mt:ArchiveType lower_case="1" /><mt:Unless name="ec_category_basename" eq=""> category-<mt:Var name="ec_category_basename" /></mt:Unless><mt:Unless name="ec_category_parent_basename" eq="$ec_category_basename"> category-<mt:Var name="ec_category_parent_basename" /></mt:Unless><mt:Unless name="ec_category_ancestor_basename" eq="$ec_category_parent_basename"> category-<mt:Var name="ec_category_ancestor_basename" /></mt:Unless></mt:SetVarBlock>
