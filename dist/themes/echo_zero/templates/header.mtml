@@ -3,5 +3,48 @@
 # 
 # ヘッダ
 # 
+# require:
+#     ec_blog_path
+#     ec_static_path
+#     ec_blog_name
+# 
+# need:
+#     ec_blog_fbappid
+#     ec_is_home
+# 
 # =======================
 </mt:Ignore>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/ja_JP/sdk.js#xfbml=1&version=v2.6<mt:If name="ec_blog_fbappid">&appId=<mt:Var name="ec_blog_fbappid" /></mt:If>";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<div class="outer-wrap">
+<div class="inner-wrap">
+
+<header id="header">
+    <div class="container">
+
+        <mt:If name="ec_is_home" eq="1"><h1 class="header-logo"><mt:Else><div class="header-logo"></mt:If>
+
+            <div class="header-logo-inner">
+                <a href="<mt:Var name="ec_blog_path" />"><img src="<mt:Var name="ec_static_path" />images/common/logo.svg" height="45" alt="<mt:Var name="ec_blog_name" />"></a>
+            </div><!-- /.header-logo-inner -->
+
+        <mt:If name="ec_is_home" eq="1"><!-- /.header-logo --></h1><mt:Else><!-- /.header-logo --></div></mt:If>
+
+        <mt:Include module="パーツ-グローバルナビ" />
+
+        <div class="header-menu-btn">
+            <button class="hiraku-open-btn" id="offcanvas-btn-right" data-toggle-offcanvas="#js-hiraku-offcanvas-1">
+                <span class="hiraku-open-btn-line"></span>
+                <span class="hiraku-open-btn-label">MENU</span>
+            </button>
+        <!-- /.header-menu-btn --></div>
+
+    <!-- /.container --></div>
+<!-- /#header --></header>
