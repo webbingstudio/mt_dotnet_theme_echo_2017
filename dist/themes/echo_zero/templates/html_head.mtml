@@ -42,7 +42,9 @@
 
 <title><mt:Var name="ec_meta_title" /></title>
 <meta property="og:title" content="<mt:Var name="ec_meta_title" />">
-<meta name="twitter:title" content="<mt:Var name="ec_meta_title" />">
+<mt:If name="ec_blog_twitter">
+    <meta name="twitter:title" content="<mt:Var name="ec_meta_title" />">
+</mt:If>
 
 <mt:Ignore>
 # twitter:descriptionは空にすることができない
@@ -55,7 +57,9 @@
         <meta name="twitter:description" content="<mt:Var name="ec_meta_description" />">
     </mt:If>
 <mt:Else>
-    <meta name="twitter:description" content="<mt:Var name="ec_meta_title" />">
+    <mt:If name="ec_blog_twitter">
+        <meta name="twitter:description" content="<mt:Var name="ec_meta_title" />">
+    </mt:If>
 </mt:If>
 
 <mt:If name="ec_meta_category">
