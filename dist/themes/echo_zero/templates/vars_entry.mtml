@@ -33,7 +33,7 @@
 </mt:Ignore>
 <mt:SetVar name="ec_category_basename" value="" note="カテゴリーのベースネーム" />
 <mt:SetVar name="ec_category_label" value="" note="カテゴリーの表示名" />
-<mt:SetVar name="ec_category_path" value="" note="カテゴリーのパス" />
+<mt:SetVar name="ec_category_url" value="" note="カテゴリーのURL" />
 
 <mt:Ignore>
 # 主カテゴリーの情報
@@ -42,7 +42,7 @@
 <mt:EntryPrimaryCategory>
     <mt:CategoryBasename setvar="ec_category_basename" />
     <mt:CategoryLabel encode_html="1" setvar="ec_category_label" />
-    <mt:CategoryArchiveLink setvar="ec_category_path" />
+    <mt:CategoryArchiveLink setvar="ec_category_url" />
 </mt:EntryPrimaryCategory>
 
 <mt:Ignore>
@@ -51,10 +51,10 @@
 </mt:Ignore>
     <mt:Var name="ec_category_basename" setvar="ec_category_parent_basename" note="親カテゴリーのベースネーム" />
     <mt:Var name="ec_category_label" setvar="ec_category_parent_label" note="親カテゴリーの表示名" />
-    <mt:Var name="ec_category_path" setvar="ec_category_parent_path" note="親カテゴリーの完全なURL" />
+    <mt:Var name="ec_category_url" setvar="ec_category_parent_url" note="親カテゴリーの完全なURL" />
     <mt:Var name="ec_category_basename" setvar="ec_category_ancestor_basename" note="先祖カテゴリーのベースネーム" />
     <mt:Var name="ec_category_label" setvar="ec_category_ancestor_label" note="先祖カテゴリーの表示名" />
-    <mt:Var name="ec_category_path" setvar="ec_category_ancestor_path" note="先祖カテゴリーの完全なURL" />
+    <mt:Var name="ec_category_url" setvar="ec_category_ancestor_url" note="先祖カテゴリーの完全なURL" />
 
 <mt:SetVar name="__is_ancestor__" value="0" />
 <mt:EntryPrimaryCategory>
@@ -62,12 +62,12 @@
         <mt:If name="__is_ancestor__" eq="0" value="先祖カテゴリー情報をまだ取得していなければ">
             <mt:CategoryBasename setvar="ec_category_ancestor_basename" />
             <mt:CategoryLabel encode_html="1" setvar="ec_category_ancestor_label" />
-            <mt:CategoryArchiveLink setvar="ec_category_ancestor_path" />
+            <mt:CategoryArchiveLink setvar="ec_category_ancestor_url" />
             <mt:SetVar name="__is_ancestor__" value="1" />
         </mt:If>
         <mt:CategoryBasename setvar="ec_category_parent_basename" />
         <mt:CategoryLabel encode_html="1" setvar="ec_category_parent_label" />
-        <mt:CategoryArchiveLink setvar="ec_category_parent_path" />
+        <mt:CategoryArchiveLink setvar="ec_category_parent_url" />
     </mt:ParentCategories>
 </mt:EntryPrimaryCategory>
 <mt:SetVar name="__is_ancestor__" value="" />
