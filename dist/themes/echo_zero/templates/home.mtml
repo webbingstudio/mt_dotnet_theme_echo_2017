@@ -5,3 +5,43 @@
 # 
 # =======================
 </mt:Ignore>
+<!DOCTYPE html>
+<html lang="<mt:BlogLanguage />">
+<head>
+<mt:Include module="変数-共通" />
+<mt:Include module="変数-ホーム" />
+<mt:Include module="head要素" />
+</head>
+<body class="<mt:Var name="ec_body_class" />">
+<mt:Include module="body要素先頭" />
+
+<div class="header-wrap">
+    <mt:Include module="ヘッダ" />
+    <mt:Include module="パーツ-ホーム-メインビジュアル" />
+</div><!-- /.header-wrap -->
+
+<main id="main">
+
+    <mt:Pages field:EcPageShowHome="ページ上段" sort_order="ascend">
+    <mt:PageBody mteval="1" />
+    <mt:PageMore mteval="1" />
+    </mt:Pages>
+
+    <mt:Include module="パーツ-ブログ新着" />
+
+    <mt:Pages field:EcPageShowHome="ページ下段" sort_order="ascend">
+    <mt:PageBody mteval="1" />
+    <mt:PageMore mteval="1" />
+    </mt:Pages>
+
+</main><!-- /#main -->
+
+<mt:Include module="パーツ-バナー" />
+<mt:Include module="パーツ-ホーム-ソーシャルプラグイン" />
+<mt:Include module="パーツ-ホーム-共有ボタン" />
+
+<mt:Include module="フッタ" />
+<mt:Include module="デバッグ-ホーム" />
+<mt:Include module="body要素末尾" />
+</body>
+</html>
