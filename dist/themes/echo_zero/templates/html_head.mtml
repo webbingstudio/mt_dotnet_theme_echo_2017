@@ -3,5 +3,124 @@
 # 
 # head要素
 # 
+# METAなどを展開する。変数の定義は直前に読み込むコンフィグテンプレートで行う。
+# 
+# require:
+#     ec_meta_title
+#     ec_blog_name
+#     ec_static_path
+# 
+# need:
+#     ec_meta_description
+#     ec_meta_keywords
+#     ec_is_home
+#     ec_meta_permalink
+#     ec_meta_eyecatch
+#     ec_blog_ogimage
+#     ec_meta_publish
+#     ec_blog_twitter
+#     ec_blog_fbpage
+#     ec_blog_fbappid
+#     ec_blog_html_head
+#     ec_singular_html_head
+# 
 # =======================
 </mt:Ignore>
+
+<meta charset="<mt:PublishCharset />">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+
+<title><mt:Var name="ec_meta_title" /></title>
+
+<mt:If name="ec_meta_description">
+    <meta name="description" content="<mt:Var name="ec_meta_description" />">
+</mt:If>
+
+<mt:If name="ec_meta_keywords">
+    <meta name="keywords" content="<mt:Var name="ec_meta_keywords" />">
+</mt:If>
+
+<meta property="og:locale" content="<mt:BlogLanguage locale="1" replace="ja_JA","ja_JP" />">
+
+<meta name="author" content="<mt:Var name="ec_blog_name" />">
+
+<mt:If name="ec_is_home" eq="1">
+    <meta property="og:type" content="website">
+<mt:Else>
+    <meta property="og:type" content="article">
+</mt:If>
+
+<meta property="og:title" content="<mt:Var name="ec_meta_title" />">
+
+<mt:If name="ec_meta_description">
+    <meta property="og:description" content="<mt:Var name="ec_meta_description" />">
+</mt:If>
+
+<mt:If name="ec_meta_permalink">
+    <meta property="og:url" content="<mt:Var name="ec_meta_permalink" />">
+</mt:If>
+
+<meta property="og:site_name" content="<mt:Var name="ec_blog_name" />">
+
+<mt:If name="ec_meta_eyecatch">
+    <meta property="og:image" content="<mt:Var name="ec_meta_eyecatch" />">
+<mt:ElseIf name="ec_blog_ogimage">
+    <meta property="og:image" content="<mt:Var name="ec_blog_ogimage" />">
+</mt:If>
+
+<mt:If name="ec_meta_publish">
+    <meta property="og:updated_time" content="<mt:Var name="ec_meta_publish" />">
+</mt:If>
+
+<mt:If name="ec_meta_category">
+    <meta property="article:section" content="<mt:Var name="ec_meta_category" />">
+</mt:If>
+
+<meta name="twitter:card" content="summary">
+
+<mt:If name="ec_meta_description">
+    <meta name="twitter:description" content="<mt:Var name="ec_meta_description" />">
+</mt:If>
+
+<mt:If name="ec_meta_title">
+    <meta name="twitter:title" content="<mt:Var name="ec_meta_title" />">
+</mt:If>
+
+<meta name="twitter:site" content="@<mt:Var name="ec_blog_twitter" />">
+
+<mt:If name="ec_meta_eyecatch">
+    <meta name="twitter:image" content="<mt:Var name="ec_meta_eyecatch" />">
+<mt:ElseIf name="ec_blog_ogimage">
+    <meta name="twitter:image" content="<mt:Var name="ec_blog_ogimage" />">
+</mt:If>
+
+<mt:If name="ec_blog_fbpage">
+    <meta property="article:publisher" content="<mt:Var name="ec_blog_fbpage" />">
+</mt:If>
+
+<mt:If name="ec_blog_fbappid">
+    <meta property="fb:app_id" content="<mt:Var name="ec_blog_fbappid" />">
+</mt:If>
+
+<link rel="start" href="<mt:BlogURL />">
+<link rel="alternate" type="application/atom+xml" title="Recent Entries" href="<mt:BlogURL />atom.xml">
+<mt:CanonicalLink />
+
+<link rel="stylesheet" href="<mt:Var name="ec_static_path" />css/bootstrap.min.css">
+<link rel="stylesheet" href="<mt:Var name="ec_static_path" />css/font-awesome.min.css">
+<link rel="stylesheet" href="<mt:Var name="ec_static_path" />css/bootstrap-theme.min.css">
+<link rel="stylesheet" href="<mt:Var name="ec_static_path" />css/utility.min.css">
+<link rel="stylesheet" href="<mt:Var name="ec_static_path" />css/style.min.css">
+
+<!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/slibs/html5shiv/3.7.0/html5shiv.js"></script>
+  <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+
+<script src="<mt:Var name="ec_static_path" />js/jquery.min.js"></script>
+<script src="<mt:Var name="ec_static_path" />js/bootstrap.min.js"></script>
+<script src="<mt:Var name="ec_static_path" />js/all.min.js"></script>
+
+<mt:Var name="ec_blog_html_head" />
+<mt:Var name="ec_singular_html_head" />
