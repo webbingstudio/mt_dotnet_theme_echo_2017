@@ -17,14 +17,14 @@
 <mt:Var name="ec_blog_name" setvar="ec_meta_title" note="接尾辞を除くtitle要素" />
 <mt:CustomFieldValue identifier="EcBlogHomeTitle" setvar="__blog_home_title__" />
 <mt:If name="__blog_home_title__" note="ブログのホームのtitle要素が指定されていれば">
-    <mt:EcBlogHomeTitle encode_html="1" setvar="ec_meta_title" note="接尾辞を除くtitle要素" />
+    <mt:CustomFieldValue identifier="EcBlogHomeTitle" encode_html="1" setvar="ec_meta_title" note="接尾辞を除くtitle要素" />
 </mt:If>
 <mt:SetVar name="__blog_home_title__" value="" />
 
 <mt:Var name="ec_website_description" setvar="ec_meta_description" note="概要" />
 <mt:CustomFieldValue identifier="EcBlogHomeDescription" setvar="__blog_home_description__" />
 <mt:If name="__blog_home_description__" note="ブログのホームの概要が指定されていれば">
-    <mt:EcBlogHomeDescription encode_html="1" setvar="ec_meta_description" note="概要" />
+    <mt:CustomFieldValue identifier="EcBlogHomeDescription" encode_html="1" setvar="ec_meta_description" note="概要" />
 </mt:If>
 <mt:SetVar name="__blog_home_description__" value="" />
 
