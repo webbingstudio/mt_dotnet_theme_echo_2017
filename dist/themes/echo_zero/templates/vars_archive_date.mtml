@@ -7,3 +7,24 @@
 # 
 # =======================
 </mt:Ignore>
+
+<mt:ArchiveType setvar="ec_archive_type" note="アーカイブタイプ" />
+<mt:SetVarBlock name="ec_archive_title" note="アーカイブタイトル"><mt:ArchiveTitle />の記事一覧</mt:SetVarBlock>
+
+<mt:Ignore>
+# -----------------------
+# META
+# -----------------------
+</mt:Ignore>
+
+<mt:SetVarBlock name="ec_meta_title" note="接尾辞を除くtitle要素"><mt:Var name="ec_archive_title" /> | <mt:Var name="ec_blog_contents_label" /><mt:Var name="ec_website_suffix" /></mt:SetVarBlock>
+<mt:ArchiveLink setvar="ec_meta_permalink" note="完全なURL" />
+<mt:Date format_name="iso8601" setvar="ec_meta_publish" note="再構築された時点のタイムスタンプ" />
+
+<mt:Ignore>
+# -----------------------
+# その他
+# -----------------------
+</mt:Ignore>
+
+<mt:SetVarBlock name="ec_body_class" note="body要素のクラス名">blog archive <mt:ArchiveType lower_case="1" /></mt:SetVarBlock>
