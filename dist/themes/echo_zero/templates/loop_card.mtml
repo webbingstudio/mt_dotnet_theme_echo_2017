@@ -35,9 +35,7 @@
             <mt:AssetThumbnailURL width="480" setvar="__entry_eyecatch__" note="アイキャッチ画像" />
         </mt:CustomFieldAsset>
         <mt:If name="__entry_eyecatch__">
-            <mt:EcEntryEyecatchAsset>
                 <div class="card-cover" style="background-image: url(<mt:Var name="__entry_eyecatch__" />)"></div>
-            </mt:EcEntryEyecatchAsset>
         <mt:Else>
             <div class="card-cover" style="background-image: url(<mt:Var name="ec_static_path" />images/common/noimg_1_1.jpg)"></div>
         </mt:If>
