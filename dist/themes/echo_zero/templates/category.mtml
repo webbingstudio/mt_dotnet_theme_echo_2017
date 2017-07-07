@@ -29,7 +29,38 @@
 
         <main id="main">
 
+            <div class="archive-header">
+                <div class="archive-header-contents">
+                    <p class="archive-title"><mt:Var name="ec_archive_title" /></p>
+                </div><!-- /.archive-header-contents -->
+            </div><!-- /.archive-header -->
 
+            <mt:Entries sort_by="authored_on" sort_order="descend" include_subcategories="1" limit="auto">
+            <mt:EntriesHeader>
+            <div class="section">
+                <div class="row">
+            </mt:EntriesHeader>
+
+                <mt:If tag="mt:EntriesCount">
+
+                <div class="col-xss-6 col-lg-4">
+                    <mt:Include module="記事ループ-カード" />
+                </div><!-- /.col -->
+
+                <mt:Else>
+                <div class="col-sm-12">
+                    <p class="alert alert-info">このコンテンツは準備中です。</p>
+                </div><!-- /.col -->
+                </mt:If>
+
+            <mt:EntriesFooter>
+                </div><!-- /.row -->
+            </div><!-- /.section -->
+            </mt:EntriesFooter>
+
+            <mt:Include module="パーツ-ページネーション" />
+
+            </mt:Entries>
 
         </main><!-- /#main -->
 
