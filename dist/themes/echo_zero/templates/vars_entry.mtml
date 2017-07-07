@@ -79,7 +79,7 @@
 <mt:If name="__entry_meta_title__" note="METAのタイトルが別途指定されていれば">
     <mt:CustomFieldValue identifier="EcEntryMetaTitle" encode_html="1" setvar="ec_meta_title" note="title要素" />
 <mt:Else>
-    <mt:SetVarBlock name="ec_meta_title" note="title要素"><mt:EntryTitle encode_html="1" /><mt:If name="ec_category_basename"> | <mt:Var name="ec_category_label" /></mt:If><mt:Unless name="ec_category_basename" eq="$ec_category_ancestor_basename"> | <mt:Var name="ec_category_ancestor_label" /></mt:Unless><mt:Var name="ec_blog_contents_label" /><mt:Var name="ec_blog_suffix" /></mt:SetVarBlock>
+    <mt:SetVarBlock name="ec_meta_title" note="title要素"><mt:EntryTitle encode_html="1" /><mt:If name="ec_category_basename"> | <mt:Var name="ec_category_label" /></mt:If><mt:Unless name="ec_category_basename" eq="$ec_category_ancestor_basename"> | <mt:Var name="ec_category_ancestor_label" /></mt:Unless> | <mt:Var name="ec_blog_contents_label" /><mt:Var name="ec_blog_suffix" /></mt:SetVarBlock>
 </mt:If>
 <mt:SetVar name="__entry_meta_title__" value="" />
 
