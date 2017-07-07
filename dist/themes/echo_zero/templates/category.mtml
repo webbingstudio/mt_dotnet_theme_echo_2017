@@ -1,7 +1,53 @@
 <mt:Ignore>
 # =======================
 # 
-# アーカイブ-カテゴリ別
+# アーカイブ-カテゴリー
 # 
 # =======================
 </mt:Ignore>
+<!DOCTYPE html>
+<html lang="<mt:BlogLanguage />">
+<head>
+<mt:Include module="変数-共通" />
+<mt:Include module="変数-アーカイブ-カテゴリー" />
+<mt:Include module="head要素" />
+</head>
+<body class="<mt:Var name="ec_body_class" />">
+<mt:Include module="body要素先頭" />
+<mt:Include module="ヘッダ" />
+
+<div class="page-header">
+    <div class="page-header-contents">
+        <h1 class="page-title">ブログ</h1>
+    </div><!-- /.page-header-contents -->
+</div><!-- /.page-header -->
+
+<mt:Include module="トピックパス-アーカイブ-カテゴリー" />
+
+<div class="container">
+    <div class="flex-col-2">
+
+        <main id="main">
+
+
+
+        </main><!-- /#main -->
+
+        <div id="sub">
+
+            <mt:Include module="パーツ-ブログ新着" />
+            <mt:Include module="パーツ-カテゴリーアーカイブリスト" />
+            <mt:Include module="パーツ-月別アーカイブリスト" />
+
+        </div><!-- /#sub -->
+
+    </div><!-- /.flex-col-2 -->
+
+<mt:Include module="パーツ-バナー" />
+</div><!-- /.container -->
+
+<mt:Include module="フッタ" />
+<mt:Include module="デバッグ-アーカイブ-カテゴリー" />
+<mt:Include module="body要素末尾" />
+</body>
+</html>
