@@ -12,16 +12,50 @@
 #   <mt:SetVar name="__loop_tag__" value="p" />
 #   <mt:SetVar name="__loop_category__" value="0" />
 #   <mt:SetVar name="__loop_date__" value="0" />
+#   <mt:SetVar name="__loop_summary__" value="0" />
 #   <mt:Include module="記事ループ-カード" />
 # 
 # options:
 #   __loop_tag__ = h3
 #   __loop_category__ = 1
 #   __loop_date__ = 1
+#   __loop_summary__ = 1
 # 
 # =======================
 </mt:Ignore>
 <mt:Unless name="__loop_tag__"><mt:SetVar name="__loop_tag__" value="h3" /></mt:Unless>
 <mt:Unless name="__loop_category__" eq="0"><mt:SetVar name="__loop_category__" value="1" /></mt:Unless>
 <mt:Unless name="__loop_date__" eq="0"><mt:SetVar name="__loop_date__" value="1" /></mt:Unless>
+<mt:Unless name="__loop_summary__" eq="0"><mt:SetVar name="__loop_date__" value="1" /></mt:Unless>
 
+<article class="card">
+    <a href="<mt:EntryPermalink />" class="card-inner">
+
+        <mt:If tag="EcEntryEyecatch">
+            <mt:EcEntryEyecatchAsset>
+                <div class="card-cover" style="background-image: url(<mt:AssetThumbnailURL width="480" />)"></div>
+            </mt:EcEntryEyecatchAsset>
+        <mt:Else>
+            <div class="card-cover" style="background-image: url(<mt:Var name="ec_static_path" />images/common/noimg_1_1.jpg)"></div>
+        </mt:If>
+
+        <div class="card-contents">
+            <mt:If name="__loop_date__" eq="1">
+                <time class="card-date" datetime="<mt:EntryDate language="en" format="%Y-%m-%d" />"><mt:EntryDate language="en" format="$ec_entry_date" /></time>
+            </mt:If>
+
+            <mt:If name="__loop_category__" eq="1">
+            <mt:EntryPrimaryCategory>
+                <p class="card-category"><span class="label"><mt:CategoryLabel encode_html="1" /></span></p>
+            </mt:EntryPrimaryCategory>
+            </mt:If>
+
+            <<mt:Var name="__loop_tag__" /> class="card-title"><mt:EntryTitle encode_html="1" /></<mt:Var name="__loop_tag__" />>
+
+            <mt:If name="__loop_summary__" eq="1">
+                <p class="card-body"><mt:EntryExcerpt words="150" /></p>
+            </mt:If>
+        </div><!-- /.card-contents -->
+
+    </a><!-- /.card-inner -->
+</article><!-- /.card -->
