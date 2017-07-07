@@ -5,3 +5,174 @@
 # 
 # =======================
 </mt:Ignore>
+<mt:If name="ec_debug" eq="1">
+<style>
+.ec-debug {
+    margin: 60px 0 0;
+    padding: 30px 0;
+    border-top: 1px solid #d22;
+    background: #fff none;
+    color: #333;
+}
+.ec-section {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 15px;
+    border-top: 1px solid #333;
+}
+.ec-title {
+    margin: 0 0 16px;
+    padding: 0;
+    background: transparent none;
+    border: 0 none;
+    line-height: 1.1;
+}
+.ec-title.ec-title-01 {
+    font-size: 24px;
+    text-align: center;
+}
+.ec-title.ec-title-02 {
+    font-size: 18px;
+}
+.ec-title {
+    margin: 0 0 16px;
+    font-size: 16px;
+    line-height: 1.5;
+}
+.ec-table {
+    width: 100%;
+    max-width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    margin-bottom: 1.25rem;
+    background-color: #fff;
+    border-width: 0 0 1px 1px;
+    border-style: solid;
+    border-color: #cccccc;
+}
+.ec-table>tbody>tr>th,
+.ec-table>tbody>tr>td {
+    padding: 8px 16px;
+    font-size: 14px;
+    line-height: 1.5;
+    border-width: 1px 1px 0 0;
+    border-style: solid;
+    border-color: #cccccc;
+    vertical-align: top;
+}
+.ec-table>tbody>tr>th {
+    width: 25%;
+　　　　min-width: 120px;
+    text-align: left;
+}
+.ec-table>tbody>tr>td {
+   word-break: break-word;
+}
+</style>
+<div class="ec-debug">
+
+        <h2 class="ec-title ec-title-01">デバッグモード</h2>
+
+        <div class="ec-section">
+            <h3 class="ec-title ec-title-02">記事情報</h3>
+
+            <table class="ec-table">
+                <tbody>
+                    <tr>
+                        <th>ID</th>
+                        <td><mt:Var name="ec_entry_id" _default="(none)" /></td>
+                    </tr>
+                    <tr>
+                        <th>ベースネーム</th>
+                        <td><mt:Var name="ec_entry_basename" _default="(none)" /></td>
+                    </tr>
+                    <tr>
+                        <th>ピックアップ</th>
+                        <td><mt:If name="ec_entry_pickup">有効<mt:Else>無効</mt:If></td>
+                    </tr>
+                    <tr>
+                        <th>METAのtitle</th>
+                        <td><mt:Var name="ec_meta_title" _default="(none)" /></td>
+                    </tr>
+                    <tr>
+                        <th>METAのdescription</th>
+                        <td><mt:Var name="ec_meta_description" _default="(none)" /></td>
+                    </tr>
+                    <tr>
+                        <th>og:image</th>
+                        <td>
+                        <mt:If name="ec_meta_eyecatch">
+                                <img src="<mt:Var name="ec_meta_eyecatch" />" style="width: 150px; height: auto;">
+                        <mt:Else>
+                            (none)
+                        </mt:If>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+        <!-- /.ec-section --></div>
+
+        <div class="ec-section">
+            <h3 class="ec-title ec-title-02">階層情報</h3>
+            <p class="ec-caption">親・先祖カテゴリーが存在しない場合は、現在カテゴリーの情報が入ります。</p>   
+
+            <table class="ec-table">
+                <tbody>
+                    <tr>
+                        <th>現在のカテゴリーのベースネーム</th>
+                        <td><mt:Var name="ec_category_basename" _default="(none)" /></td>
+                    </tr>
+                    <tr>
+                        <th>現在のカテゴリー名</th>
+                        <td><mt:Var name="ec_category_label" _default="(none)" /></td>
+                    </tr>
+                    <tr>
+                        <th>現在のカテゴリーのURL</th>
+                        <td><mt:Var name="ec_category_url" _default="(none)" /></td>
+                    </tr>
+                    <tr>
+                        <th>親カテゴリーのベースネーム</th>
+                        <td><mt:Var name="ec_category_parent_basename" _default="(none)" /></td>
+                    </tr>
+                    <tr>
+                        <th>親カテゴリー名</th>
+                        <td><mt:Var name="ec_category_parent_label" _default="(none)" /></td>
+                    </tr>
+                    <tr>
+                        <th>親カテゴリーのURL</th>
+                        <td><mt:Var name="ec_category_parent_url" _default="(none)" /></td>
+                    </tr>
+                    <tr>
+                        <th>先祖カテゴリーのベースネーム</th>
+                        <td><mt:Var name="ec_category_ancestor_basename" _default="(none)" /></td>
+                    </tr>
+                    <tr>
+                        <th>先祖カテゴリー名</th>
+                        <td><mt:Var name="ec_category_ancestor_label" _default="(none)" /></td>
+                    </tr>
+                    <tr>
+                        <th>先祖カテゴリーのURL</th>
+                        <td><mt:Var name="ec_category_ancestor_url" _default="(none)" /></td>
+                    </tr>
+                </tbody>
+            </table>
+
+        <!-- /.ec-section --></div>
+
+        <div class="ec-section">
+            <h3 class="ec-title ec-title-02">その他</h3>
+
+            <table class="ec-table">
+                <tbody>
+                    <tr>
+                        <th>body要素のクラス名</th>
+                        <td><mt:Var name="ec_body_class" _default="(none)" /></td>
+                    </tr>
+                </tbody>
+            </table>
+
+        <!-- /.ec-section --></div>
+
+</div><!-- /.ec-debug -->
+</mt:If>
