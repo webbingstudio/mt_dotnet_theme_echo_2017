@@ -98,9 +98,13 @@
                         <th>og:image</th>
                         <td>
                         <mt:If name="ec_meta_eyecatch">
-                                <img src="<mt:Var name="ec_meta_eyecatch" />" style="width: 150px; height: auto;">
+                            <img src="<mt:Var name="ec_meta_eyecatch" />" style="width: 150px; height: auto;">
                         <mt:Else>
-                            (none)
+                            <mt:If name="ec_blog_ogimage">
+                                <img src="<mt:Var name="ec_blog_ogimage" />" style="width: 150px; height: auto;">
+                            <mt:Else>
+                                (none)
+                            </mt:If>
                         </mt:If>
                         </td>
                     </tr>
