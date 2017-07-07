@@ -64,7 +64,7 @@
 # META
 # -----------------------
 </mt:Ignore>
-<mt:SetVarBlock name="ec_meta_title" note="接尾辞を除くtitle要素"><mt:Var name="ec_category_label" /><mt:Unless name="ec_category_basename" eq="$ec_category_ancestor_basename"> | <mt:Var name="ec_category_ancestor_label" /></mt:Unless> | <mt:Var name="ec_blog_contents_label" /><mt:Var name="ec_website_suffix" /></mt:SetVarBlock>
+<mt:SetVarBlock name="ec_meta_title" note="接尾辞を除くtitle要素"><mt:Var name="ec_category_label" /><mt:Unless name="ec_category_basename" eq="$ec_category_ancestor_basename"> | <mt:Var name="ec_category_ancestor_label" /></mt:Unless> | <mt:Var name="ec_blog_contents_label" /><mt:Var name="ec_blog_suffix" /></mt:SetVarBlock>
 
 <mt:If tag="CategoryDescription" note="カテゴリー説明文が指定されていれば">
     <mt:SetVarBlock name="ec_meta_description" note="概要"><mt:CategoryDescription remove_html="1" encode_html="1" /></mt:SetVarBlock>
