@@ -1,9 +1,47 @@
 <mt:Ignore>
 # =======================
 # 
-# パーツ-ページネーション
+# パーツ-ページネーション（.net用）
 # 
-# 前後ページ移動のリンクを展開する。
+# ページネーションを展開する。Movable Typeパッケージ版では使用できない。
 # 
 # =======================
 </mt:Ignore>
+<mt:PaginationHasPrevious>
+    <mt:SetVarBlock name="__previous__">
+        <li class="nav-item nav-prev"><a href="<mt:PaginationPreviousURL />">&lsaquo; 前のページ</a></li>
+    </mt:SetVarBlock>
+</mt:PaginationHasPrevious>
+<mt:PaginationHasNext>
+    <mt:SetVarBlock name="__next__">
+        <li class="nav-item nav-next"><a href="<mt:PaginationNextURL />">次のページ &rsaquo;</a></li>
+    </mt:SetVarBlock>
+</mt:PaginationHasNext>
+
+<mt:SetVar name="__show_pager__" value="0" />
+<mt:If name="__previous__">
+    <mt:SetVar name="__show_pager__" value="1" />
+<mt:Else>
+    <mt:If name="__next__">
+        <mt:SetVar name="__show_pager__" value="1" />
+    </mt:If>
+</mt:If>
+
+<mt:If name="__show_pager__" eq="1">
+<div class="nav nav-serial">
+  <nav>
+      <ul>
+</mt:If>
+
+<mt:Var name="__previous__" />
+<mt:Var name="__next__" />
+
+<mt:If name="__show_pager__" eq="1">
+      </ul>
+  </nav>
+</div><!-- /.nav -->
+</mt:If>
+
+<mt:SetVar name="__previous__" value="" />
+<mt:SetVar name="__next__" value="" />
+<mt:SetVar name="__show_pager__" value="" />
