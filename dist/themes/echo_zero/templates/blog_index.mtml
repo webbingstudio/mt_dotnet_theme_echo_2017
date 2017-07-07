@@ -5,3 +5,98 @@
 # 
 # =======================
 </mt:Ignore>
+<!DOCTYPE html>
+<html lang="<mt:BlogLanguage />">
+<head>
+<mt:Include module="変数-共通" />
+
+<mt:SetVarBlock name="ec_meta_title" note="接尾辞を除くtitle要素"><mt:Var name="ec_blog_contents_label" /><mt:Var name="ec_blog_suffix" /></mt:SetVarBlock>
+<mt:SetVarBlock name="ec_meta_description" note="概要"><mt:Var name="ec_blog_contents_label" />の新着一覧です。</mt:SetVarBlock>
+<mt:Date format_name="iso8601" setvar="ec_meta_publish" note="再構築された時点のタイムスタンプ" />
+<mt:SetVar name="ec_body_class" value="blog blog-index archive" />
+
+<mt:Include module="head要素" />
+</head>
+<body class="<mt:Var name="ec_body_class" />">
+<mt:Include module="body要素先頭" />
+<mt:Include module="ヘッダ" />
+
+<div class="page-header">
+    <div class="page-header-contents">
+        <h1 class="page-title"><mt:Var name="ec_blog_contents_label" /></h1>
+    </div><!-- /.page-header-contents -->
+</div><!-- /.page-header -->
+
+<mt:SetVar name="__topicpath_count__" value="0" />
+<div class="topicpath">
+    <div class="container">
+        <nav>
+            <ol class="breadcrumb"<mt:Var name="ec_itemscope_ol">>
+
+                <li<mt:Var name="ec_itemscope_li">>
+                    <a href="<mt:Var name="ec_blog_path" />"<mt:Var name="ec_itemscope_a">><span<mt:Var name="ec_itemscope_span">><mt:Var name="ec_breadcrumb_home_label" encode_html="1" /></span></a>
+                    <mt:Var name="__topicpath_count__" op="++" setvar="__topicpath_count__" />
+                    <meta itemprop="position" content="<mt:Var name="__topicpath_count__">">
+                </li>
+
+                <li class="active"<mt:Var name="ec_itemscope_li">>
+                    <span<mt:Var name="ec_itemscope_span">><mt:Var name="ec_blog_contents_label" /></span>
+                    <mt:Var name="__topicpath_count__" op="++" setvar="__topicpath_count__" />
+                    <meta itemprop="position" content="<mt:Var name="__topicpath_count__">">
+                </li>
+
+            </ol>
+        </nav>
+    </div><!-- /.container -->
+</div><!-- /.topicpath -->
+
+<div class="container">
+    <div class="flex-col-2">
+
+        <main id="main">
+
+            <mt:Entries sort_by="authored_on" sort_order="descend" include_subcategories="1" limit="auto">
+            <mt:EntriesHeader>
+            <div class="section">
+                <div class="row">
+            </mt:EntriesHeader>
+
+                <mt:If tag="mt:EntriesCount">
+
+                <div class="col-xss-6 col-lg-4">
+                    <mt:Include module="記事ループ-カード" />
+                </div><!-- /.col -->
+
+                <mt:Else>
+                <div class="col-sm-12">
+                    <p class="alert alert-info">このコンテンツは準備中です。</p>
+                </div><!-- /.col -->
+                </mt:If>
+
+            <mt:EntriesFooter>
+                </div><!-- /.row -->
+            </div><!-- /.section -->
+            </mt:EntriesFooter>
+
+            <mt:Include module="パーツ-ページネーション" />
+
+            </mt:Entries>
+
+        </main><!-- /#main -->
+
+        <div id="sub">
+
+            <mt:Include module="パーツ-カテゴリーアーカイブリスト" />
+            <mt:Include module="パーツ-月別アーカイブリスト" />
+
+        </div><!-- /#sub -->
+
+    </div><!-- /.flex-col-2 -->
+
+<mt:Include module="パーツ-バナー" />
+</div><!-- /.container -->
+
+<mt:Include module="フッタ" />
+<mt:Include module="body要素末尾" />
+</body>
+</html>
