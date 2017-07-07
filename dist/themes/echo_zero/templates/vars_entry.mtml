@@ -123,5 +123,3 @@
 </mt:Ignore>
 
 <mt:SetVarBlock name="ec_body_class" note="body要素のクラス名">blog singular <mt:ArchiveType lower_case="1" /> entry-<mt:Var name="ec_entry_id" /><mt:Unless name="ec_category_basename" eq=""> category-<mt:Var name="ec_category_basename" /></mt:Unless><mt:Unless name="ec_category_parent_basename" eq="$ec_category_basename"> category-<mt:Var name="ec_category_parent_basename" /></mt:Unless><mt:Unless name="ec_category_ancestor_basename" eq="$ec_category_parent_basename"> category-<mt:Var name="ec_category_ancestor_basename" /></mt:Unless></mt:SetVarBlock>
-
-<mt:CustomFieldValue identifier="EcEntryHtmlHead" setvar="ec_singular_html_head" />
