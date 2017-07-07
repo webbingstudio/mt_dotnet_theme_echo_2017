@@ -29,7 +29,7 @@
 </mt:Ignore>
 <mt:SetVar name="ec_folder_basename" value="" note="フォルダのベースネーム" />
 <mt:SetVar name="ec_folder_label" value="" note="フォルダの表示名" />
-<mt:SetVar name="ec_folder_path" value="" note="フォルダのパス" />
+<mt:SetVar name="ec_folder_url" value="" note="フォルダのパス" />
 
 <mt:Ignore>
 # 現在のフォルダの情報
@@ -38,7 +38,7 @@
 <mt:PageFolder>
     <mt:FolderBasename setvar="ec_folder_basename" />
     <mt:FolderLabel encode_html="1" setvar="ec_folder_label" />
-    <mt:SetVarBlock name="ec_folder_path"><mt:BlogRelativeURL /><mt:FolderPath /></mt:SetVarBlock>
+    <mt:SetVarBlock name="ec_folder_url"><mt:BlogRelativeURL /><mt:FolderPath /></mt:SetVarBlock>
 </mt:PageFolder>
 
 <mt:Ignore>
@@ -47,22 +47,22 @@
 </mt:Ignore>
 <mt:Var name="ec_folder_basename" setvar="ec_folder_parent_basename" note="親フォルダのベースネーム" />
 <mt:Var name="ec_folder_label" setvar="ec_folder_parent_label" note="親フォルダの表示名" />
-<mt:Var name="ec_folder_path" setvar="ec_folder_parent_path" note="親フォルダの完全なURL" />
+<mt:Var name="ec_folder_url" setvar="ec_folder_parent_url" note="親フォルダの完全なURL" />
 <mt:Var name="ec_folder_basename" setvar="ec_folder_ancestor_basename" note="先祖フォルダのベースネーム" />
 <mt:Var name="ec_folder_label" setvar="ec_folder_ancestor_label" note="先祖フォルダの表示名" />
-<mt:Var name="ec_folder_path" setvar="ec_folder_ancestor_path" note="先祖フォルダの完全なURL" />
+<mt:Var name="ec_folder_url" setvar="ec_folder_ancestor_url" note="先祖フォルダの完全なURL" />
 
 <mt:SetVar name="__is_ancestor__" value="0" />
 <mt:ParentFolders exclude_current="1" note="親・先祖フォルダを取得する">
     <mt:If name="__is_ancestor__" eq="0" value="先祖フォルダ情報をまだ取得していなければ">
         <mt:FolderBasename setvar="ec_folder_ancestor_basename" />
         <mt:FolderLabel encode_html="1" setvar="ec_folder_ancestor_label" />
-        <mt:SetVarBlock name="ec_folder_ancestor_path"><mt:BlogRelativeURL /><mt:FolderPath /></mt:SetVarBlock>
+        <mt:SetVarBlock name="ec_folder_ancestor_url"><mt:BlogRelativeURL /><mt:FolderPath /></mt:SetVarBlock>
         <mt:SetVar name="__is_ancestor__" value="1" />
     </mt:If>
     <mt:FolderBasename setvar="ec_folder_parent_basename" />
     <mt:FolderLabel encode_html="1" setvar="ec_folder_parent_label" />
-    <mt:SetVarBlock name="ec_folder_parent_path"><mt:BlogRelativeURL /><mt:FolderPath /></mt:SetVarBlock>
+    <mt:SetVarBlock name="ec_folder_parent_url"><mt:BlogRelativeURL /><mt:FolderPath /></mt:SetVarBlock>
 </mt:ParentFolders>
 <mt:SetVar name="__is_ancestor__" value="" />
 
@@ -80,13 +80,13 @@
         # インデックスページであれば: フォルダが終点となる
         # -----------------------
         </mt:Ignore>
-        <mt:SetVarBlock name="ec_meta_title" note="title要素"><mt:Var name="ec_folder_label" /><mt:Unless name="ec_folder_basename" eq="$ec_folder_ancestor_basename"> | <mt:Var name="ec_folder_ancestor_label" /></mt:Unless><mt:Var name="ec_website_suffix" /></mt:SetVarBlock>
+        <mt:SetVarBlock name="ec_meta_title" note="title要素"><mt:Var name="ec_folder_label" /><mt:Unless name="ec_folder_basename" eq="$ec_folder_ancestor_basename"> | <mt:Var name="ec_folder_ancestor_label" /></mt:Unless><mt:Var name="ec_blog_suffix" /></mt:SetVarBlock>
     <mt:Else>
         <mt:Ignore>
         # インデックスページでなければ: ページが終点となる
         # -----------------------
         </mt:Ignore>
-        <mt:SetVarBlock name="ec_meta_title" note="title要素"><mt:PageTitle encode_html="1" /><mt:If name="ec_folder_basename"> | <mt:Var name="ec_folder_label" /></mt:If><mt:Unless name="ec_folder_basename" eq="$ec_folder_ancestor_basename"> | <mt:Var name="ec_folder_ancestor_label" /></mt:Unless><mt:Var name="ec_website_suffix" /></mt:SetVarBlock>
+        <mt:SetVarBlock name="ec_meta_title" note="title要素"><mt:PageTitle encode_html="1" /><mt:If name="ec_folder_basename"> | <mt:Var name="ec_folder_label" /></mt:If><mt:Unless name="ec_folder_basename" eq="$ec_folder_ancestor_basename"> | <mt:Var name="ec_folder_ancestor_label" /></mt:Unless><mt:Var name="ec_blog_suffix" /></mt:SetVarBlock>
     </mt:If>
 </mt:If>
 
