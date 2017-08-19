@@ -204,12 +204,6 @@ elements:
             label: 変数-ホーム
           vars_page:
             label: 変数-ページ
-          debug_archive_category:
-            label: デバッグ-アーカイブ-カテゴリー
-          debug_archive_date:
-            label: デバッグ-アーカイブ-年月別
-          debug_blog_index:
-            label: デバッグ-ブログトップページ
           debug_entry:
             label: デバッグ-記事
           debug_home:
