@@ -1,0 +1,247 @@
+id: "echo_2017"
+label: "echo_2017"
+version: "0.1.0"
+author_link: "http://webbingstudio.com/"
+author_name: "Webbingstudio"
+description: "MovableType.net framework theme - Licensed under MIT Open Source"
+class: "blog"
+elements:
+  blog_static_files:
+    component: '~'
+    data:
+      - css
+      - images
+      - js
+      - fonts
+    importer: blog_static_files
+  custom_fields:
+    component: commercial
+    data:
+      EcBlogCommonTitle:
+        default: ''
+        description: title要素末尾のサイト名の略称を変更したい場合は、ここに入力してください。
+        name: title要素のサイト名の略称
+        obj_type: blog
+        options: ''
+        required: 0
+        type: text
+      EcBlogFbAppId:
+        default: ''
+        description: FacebookアプリケーションIDがあれば入力してください。
+        name: FacebookアプリケーションID
+        obj_type: blog
+        options: ''
+        required: 0
+        type: text
+      EcBlogFbPage:
+        default: ''
+        description: FacebookページのURLがあれば入力してください。
+        name: FacebookページのURL
+        obj_type: blog
+        options: ''
+        required: 0
+        type: text
+      EcBlogHomeDescription:
+        default: ''
+        description: ホームのMETAの概要文を変更したい場合は、ここに入力してください。
+        name: ホームのMETAの概要文
+        obj_type: blog
+        options: ''
+        required: 0
+        type: text
+      EcBlogHomeTitle:
+        default: ''
+        description: ホームのtitle要素を変更したい場合は、ここに入力してください。
+        name: ホームのtitle要素
+        obj_type: blog
+        options: ''
+        required: 0
+        type: text
+      EcBlogHtmlHead:
+        default: ''
+        description: HTMLのhead要素末尾に追加したい内容があれば入力してください。
+        name: 追加のhead要素
+        obj_type: blog
+        options: ''
+        required: 0
+        type: textarea
+      EcBlogOgImage:
+        default: ''
+        description: このウェブサイトのOGP用画像(og:image)をアップロードしてください。
+        name: OGP用画像
+        obj_type: blog
+        options: ''
+        required: 0
+        type: asset_image
+      EcBlogTwitterID:
+        default: ''
+        description: TwitterのアカウントIDがあれば入力してください。
+        name: TwitterアカウントID
+        obj_type: blog
+        options: ''
+        required: 0
+        type: text
+      EcEntryEyecatch:
+        default: ''
+        description: この記事のアイキャッチ画像をアップロードしてください。SNSでシェアしたときにも引用されます。
+        name: アイキャッチ画像
+        obj_type: post
+        options: ''
+        required: 0
+        type: asset_image
+      EcEntryMetaTitle:
+        default: ''
+        description: この記事のtitle要素を変更したい場合は、ここに入力してください。
+        name: title要素
+        obj_type: post
+        options: ''
+        required: 0
+        type: text
+      EcPageEyecatch:
+        default: ''
+        description: このページのアイキャッチ画像をアップロードしてください。SNSでシェアしたときにも引用されます。
+        name: アイキャッチ画像
+        obj_type: page
+        options: ''
+        required: 0
+        type: asset_image
+      EcPageShowHome:
+        default: 0
+        description: このページをトップページの内容として表示する場合、エリアを指定してください。
+        name: トップページに表示
+        obj_type: page
+        options: 表示しない,ページ上段,ページ中段,ページ下段
+        default: 表示しない
+        required: 1
+        type: select
+      EcPageMetaTitle:
+        default: ''
+        description: このページのtitle要素を変更したい場合は、ここに入力してください。
+        name: title要素
+        obj_type: page
+        options: ''
+        required: 0
+        type: text
+      EcPageHtmlHead:
+        default: ''
+        description: この記事にCSSやJavaScriptを追加したい場合は、ここに入力してください。
+        name: 追加のhead要素
+        obj_type: page
+        options: ''
+        required: 0
+        type: textarea
+    importer: custom_fields
+  template_set:
+    component: core
+    data:
+      base_path: templates
+      templates:
+        archive:
+          category:
+            filename: category.mtml
+            label: アーカイブ-カテゴリ別
+            mappings:
+              category:
+                archive_type: Category
+                file_template: "%-c/%i"
+                preferred: 1
+          date:
+            filename: date.mtml
+            label: アーカイブ-年月別
+            mappings:
+              monthly:
+                archive_type: Monthly
+                file_template: "%y/%m/%i"
+                preferred: 1
+        index:
+          feed_recent:
+            filename: feed_recent.mtml
+            label: 最新記事のフィード
+            outfile: atom.xml
+            rebuild_me: 1
+          main_index:
+            filename: home.mtml
+            label: ホーム
+            outfile: index.html
+            rebuild_me: 1
+          blog_index:
+            filename: blog_index.mtml
+            label: ブログトップページ
+            outfile: blog/index.html
+            rebuild_me: 1
+        page:
+          page:
+            filename: page.mtml
+            label: ページ
+            mappings:
+              page:
+                archive_type: Page
+                file_template: "%-c/%-f"
+                preferred: 1
+        individual:
+          entry:
+            filename: entry.mtml
+            label: 記事
+            mappings:
+              individual:
+                archive_type: Individual
+                file_template: "blog/%y/%m/%-f"
+                preferred: 1
+        system:
+          404:
+            filename: 404.mtml
+            label: 404エラー
+        module:
+          vars_archive_category:
+            label: 変数-アーカイブ-カテゴリー
+          vars_archive_date:
+            label: 変数-アーカイブ-年月別
+          vars_common:
+            label: 変数-共通
+          vars_entry:
+            label: 変数-記事
+          vars_home:
+            label: 変数-ホーム
+          vars_page:
+            label: 変数-ページ
+          debug_archive_category:
+            label: デバッグ-アーカイブ-カテゴリー
+          debug_archive_date:
+            label: デバッグ-アーカイブ-年月別
+          debug_blog_index:
+            label: デバッグ-ブログトップページ
+          debug_entry:
+            label: デバッグ-記事
+          debug_home:
+            label: デバッグ-ホーム
+          debug_page:
+            label: デバッグ-ページ
+          footer:
+            label: フッタ
+          header:
+            label: ヘッダ
+          html_head:
+            label: head要素
+          loop_card:
+            label: 記事ループ-カード
+          loop_list:
+            label: 記事ループ-リスト
+          loop_summary:
+            label: 記事ループ-サマリー
+          topicpath_archive_date:
+            label: トピックパス-アーカイブ-年月別
+          topicpath_category:
+            label: トピックパス-アーカイブ-カテゴリー
+          topicpath_entry:
+            label: トピックパス-記事
+          topicpath_page:
+            label: トピックパス-ページ
+          parts_global_nav:
+            label: パーツ-グローバルナビ
+          parts_sp_nav:
+            label: パーツ-スマートフォンナビ
+          parts_pagination:
+            label: パーツ-ページネーション
+          parts_similar:
+            label: パーツ-関連記事
+    importer: template_set
