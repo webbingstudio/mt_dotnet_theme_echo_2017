@@ -242,6 +242,4 @@ elements:
             label: パーツ-スマートフォンナビ
           parts_pagination:
             label: パーツ-ページネーション
-          parts_similar:
-            label: パーツ-関連記事
     importer: template_set
