@@ -216,6 +216,10 @@ elements:
             label: ヘッダ
           html_head:
             label: head要素
+          body_first:
+            label: body要素先頭
+          body_last:
+            label: body要素末尾
           loop_card:
             label: 記事ループ-カード
           loop_list:
