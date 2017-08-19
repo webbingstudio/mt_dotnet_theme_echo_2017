@@ -3,35 +3,42 @@
 # 
 # ヘッダ
 # 
-# require:
+# vars:
 #     ec_blog_path
 #     ec_static_path
 #     ec_blog_name
-# 
-# need:
 #     ec_is_home
 # 
 # =======================
 </mt:Ignore>
-<header id="header">
-    <div class="container">
+<header class="l-header" id="header" role="banner">
+    <div class="l-container">
 
-        <mt:If name="ec_is_home" eq="1"><h1 class="header-logo"><mt:Else><div class="header-logo"></mt:If>
+        <div class="l-row">
+            <div class="l-col-3-lg">
 
-            <span class="header-logo-inner">
-                <a href="<mt:Var name="ec_blog_path" />"><img src="<mt:Var name="ec_static_path" />images/common/logo.svg" height="45" alt="<mt:Var name="ec_blog_name" />"></a>
-            </span><!-- /.header-logo-inner -->
+                <mt:If name="ec_is_home" eq="1"><h1 class="l-header-brand"><mt:Else><div class="l-header-brand"></mt:If>
 
-        <mt:If name="ec_is_home" eq="1"><!-- /.header-logo --></h1><mt:Else><!-- /.header-logo --></div></mt:If>
+                    <span class="l-header-logo">
+                        <a href="<mt:Var name="ec_blog_path" />"><img src="<mt:Var name="ec_static_path" />images/common/logo.svg" height="45" alt="<mt:BlogName encode_html="1" />"></a>
+                    </span><!-- /.l-header-logo -->
 
-        <mt:Include module="パーツ-グローバルナビ" />
+                <mt:If name="ec_is_home" eq="1"></h1><mt:Else></div></mt:If><!-- /.l-header-brand -->
 
-        <div class="header-menu-btn">
-            <button class="hiraku-open-btn" id="offcanvas-btn-right" data-toggle-offcanvas="#js-hiraku-offcanvas-1">
-                <span class="hiraku-open-btn-line"></span>
-                <span class="hiraku-open-btn-label">MENU</span>
-            </button>
-        <!-- /.header-menu-btn --></div>
+            </div>
+            <div class="l-col-9-lg">
 
-    <!-- /.container --></div>
-<!-- /#header --></header>
+                <mt:Include module="パーツ-グローバルナビ" />
+
+                <div class="l-header-menu">
+                    <button class="l-header-toggle hiraku-open-btn" id="offcanvas-btn-right" data-toggle-offcanvas="#js-hiraku-offcanvas-1">
+                        <span class="l-header-toggle-line"></span>
+                        <span class="l-header-toggle-label">メニュー</span>
+                    </button>
+                </div><!-- /.l-header-menu -->
+
+            </div><!-- /.l-col -->
+        </div><!-- /.l-row -->
+
+    </div><!-- /.container -->
+</header><!-- /#header -->
