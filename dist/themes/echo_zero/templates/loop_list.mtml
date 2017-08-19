@@ -5,8 +5,27 @@
 # 
 # 記事一覧で、記事を繰り返している部分のテンプレート。タイトルのみのリスト形式で表示する。
 # 
+# 
 # usage:
 #   <mt:Include module="記事ループ-リスト" />
 # 
+# usage (with options):
+#   <mt:SetVar name="__loop_tag__" value="p" />
+#   <mt:SetVar name="__loop_whatsnew__" value="0" />
+#   <mt:Include module="記事ループ-リスト" />
+# 
+# default:
+#   __loop_tag__ = li
+#   __loop_whatsnew__ = 1
+# 
 # =======================
 </mt:Ignore>
+<mt:Unless name="__loop_tag__"><mt:SetVar name="__loop_tag__" value="li" /></mt:Unless>
+<mt:Unless name="__loop_whatsnew__" eq="1"><mt:SetVar name="__loop_whatsnew__" value="1" /></mt:Unless>
+
+<<mt:Var name="__loop_tag__" />>
+	<a href="<mt:EntryPermalink />"<mt:If name="__loop_whatsnew__" eq="1"> class="js-whatsnew" data-publish="<mt:EntryDate format_name="iso8601" />"</mt:If>><mt:EntryTitle encode_html="1" /></a>
+</<mt:Var name="__loop_tag__" />>
+
+<mt:SetVar name="__loop_tag__" value="" />
+<mt:SetVar name="__loop_whatsnew__" value="" />
