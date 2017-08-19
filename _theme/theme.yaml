@@ -139,7 +139,7 @@ elements:
         archive:
           category:
             filename: category.mtml
-            label: アーカイブ-カテゴリ別
+            label: アーカイブ-カテゴリー
             mappings:
               category:
                 archive_type: Category
@@ -192,12 +192,12 @@ elements:
             filename: 404.mtml
             label: 404エラー
         module:
-          vars_archive_category:
+          vars_category:
             label: 変数-アーカイブ-カテゴリー
-          vars_archive_date:
-            label: 変数-アーカイブ-年月別
           vars_common:
             label: 変数-共通
+          vars_date:
+            label: 変数-アーカイブ-年月別
           vars_entry:
             label: 変数-記事
           vars_home:
@@ -222,10 +222,10 @@ elements:
             label: 記事ループ-リスト
           loop_summary:
             label: 記事ループ-サマリー
-          topicpath_archive_date:
-            label: トピックパス-アーカイブ-年月別
           topicpath_category:
             label: トピックパス-アーカイブ-カテゴリー
+          topicpath_date:
+            label: トピックパス-アーカイブ-年月別
           topicpath_entry:
             label: トピックパス-記事
           topicpath_page:
