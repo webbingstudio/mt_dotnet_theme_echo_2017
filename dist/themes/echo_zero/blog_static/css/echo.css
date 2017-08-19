@@ -1,7 +1,7 @@
 @charset "UTF-8";
 /**
- * echo (provisional) by WebbingStudio
- * version 0.1.0
+ * echo Movable Type edition by WebbingStudio
+ * version 0.1.0 (provisional)
  * Licensed under MIT Open Source
  * 
  * SMACSS: Scalable and Modular Architecture for CSS
@@ -3750,7 +3750,7 @@ category: module_component
 
 /*doc
 ---
-title: .widget
+title: .block
 name: block
 category: module_component
 ---
@@ -3774,32 +3774,32 @@ category: module_component
 ```
 
 */
-.widget {
+.block {
   position: relative;
 }
-.widget .widget-header {
+.block .block-header {
   position: relative;
   padding: 0 0 1.875rem;
 }
-.widget .widget-header:before, .widget .widget-header:after {
+.block .block-header:before, .block .block-header:after {
   content: "";
   display: table;
 }
-.widget .widget-header:after {
+.block .block-header:after {
   clear: both;
 }
-.widget .widget-footer {
+.block .block-footer {
   position: relative;
   padding: 1.875rem 0 0;
 }
-.widget .widget-footer:before, .widget .widget-footer:after {
+.block .block-footer:before, .block .block-footer:after {
   content: "";
   display: table;
 }
-.widget .widget-footer:after {
+.block .block-footer:after {
   clear: both;
 }
-.widget .widget-title {
+.block .block-title {
   margin: 0;
   font-size: 2rem;
   font-family: "-apple-system", "BlinkMacSystemFont", "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
@@ -3807,65 +3807,93 @@ category: module_component
   text-align: center;
   letter-spacing: .1em;
 }
-.widget .widget-title a {
+.block .block-title a {
   color: #333333;
 }
-.widget .widget-subtitle {
+.block .block-subtitle {
   margin: .5rem 0 0;
   font-size: 0.75rem;
   color: #6c7277;
   text-align: center;
   letter-spacing: .1rem;
 }
-.widget .widget-text {
+.block .block-text {
   margin: 1.5rem 0 0;
   text-align: center;
 }
-.widget .widget-link {
+.block .block-link {
   margin: 0;
   text-align: center;
 }
 
 /*doc
 ---
-title: .widgetarea
-name: widgetarea
+title: .blockset
+name: blockset
 category: module_component
 parent: block
 ---
 
-.widgetが連続して複数配置される可能性がある場合に、.widgetを包括する領域。
+.blockが連続して複数配置される可能性がある場合に、.blockを包括する領域。
 
 ```
-<div class="widgetarea">
+<div class="blockset">
 
-    <div class="widget"></div>
-    <div class="widget"></div>
-    <div class="widget"></div>
-    <div class="widget"></div>
+    <div class="block"></div>
+    <div class="block"></div>
+    <div class="block"></div>
+    <div class="block"></div>
 
-</div><!-- /.widgetarea -->
+</div><!-- /.blockset -->
 ```
 
 */
-.widgetarea:before, .widgetarea:after {
+.blockset:before, .blockset:after {
   content: "";
   display: table;
 }
-.widgetarea:after {
+.blockset:after {
   clear: both;
 }
 
-.widget.widget-card {
+.block.block-lead {
+  height: 100vh;
+}
+.block.block-lead .lead {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.block.block-card {
   padding: 1.875rem 0;
 }
 @media (min-width: 1024px) {
-  .widget.widget-card {
+  .block.block-card {
     padding: 2.8125rem 0;
   }
 }
-.widget.widget-card .card-01 .card-thumb {
+.block.block-card .card-01 .card-thumb {
   padding-bottom: 52.3560209%;
+}
+
+.block-instagram .card-02 {
+  margin-bottom: 0;
+  box-shadow: none;
+}
+.block-instagram .card-02 .card-thumb {
+  padding-bottom: 100%;
+}
+.block-instagram .card-02 .card-contents {
+  padding-top: 0.625rem;
+  font-size: 0.75rem;
+}
+
+.block.block-sns {
+  padding: 1.875rem 0;
 }
 
 /*doc
