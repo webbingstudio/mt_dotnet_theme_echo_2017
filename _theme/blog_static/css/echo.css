@@ -1919,8 +1919,10 @@ outline
   }
 }
 
-.l-header-menubtn {
-  display: none;
+@media (min-width: 1024px) {
+  .l-header-menu {
+    display: none;
+  }
 }
 
 .l-globalnav {

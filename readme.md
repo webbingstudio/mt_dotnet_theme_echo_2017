@@ -1,7 +1,7 @@
 MovableType.net theme "echo_2017"
 ====================================
 
-version 0.1.0 (provisional)
+version 0.1.1 (provisional)
 
 Author: WebbingStudio  
 http://webbingstudio.com/  
