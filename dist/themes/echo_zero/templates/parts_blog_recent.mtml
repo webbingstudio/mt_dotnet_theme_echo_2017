@@ -7,24 +7,28 @@
 </mt:Ignore>
 <mt:Entries sort_by="authored_on" sort_order="descend" include_subcategories="1" limit="5">
 <mt:EntriesHeader>
-<div class="section widget widget-recent" id="widget-recent-02">
-
-    <div class="section-header widget-header">
-        <div class="container">
-            <h2 class="section-title widget-title"><mt:Var name="ec_blog_contents_label" /></h2>
-        </div><!-- /.container -->
-    </div><!-- /.section-header widget-header -->
-
-    <div class="section-content widget-content">
-        <div class="container">
+<div class="widget widget-card widget-card-blog">
+    <div class="widget-header">
+        <div class="l-container-sm">
+            <h2 class="widget-title"><mt:Var name="ec_blog_contents_label" /></h2>
+        </div><!-- /.l-container-sm -->
+    </div><!-- /.widget-header -->
+    <div class="widget-contents">
+        <div class="l-container">
+            <div class="l-row">
 </mt:EntriesHeader>
 
-            <mt:Include module="記事ループ-リスト" />
+<mt:Include module="記事ループ-カード" />
 
 <mt:EntriesFooter>
-        </div><!-- /.container -->
-    </div><!-- /.section-content widget-content -->
-
-</div><!-- /.section.widget -->
+            </div><!-- /.l-row -->
+        </div><!-- /.l-container -->
+    </div><!-- /.widget-contents -->
+    <div class="widget-footer">
+        <div class="l-container-sm">
+            <p class="widget-link"><a href="/blog/" class="btn btn-block btn-lg btn-first btn-outline-01">もっと見る</a></p>
+        </div><!-- /.l-container-sm -->
+    </div><!-- /.widget-footer -->
+</div><!-- /.widget -->
 </mt:EntriesFooter>
 </mt:Entries>
