@@ -1,21 +1,19 @@
-MovableType.net theme "echo_zero"
+MovableType.net theme "echo_2017"
 ====================================
 
+version 0.1.0 (provisional)
+
+Author: WebbingStudio  
+http://webbingstudio.com/  
+Licensed under MIT Open Source
+
+このテーマは開発中です。
+
 - - - - - - - - - - - - - - - - - - -
 
-version 1.0.0
+## 重要: パッケージ版・クラウド版との違いについて
 
-Author: Seiko Kuchida  
-http://webbingstudio.com/
-
-Copyright 2017 WebbingStudio
-
-- - - - - - - - - - - - - - - - - - -
-
-## 重要: パッケージ版・クラウド版との互換性について
-
-このテーマは「MovableType.net」用のテーマです。  
-以下の仕様が大きく異なり、Movable Typeパッケージ版・クラウド版には利用できません。
+Movable Typeパッケージ版・クラウド版では、以下の仕様が大きく異なるため、リポジトリのままでは利用できません。対応させたい場合は、テンプレートを任意で修正してください。
 
 ### カスタムフィールドの出力
 
@@ -35,9 +33,9 @@ Googleのサイト検索、jQueryプラグイン「flexibleSearch」の利用を
 
 - - - - - - - - - - - - - - - - - - -
 
-## echo_zeroとは
+## echo_2017とは
 
-「echo_zero」は、MovableType.net専用のテーマです。MovableType.netで、制作会社がコーポレートサイトを作成する目的に特化しています。利用には一定のMovable Type・マークアップの知識が必要となります。
+「echo_2017」は、MovableType.net専用のテーマです。MovableType.netで、制作会社がコーポレートサイトを作成する目的に特化しています。利用には一定のMovable Type・マークアップの知識が必要となります。
 
 echoシリーズ ポータルサイト  
 [http://cms-skill.com/echo/](http://cms-skill.com/echo/)
