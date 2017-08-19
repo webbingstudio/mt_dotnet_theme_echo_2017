@@ -240,4 +240,12 @@ elements:
             label: パーツ-スマートフォンナビ
           parts_pagination:
             label: パーツ-ページネーション
+          parts_home_mainvisual:
+            label: パーツ-ホーム-メインビジュアル
+          parts_home_blog_recent:
+            label: パーツ-ホーム-ブログ新着
+          parts_home_social_plugin:
+            label: パーツ-ホーム-ソーシャルプラグイン
+          parts_home_share:
+            label: パーツ-ホーム-共有ボタン
     importer: template_set
