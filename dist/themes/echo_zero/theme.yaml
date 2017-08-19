@@ -1,9 +1,9 @@
-id: "echo_zero"
-label: "echo_zero"
-version: "1.0.0"
+id: "echo_2017"
+label: "echo_2017"
+version: "0.1.0"
 author_link: "http://webbingstudio.com/"
 author_name: "Webbingstudio"
-description: "echo_zero"
+description: "MovableType.net framework theme - Licensed under MIT Open Source"
 class: "blog"
 elements:
   blog_static_files:
@@ -97,14 +97,6 @@ elements:
         options: ''
         required: 0
         type: text
-      EcEntryPickup:
-        default: '0'
-        description: この記事をピックアップリストに表示する
-        name: ピックアップ
-        obj_type: post
-        options: 0,1
-        required: 0
-        type: checkbox
       EcPageEyecatch:
         default: ''
         description: このページのアイキャッチ画像をアップロードしてください。SNSでシェアしたときにも引用されます。
