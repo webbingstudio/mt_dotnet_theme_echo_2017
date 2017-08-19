@@ -15,32 +15,44 @@
 <body class="<mt:Var name="ec_body_class" />">
 <mt:Include module="body要素先頭" />
 
-<div class="header-wrap">
-    <mt:Include module="ヘッダ" />
-    <mt:Include module="パーツ-ホーム-メインビジュアル" />
-</div><!-- /.header-wrap -->
+<div class="l-header-wrap">
+	<mt:Include module="ヘッダ" />
+	<mt:Include module="パーツ-ホーム-メインビジュアル" />
+</div><!-- /.l-header-wrap -->
 
-<main id="main">
+<main class="l-main" id="main" role="main">
 
-    <mt:Pages field:EcPageShowHome="ページ上段" sort_order="ascend">
-    <mt:PageBody mteval="1" />
-    <mt:PageMore mteval="1" />
-    </mt:Pages>
+	<mt:Pages field:EcPageShowHome="ページ上段" sort_order="ascend">
+	<mt:PageBody mteval="1" />
+	<mt:PageMore mteval="1" />
+	</mt:Pages>
 
-    <mt:Include module="パーツ-ホーム-ブログ新着" />
+	<div class="widgetarea widgetarea-01">
+		<div class="l-container">
 
-    <mt:Pages field:EcPageShowHome="ページ下段" sort_order="ascend">
-    <mt:PageBody mteval="1" />
-    <mt:PageMore mteval="1" />
-    </mt:Pages>
+			<mt:Include module="パーツ-ホーム-ブログ新着" />
 
-</main><!-- /#main -->
+		</div><!-- /.l-container -->
+	</div><!-- /.widgetarea -->
 
-<mt:Include module="パーツ-バナー" />
-<mt:Include module="パーツ-ホーム-ソーシャルプラグイン" />
-<mt:Include module="パーツ-ホーム-共有ボタン" />
+	<mt:Pages field:EcPageShowHome="ページ下段" sort_order="ascend">
+	<mt:PageBody mteval="1" />
+	<mt:PageMore mteval="1" />
+	</mt:Pages>
+
+</main><!-- /.l-main -->
+
+<div class="l-sub" id="sub" role="complementary">
+
+	<mt:Include module="パーツ-バナー" />
+	<mt:Include module="パーツ-ホーム-ソーシャルプラグイン" />
+	<mt:Include module="パーツ-ホーム-共有ボタン" />
+
+</div><!-- /.l-sub -->
 
 <mt:Include module="フッタ" />
+<mt:Include module="パーツ-スマートフォンナビ" />
+
 <mt:Include module="デバッグ-ホーム" />
 <mt:Include module="body要素末尾" />
 </body>
