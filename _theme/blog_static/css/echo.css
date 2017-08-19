@@ -1923,21 +1923,20 @@ outline
   display: none;
 }
 
-.l-global-nav {
+.l-globalnav {
   display: none;
-  font-size: 0.75rem;
+  font-size: 0.875rem;
   text-align: right;
+  line-height: 1;
 }
 @media (min-width: 1024px) {
-  .l-global-nav {
+  .l-globalnav {
     display: block;
   }
 }
-.l-globalnav .nav.nav-horizontal {
-  display: block;
-  width: 100%;
+.l-globalnav .nav.nav-horizontal > ul > li > ul > li {
+  font-size: 1em;
 }
-
 .l-footer {
   padding: 1.25rem 0 3.75rem;
   font-size: 0.75rem;
