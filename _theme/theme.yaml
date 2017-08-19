@@ -238,6 +238,8 @@ elements:
             label: パーツ-グローバルナビ
           parts_sp_nav:
             label: パーツ-スマートフォンナビ
+          parts_banner:
+            label: パーツ-バナー
           parts_pagination:
             label: パーツ-ページネーション
           parts_home_mainvisual:
