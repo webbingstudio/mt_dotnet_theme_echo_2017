@@ -3750,7 +3750,7 @@ category: module_component
 
 /*doc
 ---
-title: .block
+title: .widget
 name: block
 category: module_component
 ---
@@ -3774,32 +3774,32 @@ category: module_component
 ```
 
 */
-.block {
+.widget {
   position: relative;
 }
-.block .block-header {
+.widget .widget-header {
   position: relative;
   padding: 0 0 1.875rem;
 }
-.block .block-header:before, .block .block-header:after {
+.widget .widget-header:before, .widget .widget-header:after {
   content: "";
   display: table;
 }
-.block .block-header:after {
+.widget .widget-header:after {
   clear: both;
 }
-.block .block-footer {
+.widget .widget-footer {
   position: relative;
   padding: 1.875rem 0 0;
 }
-.block .block-footer:before, .block .block-footer:after {
+.widget .widget-footer:before, .widget .widget-footer:after {
   content: "";
   display: table;
 }
-.block .block-footer:after {
+.widget .widget-footer:after {
   clear: both;
 }
-.block .block-title {
+.widget .widget-title {
   margin: 0;
   font-size: 2rem;
   font-family: "-apple-system", "BlinkMacSystemFont", "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
@@ -3807,93 +3807,65 @@ category: module_component
   text-align: center;
   letter-spacing: .1em;
 }
-.block .block-title a {
+.widget .widget-title a {
   color: #333333;
 }
-.block .block-subtitle {
+.widget .widget-subtitle {
   margin: .5rem 0 0;
   font-size: 0.75rem;
   color: #6c7277;
   text-align: center;
   letter-spacing: .1rem;
 }
-.block .block-text {
+.widget .widget-text {
   margin: 1.5rem 0 0;
   text-align: center;
 }
-.block .block-link {
+.widget .widget-link {
   margin: 0;
   text-align: center;
 }
 
 /*doc
 ---
-title: .blockset
-name: blockset
+title: .widgetarea
+name: widgetarea
 category: module_component
 parent: block
 ---
 
-.blockが連続して複数配置される可能性がある場合に、.blockを包括する領域。
+.widgetが連続して複数配置される可能性がある場合に、.widgetを包括する領域。
 
 ```
-<div class="blockset">
+<div class="widgetarea">
 
-    <div class="block"></div>
-    <div class="block"></div>
-    <div class="block"></div>
-    <div class="block"></div>
+    <div class="widget"></div>
+    <div class="widget"></div>
+    <div class="widget"></div>
+    <div class="widget"></div>
 
-</div><!-- /.blockset -->
+</div><!-- /.widgetarea -->
 ```
 
 */
-.blockset:before, .blockset:after {
+.widgetarea:before, .widgetarea:after {
   content: "";
   display: table;
 }
-.blockset:after {
+.widgetarea:after {
   clear: both;
 }
 
-.block.block-lead {
-  height: 100vh;
-}
-.block.block-lead .lead {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-}
-
-.block.block-card {
+.widget.widget-card {
   padding: 1.875rem 0;
 }
 @media (min-width: 1024px) {
-  .block.block-card {
+  .widget.widget-card {
     padding: 2.8125rem 0;
   }
 }
-.block.block-card .card-01 .card-thumb {
+.widget.widget-card .card-01 .card-thumb {
   padding-bottom: 52.3560209%;
-}
-
-.block-instagram .card-02 {
-  margin-bottom: 0;
-  box-shadow: none;
-}
-.block-instagram .card-02 .card-thumb {
-  padding-bottom: 100%;
-}
-.block-instagram .card-02 .card-contents {
-  padding-top: 0.625rem;
-  font-size: 0.75rem;
-}
-
-.block.block-sns {
-  padding: 1.875rem 0;
 }
 
 /*doc
