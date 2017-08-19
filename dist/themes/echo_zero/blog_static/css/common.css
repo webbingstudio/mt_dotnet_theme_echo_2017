@@ -1,12 +1,15 @@
 @charset "UTF-8";
 /**
- * common.css
+ * echo (provisional) by WebbingStudio
+ * version 0.1.0
+ * Licensed under MIT Open Source
  * 
  * SMACSS: Scalable and Modular Architecture for CSS
  * https://smacss.com/ja
  * https://app.codegrid.net/entry/smacss-1
  * 
  */
+
 /*
 ---
 reset
@@ -232,7 +235,6 @@ category: layout
 }
 
 /*
-a-blog cmsのレイアウトモジュール、HTML直書きの影響で
 .l-containerが二重になった場合の対策
 */
 @media (min-width: 425px) {
@@ -1914,47 +1916,23 @@ outline
   }
 }
 
-.l-header-title {
-  font-size: 1.5rem;
+.l-header-menubtn {
+  display: none;
 }
 
-.l-header-nav {
+.l-global-nav {
   display: none;
   font-size: 0.75rem;
   text-align: right;
 }
 @media (min-width: 1024px) {
-  .l-header-nav {
+  .l-global-nav {
     display: block;
-  }
-}
-
-.l-header-menubtn {
-  display: none;
-}
-
-.l-globalnav {
-  width: 100%;
-  background-color: #fff;
-  font-size: 0.75rem;
-  line-height: 1;
-}
-@media (min-width: 1024px) {
-  .l-globalnav {
-    display: none;
   }
 }
 .l-globalnav .nav.nav-horizontal {
   display: block;
   width: 100%;
-}
-.l-globalnav .nav.nav-horizontal a {
-  padding-left: .5em;
-  padding-right: .5em;
-}
-.l-globalnav .nav.nav-horizontal > ul {
-  margin-left: auto;
-  margin-right: auto;
 }
 
 .l-footer {
@@ -1967,8 +1945,22 @@ outline
   font-size: 0.75rem;
 }
 
+.l-spnav {
+  padding: 3.75rem 0.625rem 0;
+}
+
+.l-spnav-title {
+  margin: 0;
+  padding: 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+  font-family: "YuMincho", "-apple-system", "Roboto", "Open Sans", "Arial", "Helvetica", sans-serif;
+  text-align: center;
+  line-height: 1;
+}
+
 @media (min-width: 1024px) {
-  .l-contents-col {
+  .l-contents.l-contents-col-2 {
     width: 100%;
     display: -webkit-box;
     display: -moz-box;
@@ -1976,18 +1968,18 @@ outline
     display: -webkit-flex;
     display: flex;
   }
-  .l-contents-col .l-main {
+  .l-contents.l-contents-col-2 .l-main {
     flex: 1;
     width: auto;
     padding: 0 2.5rem 0 0;
   }
-  .l-contents-col .l-sub {
+  .l-contents.l-contents-col-2 .l-sub {
     width: 300px;
   }
 }
 /*doc
 ---
-title: Editable Styles (a-blog cms)
+title: Editable Styles
 name: editable
 category: editable
 ---
@@ -2183,8 +2175,7 @@ category: editable
   border-color: transparent transparent transparent #eeeeee;
   font-style: normal;
 }
-.editable table:not([class]),
-.editable [class*="column-table"] table {
+.editable table:not([class]) {
   display: block;
   width: 100%;
   max-width: 100%;
@@ -2194,45 +2185,34 @@ category: editable
   border-color: #cccccc;
 }
 @media (min-width: 425px) {
-  .editable table:not([class]),
-  .editable [class*="column-table"] table {
+  .editable table:not([class]) {
     display: table;
   }
 }
 .editable table:not([class]) thead,
 .editable table:not([class]) tbody,
-.editable table:not([class]) tfoot,
-.editable [class*="column-table"] table thead,
-.editable [class*="column-table"] table tbody,
-.editable [class*="column-table"] table tfoot {
+.editable table:not([class]) tfoot {
   display: block;
 }
 @media (min-width: 425px) {
   .editable table:not([class]) thead,
   .editable table:not([class]) tbody,
-  .editable table:not([class]) tfoot,
-  .editable [class*="column-table"] table thead,
-  .editable [class*="column-table"] table tbody,
-  .editable [class*="column-table"] table tfoot {
+  .editable table:not([class]) tfoot {
     display: table-row-group;
   }
 }
-.editable table:not([class]) tr,
-.editable [class*="column-table"] table tr {
+.editable table:not([class]) tr {
   display: block;
   border-bottom: 2px solid #cccccc;
 }
 @media (min-width: 425px) {
-  .editable table:not([class]) tr,
-  .editable [class*="column-table"] table tr {
+  .editable table:not([class]) tr {
     display: table-row;
     border-bottom: 0 none;
   }
 }
 .editable table:not([class]) th,
-.editable table:not([class]) td,
-.editable [class*="column-table"] table th,
-.editable [class*="column-table"] table td {
+.editable table:not([class]) td {
   display: block;
   width: 100%;
   padding: 0.3125rem 0.625rem;
@@ -2244,28 +2224,16 @@ category: editable
 }
 @media (min-width: 425px) {
   .editable table:not([class]) th,
-  .editable table:not([class]) td,
-  .editable [class*="column-table"] table th,
-  .editable [class*="column-table"] table td {
+  .editable table:not([class]) td {
     display: table-cell;
     width: auto;
   }
 }
-.editable table:not([class]) th,
-.editable [class*="column-table"] table th {
+.editable table:not([class]) th {
   text-align: left;
 }
-.editable table:not([class]) thead th,
-.editable [class*="column-table"] table thead th {
+.editable table:not([class]) thead th {
   vertical-align: bottom;
-}
-.editable table:not([class]) .acms-cell-text-center,
-.editable [class*="column-table"] table .acms-cell-text-center {
-  text-align: center;
-}
-.editable table:not([class]) .acms-cell-text-right,
-.editable [class*="column-table"] table .acms-cell-text-right {
-  text-align: right;
 }
 
 /*doc
