@@ -1,0 +1,7491 @@
+@charset "UTF-8";
+/**
+ * common.css
+ * 
+ * SMACSS: Scalable and Modular Architecture for CSS
+ * https://smacss.com/ja
+ * https://app.codegrid.net/entry/smacss-1
+ * 
+ */
+/*
+---
+reset
+---
+*/
+html {
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+}
+
+a img {
+  border: 0 none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+td,
+th {
+  padding: 0;
+}
+
+th {
+  text-align: left;
+}
+
+b, th, dt, optgroup, strong {
+  font-family: "-apple-system", "BlinkMacSystemFont", "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
+  font-weight: 700;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ul,
+ol,
+li,
+dl,
+dt,
+dd,
+pre,
+code,
+blockquote {
+  margin: 0;
+}
+
+p {
+  margin-bottom: 1em;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+dt {
+  font-family: "-apple-system", "BlinkMacSystemFont", "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
+  font-weight: 700;
+}
+
+/*
+---
+base
+---
+*/
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: "-apple-system", "BlinkMacSystemFont", "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
+  font-size: 1rem;
+}
+@media (max-width: 375.9px) {
+  html {
+    font-size: 0.75rem;
+  }
+}
+@media (max-width: 767.9px) {
+  html {
+    font-size: 0.875rem;
+  }
+}
+@media (min-width: 1280px) {
+  html {
+    font-size: 1.125rem;
+  }
+}
+
+body {
+  background-color: #fff;
+  color: #333333;
+  font-weight: 300;
+  line-height: 1.75;
+}
+
+a {
+  color: #2288bb;
+  text-decoration: none;
+}
+a:hover, a:focus {
+  color: #2aa7e6;
+  text-decoration: underline;
+}
+
+time {
+  display: block;
+}
+
+/*doc
+---
+title: .l-document
+name: l-document
+category: layout
+---
+
+オフキャンバス等、画面全体に影響する演出のために使用する。
+
+*/
+/*doc
+---
+title: .l-document-inner
+name: l-document-inner
+category: layout
+parent: l-document
+---
+
+要素の幅を.l-containerを無視して広げる演出のために使用する。
+
+*/
+.l-document-inner {
+  overflow: hidden;
+  max-width: 100%;
+}
+
+/*doc
+---
+title: .l-container
+name: l-container
+category: layout
+---
+
+デバイスに応じて適切に本文幅を調整するコンテナブロック。
+
+*/
+.l-container {
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: 0.625rem;
+  padding-right: 0.625rem;
+}
+.l-container:before, .l-container:after {
+  content: "";
+  display: table;
+}
+.l-container:after {
+  clear: both;
+}
+@media (min-width: 768px) {
+  .l-container {
+    max-width: 680px;
+  }
+}
+@media (min-width: 1024px) {
+  .l-container {
+    max-width: 1040px;
+  }
+}
+@media (min-width: 1280px) {
+  .l-container {
+    max-width: 1200px;
+  }
+}
+
+/*doc
+---
+title: .l-container-sm
+name: l-container-sm
+category: layout
+---
+
+本文幅がやや狭いコンテナブロック。
+
+*/
+.l-container-sm {
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: 0.625rem;
+  padding-right: 0.625rem;
+}
+.l-container-sm:before, .l-container-sm:after {
+  content: "";
+  display: table;
+}
+.l-container-sm:after {
+  clear: both;
+}
+@media (min-width: 768px) {
+  .l-container-sm {
+    max-width: 680px;
+  }
+}
+@media (min-width: 1024px) {
+  .l-container-sm {
+    max-width: 768px;
+  }
+}
+@media (min-width: 1280px) {
+  .l-container-sm {
+    max-width: 768px;
+  }
+}
+
+/*
+a-blog cmsのレイアウトモジュール、HTML直書きの影響で
+.l-containerが二重になった場合の対策
+*/
+@media (min-width: 425px) {
+  .l-container .l-container,
+  .l-container .l-container-sm,
+  .l-container-sm .l-container,
+  .l-container-sm .l-container-sm {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+/*doc
+---
+title: .l-container-full
+name: l-container-full
+category: layout
+---
+
+.l-container内で使用すると、ブロックを.l-containerの幅を無視して画面全体に広げる。  
+包括している要素は.l-containerに収まる。
+
+*/
+.l-container-full {
+  min-height: 1px !important;
+  margin-left: -625rem !important;
+  margin-right: -625rem !important;
+  padding-left: 625.625rem !important;
+  padding-right: 625.625rem !important;
+}
+.l-container-full .l-container {
+  padding-left: 0;
+  padding-right: 0;
+}
+.js-hiraku-offcanvas-body-left .l-container-full, .js-hiraku-offcanvas-body-right .l-container-full {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+/*doc
+---
+title: .l-row, .l-col
+name: l-row
+category: layout
+---
+
+グリッドを作成する。
+
+### 一般的なグリッド
+
+<div class="l-row">
+    <div class="l-col l-col-4">
+        <div class="m-b bg-first" style="padding: 5px;">l-col l-col-4</div>
+    </div>
+    <div class="l-col l-col-4">
+        <div class="m-b bg-first" style="padding: 5px;">l-col l-col-4</div>
+    </div>
+    <div class="l-col l-col-4">
+        <div class="m-b bg-first" style="padding: 5px;">l-col l-col-4</div>
+    </div>
+</div>
+
+### 余白が異なるグリッド
+
+<div class="l-row l-row-0">
+    <div class="l-col l-col-4">
+        <div class="m-b bg-second" style="padding: 5px;">l-row l-row-0</div>
+    </div>
+    <div class="l-col l-col-4">
+        <div class="m-b bg-second" style="padding: 5px; opacity: .7;">l-row l-row-0</div>
+    </div>
+    <div class="l-col l-col-4">
+        <div class="m-b bg-second" style="padding: 5px;">l-row l-row-0</div>
+    </div>
+</div>
+
+<div class="l-row l-row-sm">
+    <div class="l-col l-col-4">
+        <div class="m-b bg-second" style="padding: 5px;">l-row l-row-sm</div>
+    </div>
+    <div class="l-col l-col-4">
+        <div class="m-b bg-second" style="padding: 5px;">l-row l-row-sm</div>
+    </div>
+    <div class="l-col l-col-4">
+        <div class="m-b bg-second" style="padding: 5px;">l-row l-row-sm</div>
+    </div>
+</div>
+
+<div class="l-row l-row-lg">
+    <div class="l-col l-col-4">
+        <div class="m-b bg-second" style="padding: 5px;">l-row l-row-lg</div>
+    </div>
+    <div class="l-col l-col-4">
+        <div class="m-b bg-second" style="padding: 5px;">l-row l-row-lg</div>
+    </div>
+    <div class="l-col l-col-4">
+        <div class="m-b bg-second" style="padding: 5px;">l-row l-row-lg</div>
+    </div>
+</div>
+
+### デバイスによって変化するグリッド
+
+スマートフォン(default), タブレット以上(sm), XGA以上(lg)でレイアウトを変更する代表的な例。モバイルファースト。
+
+<div class="l-row">
+    <div class="l-col l-col-12 l-col-6-sm l-col-4-lg">
+        <div class="m-b bg-third" style="padding: 5px;">l-col l-col-12 l-col-6-sm l-col-4-lg</div>
+    </div>
+    <div class="l-col l-col-12 l-col-6-sm l-col-4-lg">
+        <div class="m-b bg-third" style="padding: 5px;">l-col l-col-12 l-col-6-sm l-col-4-lg</div>
+    </div>
+    <div class="l-col l-col-12 l-col-6-sm l-col-4-lg">
+        <div class="m-b bg-third" style="padding: 5px;">l-col l-col-12 l-col-6-sm l-col-4-lg</div>
+    </div>
+</div>
+
+iPhone SE(default), iPhone 7(xxs), iPhone 7 Plus(xs)間でもレイアウトを変更できる。
+
+<div class="l-row">
+    <div class="l-col l-col-12 l-col-6-xxs l-col-4-xs">
+        <div class="m-b bg-third" style="padding: 5px;">l-col l-col-12 l-col-6-xxs l-col-4-xs</div>
+    </div>
+    <div class="l-col l-col-12 l-col-6-xxs l-col-4-xs">
+        <div class="m-b bg-third" style="padding: 5px;">l-col l-col-12 l-col-6-xxs l-col-4-xs</div>
+    </div>
+    <div class="l-col l-col-12 l-col-6-xxs l-col-4-xs">
+        <div class="m-b bg-third" style="padding: 5px;">l-col l-col-12 l-col-6-xxs l-col-4-xs</div>
+    </div>
+</div>
+
+*/
+.l-row {
+  margin-left: -0.625rem;
+  margin-right: -0.625rem;
+}
+.l-row:before, .l-row:after {
+  content: "";
+  display: table;
+}
+.l-row:after {
+  clear: both;
+}
+
+.l-col-1, .l-col-2, .l-col-3, .l-col-4, .l-col-5, .l-col-6, .l-col-7, .l-col-8, .l-col-9, .l-col-10, .l-col-11, .l-col-12, .l-col-1-xxs, .l-col-2-xxs, .l-col-3-xxs, .l-col-4-xxs, .l-col-5-xxs, .l-col-6-xxs, .l-col-7-xxs, .l-col-8-xxs, .l-col-9-xxs, .l-col-10-xxs, .l-col-11-xxs, .l-col-12-xxs, .l-col-1-xs, .l-col-2-xs, .l-col-3-xs, .l-col-4-xs, .l-col-5-xs, .l-col-6-xs, .l-col-7-xs, .l-col-8-xs, .l-col-9-xs, .l-col-10-xs, .l-col-11-xs, .l-col-12-xs, .l-col-1-sm, .l-col-2-sm, .l-col-3-sm, .l-col-4-sm, .l-col-5-sm, .l-col-6-sm, .l-col-7-sm, .l-col-8-sm, .l-col-9-sm, .l-col-10-sm, .l-col-11-sm, .l-col-12-sm, .l-col-1-md, .l-col-2-md, .l-col-3-md, .l-col-4-md, .l-col-5-md, .l-col-6-md, .l-col-7-md, .l-col-8-md, .l-col-9-md, .l-col-10-md, .l-col-11-md, .l-col-12-md, .l-col-1-lg, .l-col-2-lg, .l-col-3-lg, .l-col-4-lg, .l-col-5-lg, .l-col-6-lg, .l-col-7-lg, .l-col-8-lg, .l-col-9-lg, .l-col-10-lg, .l-col-11-lg, .l-col-12-lg, .l-col-1-xl, .l-col-2-xl, .l-col-3-xl, .l-col-4-xl, .l-col-5-xl, .l-col-6-xl, .l-col-7-xl, .l-col-8-xl, .l-col-9-xl, .l-col-10-xl, .l-col-11-xl, .l-col-12-xl {
+  position: relative;
+  min-height: 1px;
+  padding-left: 0.625rem;
+  padding-right: 0.625rem;
+}
+
+.l-col-1, .l-col-2, .l-col-3, .l-col-4, .l-col-5, .l-col-6, .l-col-7, .l-col-8, .l-col-9, .l-col-10, .l-col-11, .l-col-12 {
+  float: left;
+}
+
+.l-col-1 {
+  width: 8.33333%;
+}
+
+.l-col-2 {
+  width: 16.66667%;
+}
+
+.l-col-3 {
+  width: 25%;
+}
+
+.l-col-4 {
+  width: 33.33333%;
+}
+
+.l-col-5 {
+  width: 41.66667%;
+}
+
+.l-col-6 {
+  width: 50%;
+}
+
+.l-col-7 {
+  width: 58.33333%;
+}
+
+.l-col-8 {
+  width: 66.66667%;
+}
+
+.l-col-9 {
+  width: 75%;
+}
+
+.l-col-10 {
+  width: 83.33333%;
+}
+
+.l-col-11 {
+  width: 91.66667%;
+}
+
+.l-col-12 {
+  width: 100%;
+}
+
+.l-col-0-default-pull {
+  right: auto;
+}
+
+.l-col-1-default-pull {
+  right: 8.33333%;
+}
+
+.l-col-2-default-pull {
+  right: 16.66667%;
+}
+
+.l-col-3-default-pull {
+  right: 25%;
+}
+
+.l-col-4-default-pull {
+  right: 33.33333%;
+}
+
+.l-col-5-default-pull {
+  right: 41.66667%;
+}
+
+.l-col-6-default-pull {
+  right: 50%;
+}
+
+.l-col-7-default-pull {
+  right: 58.33333%;
+}
+
+.l-col-8-default-pull {
+  right: 66.66667%;
+}
+
+.l-col-9-default-pull {
+  right: 75%;
+}
+
+.l-col-10-default-pull {
+  right: 83.33333%;
+}
+
+.l-col-11-default-pull {
+  right: 91.66667%;
+}
+
+.l-col-12-default-pull {
+  right: 100%;
+}
+
+.l-col-0-default-push {
+  left: auto;
+}
+
+.l-col-1-default-push {
+  left: 8.33333%;
+}
+
+.l-col-2-default-push {
+  left: 16.66667%;
+}
+
+.l-col-3-default-push {
+  left: 25%;
+}
+
+.l-col-4-default-push {
+  left: 33.33333%;
+}
+
+.l-col-5-default-push {
+  left: 41.66667%;
+}
+
+.l-col-6-default-push {
+  left: 50%;
+}
+
+.l-col-7-default-push {
+  left: 58.33333%;
+}
+
+.l-col-8-default-push {
+  left: 66.66667%;
+}
+
+.l-col-9-default-push {
+  left: 75%;
+}
+
+.l-col-10-default-push {
+  left: 83.33333%;
+}
+
+.l-col-11-default-push {
+  left: 91.66667%;
+}
+
+.l-col-12-default-push {
+  left: 100%;
+}
+
+.l-col-0-default-offset {
+  margin-left: 0%;
+}
+
+.l-col-1-default-offset {
+  margin-left: 8.33333%;
+}
+
+.l-col-2-default-offset {
+  margin-left: 16.66667%;
+}
+
+.l-col-3-default-offset {
+  margin-left: 25%;
+}
+
+.l-col-4-default-offset {
+  margin-left: 33.33333%;
+}
+
+.l-col-5-default-offset {
+  margin-left: 41.66667%;
+}
+
+.l-col-6-default-offset {
+  margin-left: 50%;
+}
+
+.l-col-7-default-offset {
+  margin-left: 58.33333%;
+}
+
+.l-col-8-default-offset {
+  margin-left: 66.66667%;
+}
+
+.l-col-9-default-offset {
+  margin-left: 75%;
+}
+
+.l-col-10-default-offset {
+  margin-left: 83.33333%;
+}
+
+.l-col-11-default-offset {
+  margin-left: 91.66667%;
+}
+
+.l-col-12-default-offset {
+  margin-left: 100%;
+}
+
+@media (min-width: 321px) {
+  .l-col-1-xxs, .l-col-2-xxs, .l-col-3-xxs, .l-col-4-xxs, .l-col-5-xxs, .l-col-6-xxs, .l-col-7-xxs, .l-col-8-xxs, .l-col-9-xxs, .l-col-10-xxs, .l-col-11-xxs, .l-col-12-xxs {
+    float: left;
+  }
+
+  .l-col-1-xxs {
+    width: 8.33333%;
+  }
+
+  .l-col-2-xxs {
+    width: 16.66667%;
+  }
+
+  .l-col-3-xxs {
+    width: 25%;
+  }
+
+  .l-col-4-xxs {
+    width: 33.33333%;
+  }
+
+  .l-col-5-xxs {
+    width: 41.66667%;
+  }
+
+  .l-col-6-xxs {
+    width: 50%;
+  }
+
+  .l-col-7-xxs {
+    width: 58.33333%;
+  }
+
+  .l-col-8-xxs {
+    width: 66.66667%;
+  }
+
+  .l-col-9-xxs {
+    width: 75%;
+  }
+
+  .l-col-10-xxs {
+    width: 83.33333%;
+  }
+
+  .l-col-11-xxs {
+    width: 91.66667%;
+  }
+
+  .l-col-12-xxs {
+    width: 100%;
+  }
+
+  .l-col-0-xxs-pull {
+    right: auto;
+  }
+
+  .l-col-1-xxs-pull {
+    right: 8.33333%;
+  }
+
+  .l-col-2-xxs-pull {
+    right: 16.66667%;
+  }
+
+  .l-col-3-xxs-pull {
+    right: 25%;
+  }
+
+  .l-col-4-xxs-pull {
+    right: 33.33333%;
+  }
+
+  .l-col-5-xxs-pull {
+    right: 41.66667%;
+  }
+
+  .l-col-6-xxs-pull {
+    right: 50%;
+  }
+
+  .l-col-7-xxs-pull {
+    right: 58.33333%;
+  }
+
+  .l-col-8-xxs-pull {
+    right: 66.66667%;
+  }
+
+  .l-col-9-xxs-pull {
+    right: 75%;
+  }
+
+  .l-col-10-xxs-pull {
+    right: 83.33333%;
+  }
+
+  .l-col-11-xxs-pull {
+    right: 91.66667%;
+  }
+
+  .l-col-12-xxs-pull {
+    right: 100%;
+  }
+
+  .l-col-0-xxs-push {
+    left: auto;
+  }
+
+  .l-col-1-xxs-push {
+    left: 8.33333%;
+  }
+
+  .l-col-2-xxs-push {
+    left: 16.66667%;
+  }
+
+  .l-col-3-xxs-push {
+    left: 25%;
+  }
+
+  .l-col-4-xxs-push {
+    left: 33.33333%;
+  }
+
+  .l-col-5-xxs-push {
+    left: 41.66667%;
+  }
+
+  .l-col-6-xxs-push {
+    left: 50%;
+  }
+
+  .l-col-7-xxs-push {
+    left: 58.33333%;
+  }
+
+  .l-col-8-xxs-push {
+    left: 66.66667%;
+  }
+
+  .l-col-9-xxs-push {
+    left: 75%;
+  }
+
+  .l-col-10-xxs-push {
+    left: 83.33333%;
+  }
+
+  .l-col-11-xxs-push {
+    left: 91.66667%;
+  }
+
+  .l-col-12-xxs-push {
+    left: 100%;
+  }
+
+  .l-col-0-xxs-offset {
+    margin-left: 0%;
+  }
+
+  .l-col-1-xxs-offset {
+    margin-left: 8.33333%;
+  }
+
+  .l-col-2-xxs-offset {
+    margin-left: 16.66667%;
+  }
+
+  .l-col-3-xxs-offset {
+    margin-left: 25%;
+  }
+
+  .l-col-4-xxs-offset {
+    margin-left: 33.33333%;
+  }
+
+  .l-col-5-xxs-offset {
+    margin-left: 41.66667%;
+  }
+
+  .l-col-6-xxs-offset {
+    margin-left: 50%;
+  }
+
+  .l-col-7-xxs-offset {
+    margin-left: 58.33333%;
+  }
+
+  .l-col-8-xxs-offset {
+    margin-left: 66.66667%;
+  }
+
+  .l-col-9-xxs-offset {
+    margin-left: 75%;
+  }
+
+  .l-col-10-xxs-offset {
+    margin-left: 83.33333%;
+  }
+
+  .l-col-11-xxs-offset {
+    margin-left: 91.66667%;
+  }
+
+  .l-col-12-xxs-offset {
+    margin-left: 100%;
+  }
+}
+@media (min-width: 376px) {
+  .l-col-1-xs, .l-col-2-xs, .l-col-3-xs, .l-col-4-xs, .l-col-5-xs, .l-col-6-xs, .l-col-7-xs, .l-col-8-xs, .l-col-9-xs, .l-col-10-xs, .l-col-11-xs, .l-col-12-xs {
+    float: left;
+  }
+
+  .l-col-1-xs {
+    width: 8.33333%;
+  }
+
+  .l-col-2-xs {
+    width: 16.66667%;
+  }
+
+  .l-col-3-xs {
+    width: 25%;
+  }
+
+  .l-col-4-xs {
+    width: 33.33333%;
+  }
+
+  .l-col-5-xs {
+    width: 41.66667%;
+  }
+
+  .l-col-6-xs {
+    width: 50%;
+  }
+
+  .l-col-7-xs {
+    width: 58.33333%;
+  }
+
+  .l-col-8-xs {
+    width: 66.66667%;
+  }
+
+  .l-col-9-xs {
+    width: 75%;
+  }
+
+  .l-col-10-xs {
+    width: 83.33333%;
+  }
+
+  .l-col-11-xs {
+    width: 91.66667%;
+  }
+
+  .l-col-12-xs {
+    width: 100%;
+  }
+
+  .l-col-0-xs-pull {
+    right: auto;
+  }
+
+  .l-col-1-xs-pull {
+    right: 8.33333%;
+  }
+
+  .l-col-2-xs-pull {
+    right: 16.66667%;
+  }
+
+  .l-col-3-xs-pull {
+    right: 25%;
+  }
+
+  .l-col-4-xs-pull {
+    right: 33.33333%;
+  }
+
+  .l-col-5-xs-pull {
+    right: 41.66667%;
+  }
+
+  .l-col-6-xs-pull {
+    right: 50%;
+  }
+
+  .l-col-7-xs-pull {
+    right: 58.33333%;
+  }
+
+  .l-col-8-xs-pull {
+    right: 66.66667%;
+  }
+
+  .l-col-9-xs-pull {
+    right: 75%;
+  }
+
+  .l-col-10-xs-pull {
+    right: 83.33333%;
+  }
+
+  .l-col-11-xs-pull {
+    right: 91.66667%;
+  }
+
+  .l-col-12-xs-pull {
+    right: 100%;
+  }
+
+  .l-col-0-xs-push {
+    left: auto;
+  }
+
+  .l-col-1-xs-push {
+    left: 8.33333%;
+  }
+
+  .l-col-2-xs-push {
+    left: 16.66667%;
+  }
+
+  .l-col-3-xs-push {
+    left: 25%;
+  }
+
+  .l-col-4-xs-push {
+    left: 33.33333%;
+  }
+
+  .l-col-5-xs-push {
+    left: 41.66667%;
+  }
+
+  .l-col-6-xs-push {
+    left: 50%;
+  }
+
+  .l-col-7-xs-push {
+    left: 58.33333%;
+  }
+
+  .l-col-8-xs-push {
+    left: 66.66667%;
+  }
+
+  .l-col-9-xs-push {
+    left: 75%;
+  }
+
+  .l-col-10-xs-push {
+    left: 83.33333%;
+  }
+
+  .l-col-11-xs-push {
+    left: 91.66667%;
+  }
+
+  .l-col-12-xs-push {
+    left: 100%;
+  }
+
+  .l-col-0-xs-offset {
+    margin-left: 0%;
+  }
+
+  .l-col-1-xs-offset {
+    margin-left: 8.33333%;
+  }
+
+  .l-col-2-xs-offset {
+    margin-left: 16.66667%;
+  }
+
+  .l-col-3-xs-offset {
+    margin-left: 25%;
+  }
+
+  .l-col-4-xs-offset {
+    margin-left: 33.33333%;
+  }
+
+  .l-col-5-xs-offset {
+    margin-left: 41.66667%;
+  }
+
+  .l-col-6-xs-offset {
+    margin-left: 50%;
+  }
+
+  .l-col-7-xs-offset {
+    margin-left: 58.33333%;
+  }
+
+  .l-col-8-xs-offset {
+    margin-left: 66.66667%;
+  }
+
+  .l-col-9-xs-offset {
+    margin-left: 75%;
+  }
+
+  .l-col-10-xs-offset {
+    margin-left: 83.33333%;
+  }
+
+  .l-col-11-xs-offset {
+    margin-left: 91.66667%;
+  }
+
+  .l-col-12-xs-offset {
+    margin-left: 100%;
+  }
+}
+@media (min-width: 425px) {
+  .l-col-1-sm, .l-col-2-sm, .l-col-3-sm, .l-col-4-sm, .l-col-5-sm, .l-col-6-sm, .l-col-7-sm, .l-col-8-sm, .l-col-9-sm, .l-col-10-sm, .l-col-11-sm, .l-col-12-sm {
+    float: left;
+  }
+
+  .l-col-1-sm {
+    width: 8.33333%;
+  }
+
+  .l-col-2-sm {
+    width: 16.66667%;
+  }
+
+  .l-col-3-sm {
+    width: 25%;
+  }
+
+  .l-col-4-sm {
+    width: 33.33333%;
+  }
+
+  .l-col-5-sm {
+    width: 41.66667%;
+  }
+
+  .l-col-6-sm {
+    width: 50%;
+  }
+
+  .l-col-7-sm {
+    width: 58.33333%;
+  }
+
+  .l-col-8-sm {
+    width: 66.66667%;
+  }
+
+  .l-col-9-sm {
+    width: 75%;
+  }
+
+  .l-col-10-sm {
+    width: 83.33333%;
+  }
+
+  .l-col-11-sm {
+    width: 91.66667%;
+  }
+
+  .l-col-12-sm {
+    width: 100%;
+  }
+
+  .l-col-0-sm-pull {
+    right: auto;
+  }
+
+  .l-col-1-sm-pull {
+    right: 8.33333%;
+  }
+
+  .l-col-2-sm-pull {
+    right: 16.66667%;
+  }
+
+  .l-col-3-sm-pull {
+    right: 25%;
+  }
+
+  .l-col-4-sm-pull {
+    right: 33.33333%;
+  }
+
+  .l-col-5-sm-pull {
+    right: 41.66667%;
+  }
+
+  .l-col-6-sm-pull {
+    right: 50%;
+  }
+
+  .l-col-7-sm-pull {
+    right: 58.33333%;
+  }
+
+  .l-col-8-sm-pull {
+    right: 66.66667%;
+  }
+
+  .l-col-9-sm-pull {
+    right: 75%;
+  }
+
+  .l-col-10-sm-pull {
+    right: 83.33333%;
+  }
+
+  .l-col-11-sm-pull {
+    right: 91.66667%;
+  }
+
+  .l-col-12-sm-pull {
+    right: 100%;
+  }
+
+  .l-col-0-sm-push {
+    left: auto;
+  }
+
+  .l-col-1-sm-push {
+    left: 8.33333%;
+  }
+
+  .l-col-2-sm-push {
+    left: 16.66667%;
+  }
+
+  .l-col-3-sm-push {
+    left: 25%;
+  }
+
+  .l-col-4-sm-push {
+    left: 33.33333%;
+  }
+
+  .l-col-5-sm-push {
+    left: 41.66667%;
+  }
+
+  .l-col-6-sm-push {
+    left: 50%;
+  }
+
+  .l-col-7-sm-push {
+    left: 58.33333%;
+  }
+
+  .l-col-8-sm-push {
+    left: 66.66667%;
+  }
+
+  .l-col-9-sm-push {
+    left: 75%;
+  }
+
+  .l-col-10-sm-push {
+    left: 83.33333%;
+  }
+
+  .l-col-11-sm-push {
+    left: 91.66667%;
+  }
+
+  .l-col-12-sm-push {
+    left: 100%;
+  }
+
+  .l-col-0-sm-offset {
+    margin-left: 0%;
+  }
+
+  .l-col-1-sm-offset {
+    margin-left: 8.33333%;
+  }
+
+  .l-col-2-sm-offset {
+    margin-left: 16.66667%;
+  }
+
+  .l-col-3-sm-offset {
+    margin-left: 25%;
+  }
+
+  .l-col-4-sm-offset {
+    margin-left: 33.33333%;
+  }
+
+  .l-col-5-sm-offset {
+    margin-left: 41.66667%;
+  }
+
+  .l-col-6-sm-offset {
+    margin-left: 50%;
+  }
+
+  .l-col-7-sm-offset {
+    margin-left: 58.33333%;
+  }
+
+  .l-col-8-sm-offset {
+    margin-left: 66.66667%;
+  }
+
+  .l-col-9-sm-offset {
+    margin-left: 75%;
+  }
+
+  .l-col-10-sm-offset {
+    margin-left: 83.33333%;
+  }
+
+  .l-col-11-sm-offset {
+    margin-left: 91.66667%;
+  }
+
+  .l-col-12-sm-offset {
+    margin-left: 100%;
+  }
+}
+@media (min-width: 768px) {
+  .l-col-1-md, .l-col-2-md, .l-col-3-md, .l-col-4-md, .l-col-5-md, .l-col-6-md, .l-col-7-md, .l-col-8-md, .l-col-9-md, .l-col-10-md, .l-col-11-md, .l-col-12-md {
+    float: left;
+  }
+
+  .l-col-1-md {
+    width: 8.33333%;
+  }
+
+  .l-col-2-md {
+    width: 16.66667%;
+  }
+
+  .l-col-3-md {
+    width: 25%;
+  }
+
+  .l-col-4-md {
+    width: 33.33333%;
+  }
+
+  .l-col-5-md {
+    width: 41.66667%;
+  }
+
+  .l-col-6-md {
+    width: 50%;
+  }
+
+  .l-col-7-md {
+    width: 58.33333%;
+  }
+
+  .l-col-8-md {
+    width: 66.66667%;
+  }
+
+  .l-col-9-md {
+    width: 75%;
+  }
+
+  .l-col-10-md {
+    width: 83.33333%;
+  }
+
+  .l-col-11-md {
+    width: 91.66667%;
+  }
+
+  .l-col-12-md {
+    width: 100%;
+  }
+
+  .l-col-0-md-pull {
+    right: auto;
+  }
+
+  .l-col-1-md-pull {
+    right: 8.33333%;
+  }
+
+  .l-col-2-md-pull {
+    right: 16.66667%;
+  }
+
+  .l-col-3-md-pull {
+    right: 25%;
+  }
+
+  .l-col-4-md-pull {
+    right: 33.33333%;
+  }
+
+  .l-col-5-md-pull {
+    right: 41.66667%;
+  }
+
+  .l-col-6-md-pull {
+    right: 50%;
+  }
+
+  .l-col-7-md-pull {
+    right: 58.33333%;
+  }
+
+  .l-col-8-md-pull {
+    right: 66.66667%;
+  }
+
+  .l-col-9-md-pull {
+    right: 75%;
+  }
+
+  .l-col-10-md-pull {
+    right: 83.33333%;
+  }
+
+  .l-col-11-md-pull {
+    right: 91.66667%;
+  }
+
+  .l-col-12-md-pull {
+    right: 100%;
+  }
+
+  .l-col-0-md-push {
+    left: auto;
+  }
+
+  .l-col-1-md-push {
+    left: 8.33333%;
+  }
+
+  .l-col-2-md-push {
+    left: 16.66667%;
+  }
+
+  .l-col-3-md-push {
+    left: 25%;
+  }
+
+  .l-col-4-md-push {
+    left: 33.33333%;
+  }
+
+  .l-col-5-md-push {
+    left: 41.66667%;
+  }
+
+  .l-col-6-md-push {
+    left: 50%;
+  }
+
+  .l-col-7-md-push {
+    left: 58.33333%;
+  }
+
+  .l-col-8-md-push {
+    left: 66.66667%;
+  }
+
+  .l-col-9-md-push {
+    left: 75%;
+  }
+
+  .l-col-10-md-push {
+    left: 83.33333%;
+  }
+
+  .l-col-11-md-push {
+    left: 91.66667%;
+  }
+
+  .l-col-12-md-push {
+    left: 100%;
+  }
+
+  .l-col-0-md-offset {
+    margin-left: 0%;
+  }
+
+  .l-col-1-md-offset {
+    margin-left: 8.33333%;
+  }
+
+  .l-col-2-md-offset {
+    margin-left: 16.66667%;
+  }
+
+  .l-col-3-md-offset {
+    margin-left: 25%;
+  }
+
+  .l-col-4-md-offset {
+    margin-left: 33.33333%;
+  }
+
+  .l-col-5-md-offset {
+    margin-left: 41.66667%;
+  }
+
+  .l-col-6-md-offset {
+    margin-left: 50%;
+  }
+
+  .l-col-7-md-offset {
+    margin-left: 58.33333%;
+  }
+
+  .l-col-8-md-offset {
+    margin-left: 66.66667%;
+  }
+
+  .l-col-9-md-offset {
+    margin-left: 75%;
+  }
+
+  .l-col-10-md-offset {
+    margin-left: 83.33333%;
+  }
+
+  .l-col-11-md-offset {
+    margin-left: 91.66667%;
+  }
+
+  .l-col-12-md-offset {
+    margin-left: 100%;
+  }
+}
+@media (min-width: 1024px) {
+  .l-col-1-lg, .l-col-2-lg, .l-col-3-lg, .l-col-4-lg, .l-col-5-lg, .l-col-6-lg, .l-col-7-lg, .l-col-8-lg, .l-col-9-lg, .l-col-10-lg, .l-col-11-lg, .l-col-12-lg {
+    float: left;
+  }
+
+  .l-col-1-lg {
+    width: 8.33333%;
+  }
+
+  .l-col-2-lg {
+    width: 16.66667%;
+  }
+
+  .l-col-3-lg {
+    width: 25%;
+  }
+
+  .l-col-4-lg {
+    width: 33.33333%;
+  }
+
+  .l-col-5-lg {
+    width: 41.66667%;
+  }
+
+  .l-col-6-lg {
+    width: 50%;
+  }
+
+  .l-col-7-lg {
+    width: 58.33333%;
+  }
+
+  .l-col-8-lg {
+    width: 66.66667%;
+  }
+
+  .l-col-9-lg {
+    width: 75%;
+  }
+
+  .l-col-10-lg {
+    width: 83.33333%;
+  }
+
+  .l-col-11-lg {
+    width: 91.66667%;
+  }
+
+  .l-col-12-lg {
+    width: 100%;
+  }
+
+  .l-col-0-lg-pull {
+    right: auto;
+  }
+
+  .l-col-1-lg-pull {
+    right: 8.33333%;
+  }
+
+  .l-col-2-lg-pull {
+    right: 16.66667%;
+  }
+
+  .l-col-3-lg-pull {
+    right: 25%;
+  }
+
+  .l-col-4-lg-pull {
+    right: 33.33333%;
+  }
+
+  .l-col-5-lg-pull {
+    right: 41.66667%;
+  }
+
+  .l-col-6-lg-pull {
+    right: 50%;
+  }
+
+  .l-col-7-lg-pull {
+    right: 58.33333%;
+  }
+
+  .l-col-8-lg-pull {
+    right: 66.66667%;
+  }
+
+  .l-col-9-lg-pull {
+    right: 75%;
+  }
+
+  .l-col-10-lg-pull {
+    right: 83.33333%;
+  }
+
+  .l-col-11-lg-pull {
+    right: 91.66667%;
+  }
+
+  .l-col-12-lg-pull {
+    right: 100%;
+  }
+
+  .l-col-0-lg-push {
+    left: auto;
+  }
+
+  .l-col-1-lg-push {
+    left: 8.33333%;
+  }
+
+  .l-col-2-lg-push {
+    left: 16.66667%;
+  }
+
+  .l-col-3-lg-push {
+    left: 25%;
+  }
+
+  .l-col-4-lg-push {
+    left: 33.33333%;
+  }
+
+  .l-col-5-lg-push {
+    left: 41.66667%;
+  }
+
+  .l-col-6-lg-push {
+    left: 50%;
+  }
+
+  .l-col-7-lg-push {
+    left: 58.33333%;
+  }
+
+  .l-col-8-lg-push {
+    left: 66.66667%;
+  }
+
+  .l-col-9-lg-push {
+    left: 75%;
+  }
+
+  .l-col-10-lg-push {
+    left: 83.33333%;
+  }
+
+  .l-col-11-lg-push {
+    left: 91.66667%;
+  }
+
+  .l-col-12-lg-push {
+    left: 100%;
+  }
+
+  .l-col-0-lg-offset {
+    margin-left: 0%;
+  }
+
+  .l-col-1-lg-offset {
+    margin-left: 8.33333%;
+  }
+
+  .l-col-2-lg-offset {
+    margin-left: 16.66667%;
+  }
+
+  .l-col-3-lg-offset {
+    margin-left: 25%;
+  }
+
+  .l-col-4-lg-offset {
+    margin-left: 33.33333%;
+  }
+
+  .l-col-5-lg-offset {
+    margin-left: 41.66667%;
+  }
+
+  .l-col-6-lg-offset {
+    margin-left: 50%;
+  }
+
+  .l-col-7-lg-offset {
+    margin-left: 58.33333%;
+  }
+
+  .l-col-8-lg-offset {
+    margin-left: 66.66667%;
+  }
+
+  .l-col-9-lg-offset {
+    margin-left: 75%;
+  }
+
+  .l-col-10-lg-offset {
+    margin-left: 83.33333%;
+  }
+
+  .l-col-11-lg-offset {
+    margin-left: 91.66667%;
+  }
+
+  .l-col-12-lg-offset {
+    margin-left: 100%;
+  }
+}
+@media (min-width: 1280px) {
+  .l-col-1-xl, .l-col-2-xl, .l-col-3-xl, .l-col-4-xl, .l-col-5-xl, .l-col-6-xl, .l-col-7-xl, .l-col-8-xl, .l-col-9-xl, .l-col-10-xl, .l-col-11-xl, .l-col-12-xl {
+    float: left;
+  }
+
+  .l-col-1-xl {
+    width: 8.33333%;
+  }
+
+  .l-col-2-xl {
+    width: 16.66667%;
+  }
+
+  .l-col-3-xl {
+    width: 25%;
+  }
+
+  .l-col-4-xl {
+    width: 33.33333%;
+  }
+
+  .l-col-5-xl {
+    width: 41.66667%;
+  }
+
+  .l-col-6-xl {
+    width: 50%;
+  }
+
+  .l-col-7-xl {
+    width: 58.33333%;
+  }
+
+  .l-col-8-xl {
+    width: 66.66667%;
+  }
+
+  .l-col-9-xl {
+    width: 75%;
+  }
+
+  .l-col-10-xl {
+    width: 83.33333%;
+  }
+
+  .l-col-11-xl {
+    width: 91.66667%;
+  }
+
+  .l-col-12-xl {
+    width: 100%;
+  }
+
+  .l-col-0-xl-pull {
+    right: auto;
+  }
+
+  .l-col-1-xl-pull {
+    right: 8.33333%;
+  }
+
+  .l-col-2-xl-pull {
+    right: 16.66667%;
+  }
+
+  .l-col-3-xl-pull {
+    right: 25%;
+  }
+
+  .l-col-4-xl-pull {
+    right: 33.33333%;
+  }
+
+  .l-col-5-xl-pull {
+    right: 41.66667%;
+  }
+
+  .l-col-6-xl-pull {
+    right: 50%;
+  }
+
+  .l-col-7-xl-pull {
+    right: 58.33333%;
+  }
+
+  .l-col-8-xl-pull {
+    right: 66.66667%;
+  }
+
+  .l-col-9-xl-pull {
+    right: 75%;
+  }
+
+  .l-col-10-xl-pull {
+    right: 83.33333%;
+  }
+
+  .l-col-11-xl-pull {
+    right: 91.66667%;
+  }
+
+  .l-col-12-xl-pull {
+    right: 100%;
+  }
+
+  .l-col-0-xl-push {
+    left: auto;
+  }
+
+  .l-col-1-xl-push {
+    left: 8.33333%;
+  }
+
+  .l-col-2-xl-push {
+    left: 16.66667%;
+  }
+
+  .l-col-3-xl-push {
+    left: 25%;
+  }
+
+  .l-col-4-xl-push {
+    left: 33.33333%;
+  }
+
+  .l-col-5-xl-push {
+    left: 41.66667%;
+  }
+
+  .l-col-6-xl-push {
+    left: 50%;
+  }
+
+  .l-col-7-xl-push {
+    left: 58.33333%;
+  }
+
+  .l-col-8-xl-push {
+    left: 66.66667%;
+  }
+
+  .l-col-9-xl-push {
+    left: 75%;
+  }
+
+  .l-col-10-xl-push {
+    left: 83.33333%;
+  }
+
+  .l-col-11-xl-push {
+    left: 91.66667%;
+  }
+
+  .l-col-12-xl-push {
+    left: 100%;
+  }
+
+  .l-col-0-xl-offset {
+    margin-left: 0%;
+  }
+
+  .l-col-1-xl-offset {
+    margin-left: 8.33333%;
+  }
+
+  .l-col-2-xl-offset {
+    margin-left: 16.66667%;
+  }
+
+  .l-col-3-xl-offset {
+    margin-left: 25%;
+  }
+
+  .l-col-4-xl-offset {
+    margin-left: 33.33333%;
+  }
+
+  .l-col-5-xl-offset {
+    margin-left: 41.66667%;
+  }
+
+  .l-col-6-xl-offset {
+    margin-left: 50%;
+  }
+
+  .l-col-7-xl-offset {
+    margin-left: 58.33333%;
+  }
+
+  .l-col-8-xl-offset {
+    margin-left: 66.66667%;
+  }
+
+  .l-col-9-xl-offset {
+    margin-left: 75%;
+  }
+
+  .l-col-10-xl-offset {
+    margin-left: 83.33333%;
+  }
+
+  .l-col-11-xl-offset {
+    margin-left: 91.66667%;
+  }
+
+  .l-col-12-xl-offset {
+    margin-left: 100%;
+  }
+}
+.l-row.l-row-0 {
+  margin-left: 0;
+  margin-right: 0;
+}
+.l-row.l-row-0:before, .l-row.l-row-0:after {
+  content: "";
+  display: table;
+}
+.l-row.l-row-0:after {
+  clear: both;
+}
+.l-row.l-row-0 div[class*="l-col"] {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.l-row.l-row-sm {
+  margin-left: -0.3125rem;
+  margin-right: -0.3125rem;
+}
+.l-row.l-row-sm:before, .l-row.l-row-sm:after {
+  content: "";
+  display: table;
+}
+.l-row.l-row-sm:after {
+  clear: both;
+}
+.l-row.l-row-sm div[class*="l-col"] {
+  padding-left: 0.3125rem;
+  padding-right: 0.3125rem;
+}
+
+.l-row.l-row-lg {
+  margin-left: -1.25rem;
+  margin-right: -1.25rem;
+}
+.l-row.l-row-lg:before, .l-row.l-row-lg:after {
+  content: "";
+  display: table;
+}
+.l-row.l-row-lg:after {
+  clear: both;
+}
+.l-row.l-row-lg div[class*="l-col"] {
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+}
+
+/*
+---
+outline
+---
+*/
+.l-header {
+  padding: 1.25rem 0;
+}
+
+.l-header-brand {
+  margin: 0;
+  text-align: center;
+  line-height: 1;
+}
+@media (min-width: 1024px) {
+  .l-header-brand {
+    text-align: left;
+  }
+}
+
+.l-header-title {
+  font-size: 1.5rem;
+}
+
+.l-header-nav {
+  display: none;
+  font-size: 0.75rem;
+  text-align: right;
+}
+@media (min-width: 1024px) {
+  .l-header-nav {
+    display: block;
+  }
+}
+
+.l-header-menubtn {
+  display: none;
+}
+
+.l-globalnav {
+  width: 100%;
+  background-color: #fff;
+  font-size: 0.75rem;
+  line-height: 1;
+}
+@media (min-width: 1024px) {
+  .l-globalnav {
+    display: none;
+  }
+}
+.l-globalnav .nav.nav-horizontal {
+  display: block;
+  width: 100%;
+}
+.l-globalnav .nav.nav-horizontal a {
+  padding-left: .5em;
+  padding-right: .5em;
+}
+.l-globalnav .nav.nav-horizontal > ul {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.l-footer {
+  padding: 1.25rem 0 3.75rem;
+  font-size: 0.75rem;
+  text-align: center;
+}
+.l-footer .l-footer-copyright {
+  margin: 0;
+  font-size: 0.75rem;
+}
+
+@media (min-width: 1024px) {
+  .l-contents-col {
+    width: 100%;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+  }
+  .l-contents-col .l-main {
+    flex: 1;
+    width: auto;
+    padding: 0 2.5rem 0 0;
+  }
+  .l-contents-col .l-sub {
+    width: 300px;
+  }
+}
+/*doc
+---
+title: Editable Styles (a-blog cms)
+name: editable
+category: editable
+---
+
+コンテンツ・マネージメント・システムの仕様上、クラスを指定することができない、自由文エリアの標準スタイル。  
+以下の条件に合致する要素に適用される。この条件から漏れるようなコンポーネントは使用できない。
+
+1. .editableを付与した要素で包括されている
+1. 要素自体に以下のクラスが付与されていない
+    - a:  link, btn, label
+    - h:  title
+    - ul: list
+    - ol: list, linenums
+    - dl: list
+    - hr: すべてのクラス
+    - blockquote: すべてのクラス
+    - table: すべてのクラス
+1. table要素が.column-table-で包括されている
+
+なお、.editable内の最初の要素は、強制的に上マージンが0となる。（!importantを使用している）
+
+*/
+.editable {
+  word-break: break-word;
+}
+.editable *:first-child {
+  margin-top: 0 !important;
+}
+.editable a:not([class*="link"]):not([class*="btn"]):not([class*="label"]) {
+  text-decoration: underline;
+}
+.editable a:not([class*="link"]):not([class*="btn"]):not([class*="label"]):hover {
+  color: #2aa7e6;
+  text-decoration: none;
+}
+.editable h1:not([class*="title"]),
+.editable h2:not([class*="title"]),
+.editable h3:not([class*="title"]),
+.editable h4:not([class*="title"]),
+.editable h5:not([class*="title"]),
+.editable h6:not([class*="title"]) {
+  margin: 0;
+  padding: 0;
+  background: transparent none;
+  border: 0 none;
+  color: #333333;
+  font-weight: bold;
+  text-align: left;
+  line-height: 1.5;
+  border-radius: 0;
+}
+.editable h1:not([class*="title"]):before, .editable h1:not([class*="title"]):after,
+.editable h2:not([class*="title"]):before,
+.editable h2:not([class*="title"]):after,
+.editable h3:not([class*="title"]):before,
+.editable h3:not([class*="title"]):after,
+.editable h4:not([class*="title"]):before,
+.editable h4:not([class*="title"]):after,
+.editable h5:not([class*="title"]):before,
+.editable h5:not([class*="title"]):after,
+.editable h6:not([class*="title"]):before,
+.editable h6:not([class*="title"]):after {
+  display: none;
+}
+.editable h1:not([class*="title"]),
+.editable h2:not([class*="title"]) {
+  font-size: 1.25rem;
+  margin-top: 1.5em;
+  margin-bottom: .75em;
+  font-weight: normal;
+}
+@media (min-width: 1024px) {
+  .editable h1:not([class*="title"]),
+  .editable h2:not([class*="title"]) {
+    font-size: 1.75rem;
+  }
+}
+.editable h3:not([class*="title"]) {
+  font-size: 1.125rem;
+  margin-top: 1.5em;
+  margin-bottom: .75em;
+}
+@media (min-width: 1024px) {
+  .editable h3:not([class*="title"]) {
+    font-size: 1.5rem;
+  }
+}
+.editable h4:not([class*="title"]) {
+  font-size: 1.125rem;
+  margin-top: 1em;
+  margin-bottom: .5em;
+}
+@media (min-width: 1024px) {
+  .editable h4:not([class*="title"]) {
+    font-size: 1.25rem;
+  }
+}
+.editable h5:not([class*="title"]) {
+  font-size: 1.125rem;
+  margin-top: 1em;
+  margin-bottom: .5em;
+}
+@media (min-width: 1024px) {
+  .editable h5:not([class*="title"]) {
+    font-size: 1.25rem;
+  }
+}
+.editable h6:not([class*="title"]) {
+  font-size: 1rem;
+  margin-bottom: .5em;
+}
+.editable ul:not([class*="list"]),
+.editable ol:not([class*="list"]):not([class*="linenums"]) {
+  overflow: hidden;
+}
+.editable ul:not([class*="list"]) {
+  margin: 0 0 .5rem;
+  padding: 0;
+}
+.editable ul:not([class*="list"]) > li {
+  position: relative;
+  margin: .5rem 0;
+  padding: 0 0 0 1.5rem;
+  list-style-type: none;
+}
+.editable ul:not([class*="list"]) > li:before {
+  display: block;
+  content: "";
+  position: absolute;
+  top: .75em;
+  left: .25em;
+  width: .25em;
+  height: .25em;
+  background-color: #333333;
+}
+.editable ul:not([class*="list"]) > li ul:not([class*="list"]),
+.editable ul:not([class*="list"]) > li ol:not([class*="list"]):not([class*="linenums"]) {
+  margin-top: .5rem !important;
+  margin-bottom: 0 !important;
+}
+.editable ol:not([class*="list"]):not([class*="linenums"]) {
+  counter-reset: ol_number;
+  margin: 0 0 .5rem;
+  padding: 0;
+}
+.editable ol:not([class*="list"]):not([class*="linenums"]) > li {
+  position: relative;
+  margin: .5rem 0;
+  padding: 0 0 0 1.5rem;
+  list-style-type: none;
+}
+.editable ol:not([class*="list"]):not([class*="linenums"]) > li:before {
+  display: block;
+  counter-increment: ol_number;
+  content: counter(ol_number) ".";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1rem;
+  text-align: center;
+}
+.editable ol:not([class*="list"]):not([class*="linenums"]) > li ul:not([class*="list"]),
+.editable ol:not([class*="list"]):not([class*="linenums"]) > li ol:not([class*="list"]):not([class*="linenums"]) {
+  margin-top: .5em !important;
+  margin-bottom: 0 !important;
+}
+.editable dl:not([class*="list"]) {
+  margin: 0;
+  padding: 0;
+}
+.editable dl:not([class*="list"]) > dt {
+  margin: 0 0 .5em;
+  padding: 0;
+}
+.editable dl:not([class*="list"]) > dd {
+  margin: 0 0 .5em;
+  padding: 0 0 0 1.5rem;
+}
+.editable hr:not([class]) {
+  overflow: hidden;
+  margin: 1.875rem 0;
+  height: #cccccc;
+  border-width: 1px 0 0;
+  border-style: solid none none;
+  border-color: #cccccc transparent transparent;
+}
+.editable blockquote:not([class]) {
+  overflow: hidden;
+  margin: 1.875rem 0;
+  padding: 0.625rem;
+  border-width: 0 0 0 5px;
+  border-style: none none none solid;
+  border-color: transparent transparent transparent #eeeeee;
+  font-style: normal;
+}
+.editable table:not([class]),
+.editable [class*="column-table"] table {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  margin-bottom: 1.875rem;
+  border-width: 0 0 1px 1px;
+  border-style: solid;
+  border-color: #cccccc;
+}
+@media (min-width: 425px) {
+  .editable table:not([class]),
+  .editable [class*="column-table"] table {
+    display: table;
+  }
+}
+.editable table:not([class]) thead,
+.editable table:not([class]) tbody,
+.editable table:not([class]) tfoot,
+.editable [class*="column-table"] table thead,
+.editable [class*="column-table"] table tbody,
+.editable [class*="column-table"] table tfoot {
+  display: block;
+}
+@media (min-width: 425px) {
+  .editable table:not([class]) thead,
+  .editable table:not([class]) tbody,
+  .editable table:not([class]) tfoot,
+  .editable [class*="column-table"] table thead,
+  .editable [class*="column-table"] table tbody,
+  .editable [class*="column-table"] table tfoot {
+    display: table-row-group;
+  }
+}
+.editable table:not([class]) tr,
+.editable [class*="column-table"] table tr {
+  display: block;
+  border-bottom: 2px solid #cccccc;
+}
+@media (min-width: 425px) {
+  .editable table:not([class]) tr,
+  .editable [class*="column-table"] table tr {
+    display: table-row;
+    border-bottom: 0 none;
+  }
+}
+.editable table:not([class]) th,
+.editable table:not([class]) td,
+.editable [class*="column-table"] table th,
+.editable [class*="column-table"] table td {
+  display: block;
+  width: 100%;
+  padding: 0.3125rem 0.625rem;
+  border-width: 1px 1px 0 0;
+  border-style: solid;
+  border-color: #cccccc;
+  line-height: 1.5;
+  vertical-align: top;
+}
+@media (min-width: 425px) {
+  .editable table:not([class]) th,
+  .editable table:not([class]) td,
+  .editable [class*="column-table"] table th,
+  .editable [class*="column-table"] table td {
+    display: table-cell;
+    width: auto;
+  }
+}
+.editable table:not([class]) th,
+.editable [class*="column-table"] table th {
+  text-align: left;
+}
+.editable table:not([class]) thead th,
+.editable [class*="column-table"] table thead th {
+  vertical-align: bottom;
+}
+.editable table:not([class]) .acms-cell-text-center,
+.editable [class*="column-table"] table .acms-cell-text-center {
+  text-align: center;
+}
+.editable table:not([class]) .acms-cell-text-right,
+.editable [class*="column-table"] table .acms-cell-text-right {
+  text-align: right;
+}
+
+/*doc
+---
+title: .alert
+name: alert
+category: module_object
+---
+
+注意文を表示する。必ずalert-(color)クラスを付与する。
+
+*/
+.alert {
+  padding: 0.625rem 1.25rem;
+  line-height: 1.5;
+}
+
+.alert.alert-info {
+  color: #119c44;
+  background-color: #e3f9ec;
+}
+
+.alert.alert-important {
+  color: #dd0022;
+  background-color: #ffe9ee;
+}
+
+/*doc
+---
+title: .btn
+name: btn
+category: module_object
+---
+
+インライン要素、もしくはフォームのボタン要素をボタン表示にする。必ずbtn-(color)クラスを付与する。
+
+*/
+.btn {
+  display: inline-block;
+  font-size: 1rem;
+  font-family: "-apple-system", "BlinkMacSystemFont", "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
+  font-weight: 300;
+  border: 1px solid transparent;
+  padding: 0.375rem 1rem;
+  text-align: center;
+  line-height: 1.25;
+  border-radius: 0.125rem;
+  vertical-align: middle;
+  transition: .3s all;
+}
+.btn a.btn {
+  text-decoration: none;
+}
+.btn span.btn:hover, .btn span.btn:focus {
+  cursor: default;
+}
+.btn:focus, .btn.focus, .btn:active:focus, .btn:active.focus, .btn.active:focus, .btn.active.focus {
+  outline: thin dotted;
+  outline: 5px auto #2aa7e6;
+  outline-offset: -2px;
+}
+.btn:hover, .btn.hover, .btn:focus, .btn.focus, .btn:active, .btn.active {
+  text-decoration: none;
+}
+.btn.disabled, .btn:disabled, fieldset[disabled] .btn {
+  cursor: default;
+  opacity: .65;
+}
+
+a.btn.disaabled,
+fieldset[disabled] a.btn {
+  pointer-events: none;
+}
+
+/*doc
+---
+title: .btn-(color)
+name: btn-color
+category: module_object
+parent: btn
+---
+
+ボタンの色を変える。
+
+``` example
+<div class="m-b line-c">
+<a href="#" class="btn btn-first m-x">btn-first</a>
+<a href="#" class="btn btn-second m-x">btn-second</a>
+<a href="#" class="btn btn-third m-x">btn-third</a>
+<a href="#" class="btn btn-important m-x">btn-important</a>
+</div>
+
+<div class="p-ysm bg-inverse line-c">
+<a href="#" class="btn btn-inverse m-x">btn-inverse</a>
+</div>
+```
+
+*/
+.btn.btn-first {
+  color: white;
+  background-color: #4499dd;
+  border-color: #4499dd;
+}
+.btn.btn-first:hover, .btn.btn-first:focus, .btn.btn-first:active, .btn.btn-first.active {
+  color: white;
+  background-color: #2580c9;
+  border-color: #2580c9;
+}
+.btn.btn-first.disabled, .btn.btn-first:disabled, fieldset[disabled] .btn.btn-first {
+  opacity: .8;
+}
+.btn.btn-first.disabled:hover, .btn.btn-first.disabled.hover, .btn.btn-first.disabled:focus, .btn.btn-first.disabled.focus, .btn.btn-first:disabled:hover, .btn.btn-first:disabled.hover, .btn.btn-first:disabled:focus, .btn.btn-first:disabled.focus, fieldset[disabled] .btn.btn-first:hover, fieldset[disabled] .btn.btn-first.hover, fieldset[disabled] .btn.btn-first:focus, fieldset[disabled] .btn.btn-first.focus {
+  color: white;
+  background-color: #4499dd;
+  border-color: #4499dd;
+}
+
+.btn.btn-second {
+  color: white;
+  background-color: #333333;
+  border-color: #333333;
+}
+.btn.btn-second:hover, .btn.btn-second:focus, .btn.btn-second:active, .btn.btn-second.active {
+  color: white;
+  background-color: #4d4d4d;
+  border-color: #4d4d4d;
+}
+.btn.btn-second.disabled, .btn.btn-second:disabled, fieldset[disabled] .btn.btn-second {
+  opacity: .8;
+}
+.btn.btn-second.disabled:hover, .btn.btn-second.disabled.hover, .btn.btn-second.disabled:focus, .btn.btn-second.disabled.focus, .btn.btn-second:disabled:hover, .btn.btn-second:disabled.hover, .btn.btn-second:disabled:focus, .btn.btn-second:disabled.focus, fieldset[disabled] .btn.btn-second:hover, fieldset[disabled] .btn.btn-second.hover, fieldset[disabled] .btn.btn-second:focus, fieldset[disabled] .btn.btn-second.focus {
+  color: white;
+  background-color: #333333;
+  border-color: #333333;
+}
+
+.btn.btn-third {
+  color: white;
+  background-color: #55b677;
+  border-color: #55b677;
+}
+.btn.btn-third:hover, .btn.btn-third:focus, .btn.btn-third:active, .btn.btn-third.active {
+  color: white;
+  background-color: #36a25c;
+  border-color: #36a25c;
+}
+.btn.btn-third.disabled, .btn.btn-third:disabled, fieldset[disabled] .btn.btn-third {
+  opacity: .8;
+}
+.btn.btn-third.disabled:hover, .btn.btn-third.disabled.hover, .btn.btn-third.disabled:focus, .btn.btn-third.disabled.focus, .btn.btn-third:disabled:hover, .btn.btn-third:disabled.hover, .btn.btn-third:disabled:focus, .btn.btn-third:disabled.focus, fieldset[disabled] .btn.btn-third:hover, fieldset[disabled] .btn.btn-third.hover, fieldset[disabled] .btn.btn-third:focus, fieldset[disabled] .btn.btn-third.focus {
+  color: white;
+  background-color: #55b677;
+  border-color: #55b677;
+}
+
+.btn.btn-important {
+  color: white;
+  background-color: #dd4455;
+  border-color: #dd4455;
+}
+.btn.btn-important:hover, .btn.btn-important:focus, .btn.btn-important:active, .btn.btn-important.active {
+  color: white;
+  background-color: #c92537;
+  border-color: #c92537;
+}
+.btn.btn-important.disabled, .btn.btn-important:disabled, fieldset[disabled] .btn.btn-important {
+  opacity: .8;
+}
+.btn.btn-important.disabled:hover, .btn.btn-important.disabled.hover, .btn.btn-important.disabled:focus, .btn.btn-important.disabled.focus, .btn.btn-important:disabled:hover, .btn.btn-important:disabled.hover, .btn.btn-important:disabled:focus, .btn.btn-important:disabled.focus, fieldset[disabled] .btn.btn-important:hover, fieldset[disabled] .btn.btn-important.hover, fieldset[disabled] .btn.btn-important:focus, fieldset[disabled] .btn.btn-important.focus {
+  color: white;
+  background-color: #dd4455;
+  border-color: #dd4455;
+}
+
+.btn.btn-inverse {
+  color: #fff;
+  background-color: transparent;
+  border-color: #fff;
+  border-width: 1.5px;
+}
+.btn.btn-inverse:hover, .btn.btn-inverse:focus, .btn.btn-inverse:active, .btn.btn-inverse.active {
+  color: #fff;
+  background-color: rgba(255, 255, 255, 0.3);
+  border-color: #fff;
+}
+.btn.btn-inverse.disabled, .btn.btn-inverse:disabled, fieldset[disabled] .btn.btn-inverse {
+  opacity: .8;
+}
+.btn.btn-inverse.disabled:hover, .btn.btn-inverse.disabled.hover, .btn.btn-inverse.disabled:focus, .btn.btn-inverse.disabled.focus, .btn.btn-inverse:disabled:hover, .btn.btn-inverse:disabled.hover, .btn.btn-inverse:disabled:focus, .btn.btn-inverse:disabled.focus, fieldset[disabled] .btn.btn-inverse:hover, fieldset[disabled] .btn.btn-inverse.hover, fieldset[disabled] .btn.btn-inverse:focus, fieldset[disabled] .btn.btn-inverse.focus {
+  color: #fff;
+  background-color: transparent;
+  border-color: #fff;
+}
+
+/*doc
+---
+title: .btn-outline
+name: btn-outline
+category: module_object
+parent: btn
+---
+
+ボタンを枠線のみにする。
+
+``` example
+<div class="line-c">
+<a href="#" class="btn btn-first btn-outline m-x">btn-first btn-outline</a>
+<a href="#" class="btn btn-second btn-outline m-x">btn-second btn-outline</a>
+<a href="#" class="btn btn-third btn-outline m-x">btn-third btn-outline</a>
+<a href="#" class="btn btn-important btn-outline m-x">btn-important btn-outline</a>
+</div>
+```
+
+*/
+.btn.btn-first.btn-outline {
+  color: #4499dd;
+  background-color: transparent;
+  border-color: #4499dd;
+}
+.btn.btn-first.btn-outline:hover, .btn.btn-first.btn-outline:focus, .btn.btn-first.btn-outline:active, .btn.btn-first.btn-outline.active {
+  color: #4499dd;
+  background-color: transparent;
+  border-color: #4499dd;
+}
+.btn.btn-first.btn-outline.disabled, .btn.btn-first.btn-outline:disabled, fieldset[disabled] .btn.btn-first.btn-outline {
+  opacity: .8;
+}
+.btn.btn-first.btn-outline.disabled:hover, .btn.btn-first.btn-outline.disabled.hover, .btn.btn-first.btn-outline.disabled:focus, .btn.btn-first.btn-outline.disabled.focus, .btn.btn-first.btn-outline:disabled:hover, .btn.btn-first.btn-outline:disabled.hover, .btn.btn-first.btn-outline:disabled:focus, .btn.btn-first.btn-outline:disabled.focus, fieldset[disabled] .btn.btn-first.btn-outline:hover, fieldset[disabled] .btn.btn-first.btn-outline.hover, fieldset[disabled] .btn.btn-first.btn-outline:focus, fieldset[disabled] .btn.btn-first.btn-outline.focus {
+  color: #4499dd;
+  background-color: transparent;
+  border-color: #4499dd;
+}
+
+.btn.btn-second.btn-outline {
+  color: #333333;
+  background-color: transparent;
+  border-color: #333333;
+}
+.btn.btn-second.btn-outline:hover, .btn.btn-second.btn-outline:focus, .btn.btn-second.btn-outline:active, .btn.btn-second.btn-outline.active {
+  color: #333333;
+  background-color: transparent;
+  border-color: #333333;
+}
+.btn.btn-second.btn-outline.disabled, .btn.btn-second.btn-outline:disabled, fieldset[disabled] .btn.btn-second.btn-outline {
+  opacity: .8;
+}
+.btn.btn-second.btn-outline.disabled:hover, .btn.btn-second.btn-outline.disabled.hover, .btn.btn-second.btn-outline.disabled:focus, .btn.btn-second.btn-outline.disabled.focus, .btn.btn-second.btn-outline:disabled:hover, .btn.btn-second.btn-outline:disabled.hover, .btn.btn-second.btn-outline:disabled:focus, .btn.btn-second.btn-outline:disabled.focus, fieldset[disabled] .btn.btn-second.btn-outline:hover, fieldset[disabled] .btn.btn-second.btn-outline.hover, fieldset[disabled] .btn.btn-second.btn-outline:focus, fieldset[disabled] .btn.btn-second.btn-outline.focus {
+  color: #333333;
+  background-color: transparent;
+  border-color: #333333;
+}
+
+.btn.btn-third.btn-outline {
+  color: #55b677;
+  background-color: transparent;
+  border-color: #55b677;
+}
+.btn.btn-third.btn-outline:hover, .btn.btn-third.btn-outline:focus, .btn.btn-third.btn-outline:active, .btn.btn-third.btn-outline.active {
+  color: #55b677;
+  background-color: transparent;
+  border-color: #55b677;
+}
+.btn.btn-third.btn-outline.disabled, .btn.btn-third.btn-outline:disabled, fieldset[disabled] .btn.btn-third.btn-outline {
+  opacity: .8;
+}
+.btn.btn-third.btn-outline.disabled:hover, .btn.btn-third.btn-outline.disabled.hover, .btn.btn-third.btn-outline.disabled:focus, .btn.btn-third.btn-outline.disabled.focus, .btn.btn-third.btn-outline:disabled:hover, .btn.btn-third.btn-outline:disabled.hover, .btn.btn-third.btn-outline:disabled:focus, .btn.btn-third.btn-outline:disabled.focus, fieldset[disabled] .btn.btn-third.btn-outline:hover, fieldset[disabled] .btn.btn-third.btn-outline.hover, fieldset[disabled] .btn.btn-third.btn-outline:focus, fieldset[disabled] .btn.btn-third.btn-outline.focus {
+  color: #55b677;
+  background-color: transparent;
+  border-color: #55b677;
+}
+
+.btn.btn-important.btn-outline {
+  color: #dd4455;
+  background-color: transparent;
+  border-color: #dd4455;
+}
+.btn.btn-important.btn-outline:hover, .btn.btn-important.btn-outline:focus, .btn.btn-important.btn-outline:active, .btn.btn-important.btn-outline.active {
+  color: #dd4455;
+  background-color: transparent;
+  border-color: #dd4455;
+}
+.btn.btn-important.btn-outline.disabled, .btn.btn-important.btn-outline:disabled, fieldset[disabled] .btn.btn-important.btn-outline {
+  opacity: .8;
+}
+.btn.btn-important.btn-outline.disabled:hover, .btn.btn-important.btn-outline.disabled.hover, .btn.btn-important.btn-outline.disabled:focus, .btn.btn-important.btn-outline.disabled.focus, .btn.btn-important.btn-outline:disabled:hover, .btn.btn-important.btn-outline:disabled.hover, .btn.btn-important.btn-outline:disabled:focus, .btn.btn-important.btn-outline:disabled.focus, fieldset[disabled] .btn.btn-important.btn-outline:hover, fieldset[disabled] .btn.btn-important.btn-outline.hover, fieldset[disabled] .btn.btn-important.btn-outline:focus, fieldset[disabled] .btn.btn-important.btn-outline.focus {
+  color: #dd4455;
+  background-color: transparent;
+  border-color: #dd4455;
+}
+
+/*doc
+---
+title: .btn-mild
+name: btn-mild
+category: module_object
+parent: btn
+---
+
+ボタンの印象を弱める。.btn-flatと併用するとテキストのような見た目となるが、.navを使用すべき。
+
+``` example
+<div class="line-c">
+<a href="#" class="btn btn-first btn-mild m-x">btn-first btn-mild</a>
+<a href="#" class="btn btn-second btn-mild m-x">btn-second btn-mild</a>
+<a href="#" class="btn btn-third btn-mild m-x">btn-third btn-mild</a>
+<a href="#" class="btn btn-important btn-mild m-x">btn-important btn-mild</a>
+</div>
+```
+
+*/
+.btn.btn-first.btn-mild {
+  color: #333333;
+  background-color: white;
+  border-color: white;
+}
+.btn.btn-first.btn-mild:hover, .btn.btn-first.btn-mild:focus, .btn.btn-first.btn-mild:active, .btn.btn-first.btn-mild.active {
+  color: white;
+  background-color: #4499dd;
+  border-color: #4499dd;
+}
+.btn.btn-first.btn-mild.disabled, .btn.btn-first.btn-mild:disabled, fieldset[disabled] .btn.btn-first.btn-mild {
+  opacity: .8;
+}
+.btn.btn-first.btn-mild.disabled:hover, .btn.btn-first.btn-mild.disabled.hover, .btn.btn-first.btn-mild.disabled:focus, .btn.btn-first.btn-mild.disabled.focus, .btn.btn-first.btn-mild:disabled:hover, .btn.btn-first.btn-mild:disabled.hover, .btn.btn-first.btn-mild:disabled:focus, .btn.btn-first.btn-mild:disabled.focus, fieldset[disabled] .btn.btn-first.btn-mild:hover, fieldset[disabled] .btn.btn-first.btn-mild.hover, fieldset[disabled] .btn.btn-first.btn-mild:focus, fieldset[disabled] .btn.btn-first.btn-mild.focus {
+  color: #333333;
+  background-color: white;
+  border-color: white;
+}
+
+.btn.btn-second.btn-mild {
+  color: #333333;
+  background-color: white;
+  border-color: white;
+}
+.btn.btn-second.btn-mild:hover, .btn.btn-second.btn-mild:focus, .btn.btn-second.btn-mild:active, .btn.btn-second.btn-mild.active {
+  color: white;
+  background-color: #333333;
+  border-color: #333333;
+}
+.btn.btn-second.btn-mild.disabled, .btn.btn-second.btn-mild:disabled, fieldset[disabled] .btn.btn-second.btn-mild {
+  opacity: .8;
+}
+.btn.btn-second.btn-mild.disabled:hover, .btn.btn-second.btn-mild.disabled.hover, .btn.btn-second.btn-mild.disabled:focus, .btn.btn-second.btn-mild.disabled.focus, .btn.btn-second.btn-mild:disabled:hover, .btn.btn-second.btn-mild:disabled.hover, .btn.btn-second.btn-mild:disabled:focus, .btn.btn-second.btn-mild:disabled.focus, fieldset[disabled] .btn.btn-second.btn-mild:hover, fieldset[disabled] .btn.btn-second.btn-mild.hover, fieldset[disabled] .btn.btn-second.btn-mild:focus, fieldset[disabled] .btn.btn-second.btn-mild.focus {
+  color: #333333;
+  background-color: white;
+  border-color: white;
+}
+
+.btn.btn-third.btn-mild {
+  color: #333333;
+  background-color: white;
+  border-color: white;
+}
+.btn.btn-third.btn-mild:hover, .btn.btn-third.btn-mild:focus, .btn.btn-third.btn-mild:active, .btn.btn-third.btn-mild.active {
+  color: white;
+  background-color: #55b677;
+  border-color: #55b677;
+}
+.btn.btn-third.btn-mild.disabled, .btn.btn-third.btn-mild:disabled, fieldset[disabled] .btn.btn-third.btn-mild {
+  opacity: .8;
+}
+.btn.btn-third.btn-mild.disabled:hover, .btn.btn-third.btn-mild.disabled.hover, .btn.btn-third.btn-mild.disabled:focus, .btn.btn-third.btn-mild.disabled.focus, .btn.btn-third.btn-mild:disabled:hover, .btn.btn-third.btn-mild:disabled.hover, .btn.btn-third.btn-mild:disabled:focus, .btn.btn-third.btn-mild:disabled.focus, fieldset[disabled] .btn.btn-third.btn-mild:hover, fieldset[disabled] .btn.btn-third.btn-mild.hover, fieldset[disabled] .btn.btn-third.btn-mild:focus, fieldset[disabled] .btn.btn-third.btn-mild.focus {
+  color: #333333;
+  background-color: white;
+  border-color: white;
+}
+
+.btn.btn-important.btn-mild {
+  color: #333333;
+  background-color: white;
+  border-color: white;
+}
+.btn.btn-important.btn-mild:hover, .btn.btn-important.btn-mild:focus, .btn.btn-important.btn-mild:active, .btn.btn-important.btn-mild.active {
+  color: white;
+  background-color: #dd4455;
+  border-color: #dd4455;
+}
+.btn.btn-important.btn-mild.disabled, .btn.btn-important.btn-mild:disabled, fieldset[disabled] .btn.btn-important.btn-mild {
+  opacity: .8;
+}
+.btn.btn-important.btn-mild.disabled:hover, .btn.btn-important.btn-mild.disabled.hover, .btn.btn-important.btn-mild.disabled:focus, .btn.btn-important.btn-mild.disabled.focus, .btn.btn-important.btn-mild:disabled:hover, .btn.btn-important.btn-mild:disabled.hover, .btn.btn-important.btn-mild:disabled:focus, .btn.btn-important.btn-mild:disabled.focus, fieldset[disabled] .btn.btn-important.btn-mild:hover, fieldset[disabled] .btn.btn-important.btn-mild.hover, fieldset[disabled] .btn.btn-important.btn-mild:focus, fieldset[disabled] .btn.btn-important.btn-mild.focus {
+  color: #333333;
+  background-color: white;
+  border-color: white;
+}
+
+/*doc
+---
+title: .btn-block
+name: btn-block
+category: module_object
+parent: btn
+---
+
+ブロック要素にする。タブレット以上のデバイスでは幅を制限する。
+
+``` example
+<div class="m-b line-c"><a href="#" class="btn btn-sm btn-block btn-first">btn-block</a></div>
+<div class="m-b line-c"><a href="#" class="btn btn-block btn-second">btn-block</a></div>
+<div class="m-b line-c"><a href="#" class="btn btn-lg btn-block btn-third">btn-block</a></div>
+<div class="line-c"><a href="#" class="btn btn-xl btn-block btn-important">btn-block</a></div>
+```
+
+*/
+.btn.btn-block {
+  display: block;
+  width: 100%;
+  max-width: 200px;
+  margin: 0 auto;
+  padding-left: .5rem;
+  padding-right: .5rem;
+}
+.btn.btn-block.btn-lg {
+  max-width: 300px;
+}
+.btn.btn-block.btn-xl {
+  max-width: 600px;
+}
+
+/*doc
+---
+title: .btn-(size)
+name: btn-size
+category: module_object
+parent: btn
+---
+
+ボタンのサイズを変更する。
+
+``` example
+<div class="line-c">
+    <a href="#" class="btn btn-first btn-sm m-x">btn-sm</a>
+    <a href="#" class="btn btn-second btn-lg m-x">btn-lg</a>
+    <a href="#" class="btn btn-third btn-xl m-x">btn-xl</a>
+</div>
+```
+
+*/
+.btn.btn-sm {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.875rem;
+  border-radius: 0.125rem;
+}
+
+.btn.btn-lg {
+  padding: 0.75rem 1.5rem;
+  font-size: 1.25rem;
+  border-radius: 0.25rem;
+}
+
+.btn.btn-xl {
+  padding: 0.75rem 3rem;
+  font-size: 2rem;
+  border-radius: 0.375rem;
+}
+
+/*doc
+---
+title: .btn-(shape) 
+name: btn-shape
+category: module_object
+parent: btn
+---
+
+正円、もしくは正方形にする。アイコンを使用する前提。
+
+``` example
+<div class="line-c">
+    <a href="#" class="btn btn-round btn-sm btn-first m-x">∞</a>
+    <a href="#" class="btn btn-square btn-sm btn-second m-x">∞</a>
+    <a href="#" class="btn btn-round btn-third m-x">∞</a>
+    <a href="#" class="btn btn-square btn-important m-x">∞</a>
+    <a href="#" class="btn btn-round btn-lg btn-first m-x">∞</a>
+    <a href="#" class="btn btn-square btn-lg btn-second m-x">∞</a>
+    <a href="#" class="btn btn-round btn-xl btn-third m-x">∞</a>
+    <a href="#" class="btn btn-square btn-xl btn-important m-x">∞</a>
+</div>
+<div class="bg-inverse line-c p-sm">
+    <a href="#" class="btn btn-round btn-inverse m-x">∞</a>
+    <a href="#" class="btn btn-square btn-inverse m-x">∞</a>
+</div>
+```
+
+*/
+.btn.btn-round {
+  overflow: hidden;
+  padding: 0;
+  width: 2.5rem;
+  height: 2.5rem;
+  line-height: 2.4rem;
+  border-radius: 1.25rem;
+  vertical-align: middle;
+}
+.btn.btn-round.btn-sm {
+  width: 1.5rem;
+  height: 1.5rem;
+  line-height: 1.4rem;
+  border-radius: .75rem;
+}
+.btn.btn-round.btn-lg {
+  width: 3.75rem;
+  height: 3.75rem;
+  line-height: 3.65rem;
+  border-radius: 1.875rem;
+}
+.btn.btn-round.btn-xl {
+  width: 5rem;
+  height: 5rem;
+  line-height: 4.9rem;
+  border-radius: 2.5rem;
+}
+
+.btn.btn-square {
+  overflow: hidden;
+  padding: 0;
+  width: 2.5rem;
+  height: 2.5rem;
+  line-height: 2.4rem;
+  vertical-align: middle;
+}
+.btn.btn-square.btn-sm {
+  width: 1.5rem;
+  height: 1.4rem;
+  line-height: 1.5rem;
+}
+.btn.btn-square.btn-lg {
+  width: 3.75rem;
+  height: 3.65rem;
+  line-height: 3.75rem;
+}
+.btn.btn-square.btn-xl {
+  width: 5rem;
+  height: 5rem;
+  line-height: 4.9rem;
+}
+
+/*doc
+---
+title: .btn-(brand)
+name: btn-brand
+category: module_object
+parent: btn
+---
+
+ボタンの色をウェブサービスのブランドカラーに変える。別途アイコンが必要。
+
+``` example
+<div class="m-b line-c">
+<a href="#" class="btn btn-square btn-facebook m-x"><i class="fa fa-facebook" aria-hidden="true"></i><span class="sr">Facebookページ</span></a>
+<a href="#" class="btn btn-square btn-twitter m-x"><i class="fa fa-twitter" aria-hidden="true"></i><span class="sr">Twitter</span></a>
+<a href="#" class="btn btn-square btn-instagram m-x"><i class="fa fa-instagram" aria-hidden="true"></i><span class="sr">Instagram</span></a>
+<a href="#" class="btn btn-square btn-line m-x"><img src="../images/common/line.svg" width="16" alt="LINE" /></a>
+<a href="#" class="btn btn-square btn-youtube m-x"><i class="fa fa-youtube-play" aria-hidden="true"></i><span class="sr">YouTube</span></a>
+<a href="#" class="btn btn-square btn-google-plus m-x"><i class="fa fa-google-plus" aria-hidden="true"></i><span class="sr">Google+</span></a>
+<a href="#" class="btn btn-square btn-pinterest m-x"><i class="fa fa-pinterest" aria-hidden="true"></i><span class="sr">Google+</span></a>
+</div>
+<div class="m-b line-c">
+<a href="#" class="btn btn-round btn-lg btn-facebook m-x"><i class="fa fa-facebook" aria-hidden="true"></i><span class="sr">Facebookページ</span></a>
+<a href="#" class="btn btn-round btn-lg btn-twitter m-x"><i class="fa fa-twitter" aria-hidden="true"></i><span class="sr">Twitter</span></a>
+<a href="#" class="btn btn-round btn-lg btn-instagram m-x"><i class="fa fa-instagram" aria-hidden="true"></i><span class="sr">Instagram</span></a>
+<a href="#" class="btn btn-round btn-lg btn-line m-x"><img src="../images/common/line.svg" width="16" alt="LINE" /></a>
+<a href="#" class="btn btn-round btn-lg btn-youtube m-x"><i class="fa fa-youtube-play" aria-hidden="true"></i><span class="sr">YouTube</span></a>
+<a href="#" class="btn btn-round btn-lg btn-google-plus m-x"><i class="fa fa-google-plus" aria-hidden="true"></i><span class="sr">Google+</span></a>
+<a href="#" class="btn btn-round btn-lg btn-pinterest m-x"><i class="fa fa-pinterest" aria-hidden="true"></i><span class="sr">Google+</span></a>
+</div>
+```
+
+*/
+.btn.btn-facebook {
+  background-color: #3B5998;
+  border-color: #3B5998;
+  color: #fff;
+  font-size: 24px;
+}
+.btn.btn-facebook.btn-sm {
+  font-size: 13px;
+}
+.btn.btn-facebook.btn-lg {
+  font-size: 36px;
+}
+.btn.btn-facebook.btn-xl {
+  font-size: 48px;
+}
+
+.btn.btn-twitter {
+  background-color: #1da1f2;
+  border-color: #1da1f2;
+  color: #fff;
+  font-size: 24px;
+}
+.btn.btn-twitter.btn-sm {
+  font-size: 15px;
+}
+.btn.btn-twitter.btn-lg {
+  font-size: 36px;
+}
+.btn.btn-twitter.btn-xl {
+  font-size: 54px;
+}
+
+.btn.btn-line {
+  background-color: #00b900;
+  border-color: #00b900;
+  color: #fff;
+}
+.btn.btn-line img {
+  width: auto;
+  height: 55%;
+  vertical-align: middle;
+}
+
+.btn.btn-instagram {
+  background: #d82977;
+  background: -moz-linear-gradient(45deg, #f89738 0%, #e02870 34%, #a02da4 67%, #aa17a7 100%);
+  background: -webkit-linear-gradient(45deg, #f89738 0%, #e02870 34%, #a02da4 67%, #aa17a7 100%);
+  background: linear-gradient(45deg, #f89738 0%, #e02870 34%, #a02da4 67%, #aa17a7 100%);
+  color: #fff;
+  font-size: 24px;
+}
+.btn.btn-instagram.btn-sm {
+  font-size: 15px;
+}
+.btn.btn-instagram.btn-lg {
+  font-size: 36px;
+}
+.btn.btn-instagram.btn-xl {
+  font-size: 54px;
+}
+
+.btn.btn-youtube {
+  background-color: #e62117;
+  border-color: #e62117;
+  color: #fff;
+  font-size: 24px;
+}
+.btn.btn-youtube.btn-sm {
+  font-size: 14px;
+}
+.btn.btn-youtube.btn-lg {
+  font-size: 32px;
+}
+.btn.btn-youtube.btn-xl {
+  font-size: 50px;
+}
+
+.btn.btn-google-plus {
+  background-color: #db4437;
+  border-color: #db4437;
+  color: #fff;
+  font-size: 22px;
+}
+.btn.btn-google-plus.btn-sm {
+  font-size: 14px;
+}
+.btn.btn-google-plus.btn-lg {
+  font-size: 32px;
+}
+.btn.btn-google-plus.btn-xl {
+  font-size: 48px;
+}
+
+.btn.btn-pinterest {
+  background-color: #bd081c;
+  border-color: #bd081c;
+  color: #fff;
+  font-size: 24px;
+}
+.btn.btn-pinterest.btn-sm {
+  font-size: 15px;
+}
+.btn.btn-pinterest.btn-lg {
+  font-size: 36px;
+}
+.btn.btn-pinterest.btn-xl {
+  font-size: 54px;
+}
+
+/*doc
+---
+title: .label
+name: label
+category: module_object
+---
+
+インライン要素をラベル状に表示する。label-(color)クラスを付与していない場合、無彩色となる。連続して配置すると左右に余白を確保する。
+
+``` example
+<a href="#" class="label">label</a>
+<a href="#" class="label label-first">label-first</a>
+<a href="#" class="label label-second">label-second</a>
+<a href="#" class="label label-third">label-third</a>
+<a href="#" class="label label-important">label-important</a>
+```
+
+*/
+.label {
+  position: relative;
+  top: -.125em;
+  display: inline-block;
+  min-width: 3em;
+  margin-right: .5em;
+  padding: .1em .75em;
+  background-color: #999999;
+  font-size: .8em;
+  color: #fff;
+  text-align: center;
+  vertical-align: middle;
+  border-radius: 0.125rem;
+}
+.label.label-first {
+  background-color: #4499dd;
+}
+.label.label-second {
+  background-color: #333333;
+}
+.label.label-third {
+  background-color: #55b677;
+}
+.label.label-important {
+  background-color: #dd4455;
+}
+a.label {
+  color: #fff;
+}
+a.label:hover, a.label:focus, a.label:active {
+  color: #fff;
+  text-decoration: none;
+}
+
+/*doc
+---
+title: .list
+name: list
+category: module_object
+---
+
+リストを生成する。ul要素でなければならない。
+
+*/
+/*doc
+---
+title: .list-vertical
+name: list-vertical
+category: module_object
+parent: list
+---
+
+階層構造を持たせることができる。
+
+<ul class="list list-vertical">
+    <li>リストリストリスト</li>
+    <li>リストリスト
+        <ul class="list list-vertical">
+            <li>リストリストリストリスト</li>
+            <li>リストリストリストリストリストリストリストリストリストリストリストリストリストリストリストリストリストリストリストリストリストリストリストリスト</li>
+            <li>リストリストリストリストリストリストリストリストリストリスト</li>
+        </ul>
+    </li>
+    <li>リストリストリストリスト</li>
+    <li>リストリストリストリストリストリストリストリストリストリストリストリストリストリストリストリストリストリストリストリストリストリストリストリスト</li>
+    <li>リストリストリストリストリストリストリストリストリストリスト</li>
+</ul>
+
+``` HTML
+<ul class="list list-vertical">
+    <li>リストリストリスト</li>
+    <li>リストリスト
+    <li>リストリストリストリスト</li>
+</ul>
+```
+*/
+ul.list.list-vertical {
+  margin: 0 0 1.5rem;
+  padding: 0;
+}
+ul.list.list-vertical > li {
+  position: relative;
+  margin: 0 0 .5rem;
+  padding: 0 0 0 1.5rem;
+  font-size: 1rem;
+  font-weight: 300;
+  line-height: 1.5;
+  list-style-type: none;
+}
+ul.list.list-vertical > li:before {
+  display: block;
+  content: "";
+  position: absolute;
+  top: .5em;
+  left: .5em;
+  width: .25em;
+  height: .25em;
+  background-color: #333333;
+}
+ul.list.list-vertical > li > ul {
+  margin-top: .5rem;
+  margin-bottom: .5rem;
+  border-left-width: 0;
+  border-right-width: 0;
+}
+
+/*doc
+---
+title: .list-horizontal
+name: list-horizontal
+category: module_object
+parent: list
+---
+
+水平のリストを生成する。階層構造を持たせることはできない。
+
+<ul class="list list-horizontal">
+    <li>リストリストリスト</li>
+    <li>リストリスト</li>
+    <li>リストリストリストリスト</li>
+    <li>リスト</li>
+    <li>リストリスト</li>
+</ul>
+
+``` HTML
+<ul class="list list-horizontal">
+    <li>リストリストリスト</li>
+    <li>リストリスト</li>
+    <li>リストリストリストリスト</li>
+    <li>リスト</li>
+    <li>リストリスト</li>
+</ul>
+```
+
+*/
+/*doc
+---
+title: .list-horizontal-sm, .list-horizontal-lg
+name: list-horizontal-sm
+category: module_object
+parent: list
+---
+
+水平のリストの余白を変える。
+
+<ul class="list list-horizontal list-horizontal-sm">
+    <li>リストリストリスト</li>
+    <li>リストリスト</li>
+    <li>リストリストリストリスト</li>
+</ul>
+
+<ul class="list list-horizontal list-horizontal-lg">
+    <li>リストリストリスト</li>
+    <li>リストリスト</li>
+    <li>リストリストリストリスト</li>
+</ul>
+
+*/
+ul.list.list-horizontal {
+  padding-left: 0;
+  letter-spacing: -.4rem;
+}
+ul.list.list-horizontal > li {
+  display: inline-block;
+  margin: 0;
+  padding: 0 .5rem;
+  letter-spacing: normal;
+}
+ul.list.list-horizontal > li:first-child {
+  padding-left: 0;
+}
+ul.list.list-horizontal > li:last-child {
+  padding-right: 0;
+}
+ul.list.list-horizontal > li:before {
+  display: none;
+  content: "";
+  width: 0;
+  height: 0;
+  background-color: transparent;
+}
+ul.list.list-horizontal.list-horizontal-sm > li {
+  padding: 0 .25rem;
+}
+ul.list.list-horizontal.list-horizontal-sm > li:first-child {
+  padding-left: 0;
+}
+ul.list.list-horizontal.list-horizontal-sm > li:last-child {
+  padding-right: 0;
+}
+ul.list.list-horizontal.list-horizontal-lg > li {
+  padding: 0 1rem;
+}
+ul.list.list-horizontal.list-horizontal-lg > li:first-child {
+  padding-left: 0;
+}
+ul.list.list-horizontal.list-horizontal-lg > li:last-child {
+  padding-right: 0;
+}
+
+/*doc
+---
+title: .object
+name: object
+category: module_object
+---
+
+動画や地図の伸縮に関するスタイル。必ずobject-(option)クラスを付与する。
+
+*/
+.object {
+  overflow: hidden;
+  position: relative;
+  display: block;
+  height: 0;
+}
+.object iframe,
+.object embed,
+.object object,
+.object video {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+/*doc
+---
+title: .object-21by9
+name: object-21by9
+category: module_object
+---
+
+包括要素内の要素を、21:9の縦横比を保って伸縮させる。
+
+```
+<div class="object object-21by9">
+</div>
+```
+
+*/
+.object.object-21by9 {
+  padding-bottom: 42.85714%;
+}
+
+/*doc
+---
+title: .object-16by9
+name: object-16by9
+category: module_object
+---
+
+包括要素内の要素を、16:9の縦横比を保って伸縮させる。
+
+```
+<div class="object object-16by9">
+</div>
+```
+
+*/
+.object.object-16by9 {
+  padding-bottom: 56.25%;
+}
+
+/*doc
+---
+title: .object-4by3
+name: object-4by3
+category: module_object
+---
+
+包括要素内の要素を、4:3の縦横比を保って伸縮させる。
+
+```
+<div class="object object-4by3">
+</div>
+```
+
+*/
+.object.object-4by3 {
+  padding-bottom: 75%;
+}
+
+/*doc
+---
+title: .object-flex
+name: object-flex
+category: module_object
+---
+
+地図向け。包括要素内の要素を、画面幅が広いと16:9、狭いと1:1の縦横比を保って伸縮させる。
+
+```
+<div class="object object-flex">
+</div>
+```
+
+*/
+.object.object-flex {
+  padding-bottom: 100%;
+}
+@media (min-width: 425px) {
+  .object.object-flex {
+    padding-bottom: 56.25%;
+  }
+}
+
+/*doc
+---
+title: .table
+name: table
+category: module_object
+---
+
+表を整形する。幅の狭い画面ではブロック要素となる。必ずtable-(type)クラスを付与する。
+
+*/
+.table {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  background-color: #fff;
+  border: 0 none;
+}
+@media (min-width: 768px) {
+  .table {
+    display: table;
+  }
+}
+.table thead,
+.table tbody,
+.table tfoot {
+  display: block;
+}
+@media (min-width: 768px) {
+  .table thead,
+  .table tbody,
+  .table tfoot {
+    display: table-row-group;
+  }
+}
+.table tr {
+  display: block;
+  border: 0 none;
+}
+@media (min-width: 768px) {
+  .table tr {
+    display: table-row;
+  }
+}
+.table th,
+.table td {
+  display: block;
+  width: 100%;
+  line-height: 1.75;
+  border: 0 none;
+  vertical-align: top;
+}
+@media (min-width: 768px) {
+  .table th,
+  .table td {
+    display: table-cell;
+    width: auto;
+  }
+}
+.table thead th {
+  vertical-align: bottom;
+}
+
+/*doc
+---
+title: .table-(type)
+name: table-01
+category: module_object
+parent: table
+---
+
+ボーダーや背景色を変える。
+
+``` example
+<table class="table table-01">
+    <tbody>
+        <tr>
+            <th>table-01_吾輩は猫である</th>
+            <td>名前はまだ無い。どこで生れたかとんと見当がつかぬ。何でも薄暗いじめじめした所でニャーニャー泣いていた事だけは記憶している。</td>
+        </tr>
+        <tr>
+            <th>table-01_吾輩は猫である</th>
+            <td>名前はまだ無い。どこで生れたかとんと見当がつかぬ。何でも薄暗いじめじめした所でニャーニャー泣いていた事だけは記憶している。</td>
+        </tr>
+        <tr>
+            <th>table-01_吾輩は猫である</th>
+            <td>名前はまだ無い。どこで生れたかとんと見当がつかぬ。何でも薄暗いじめじめした所でニャーニャー泣いていた事だけは記憶している。</td>
+        </tr>
+    </tbody>
+</table>
+
+<table class="table table-02">
+    <tbody>
+        <tr>
+            <th>table-02_吾輩は猫である</th>
+            <td>名前はまだ無い。どこで生れたかとんと見当がつかぬ。何でも薄暗いじめじめした所でニャーニャー泣いていた事だけは記憶している。</td>
+        </tr>
+        <tr>
+            <th>table-02_吾輩は猫である</th>
+            <td>名前はまだ無い。どこで生れたかとんと見当がつかぬ。何でも薄暗いじめじめした所でニャーニャー泣いていた事だけは記憶している。</td>
+        </tr>
+        <tr>
+            <th>table-02_吾輩は猫である</th>
+            <td>名前はまだ無い。どこで生れたかとんと見当がつかぬ。何でも薄暗いじめじめした所でニャーニャー泣いていた事だけは記憶している。</td>
+        </tr>
+    </tbody>
+</table>
+```
+
+*/
+.table.table-01 {
+  border-top: 1px solid #cccccc;
+  border-left: 1px solid #cccccc;
+}
+.table.table-01 th,
+.table.table-01 td {
+  border-bottom: 1px solid #cccccc;
+  border-right: 1px solid #cccccc;
+  padding: .25rem 1rem;
+}
+
+.table.table-02 th,
+.table.table-02 td {
+  padding: 1rem 0 .25rem;
+  border-bottom: 1px solid #cccccc;
+}
+
+/*doc
+---
+title: .table-(ratio)
+name: table-3to9
+category: module_object
+parent: table
+---
+
+幅の広い画面でのセルを12分割比で固定する。
+
+``` example
+<table class="table table-01 table-3to9 m-b">
+    <tbody>
+        <tr>
+            <th>table-3to9_吾輩は猫である</th>
+            <td>名前はまだ無い。どこで生れたかとんと見当がつかぬ。何でも薄暗いじめじめした所でニャーニャー泣いていた事だけは記憶している。</td>
+        </tr>
+    </tbody>
+</table>
+<table class="table table-01 table-4to8 m-b">
+    <tbody>
+        <tr>
+            <th>table-3to9_吾輩は猫である</th>
+            <td>名前はまだ無い。どこで生れたかとんと見当がつかぬ。何でも薄暗いじめじめした所でニャーニャー泣いていた事だけは記憶している。</td>
+        </tr>
+    </tbody>
+</table>
+```
+
+*/
+@media (min-width: 768px) {
+  .table.table-3to9 tr th,
+  .table.table-3to9 tr td {
+    width: 75%;
+  }
+}
+@media (min-width: 768px) {
+  .table.table-3to9 tr th:first-child,
+  .table.table-3to9 tr td:first-child {
+    width: 25%;
+  }
+}
+
+@media (min-width: 768px) {
+  .table.table-4to8 tr th,
+  .table.table-4to8 tr td {
+    width: 66.66667%;
+  }
+}
+@media (min-width: 768px) {
+  .table.table-4to8 tr th:first-child,
+  .table.table-4to8 tr td:first-child {
+    width: 33.33333%;
+  }
+}
+
+/*doc
+---
+title: .table-justify
+name: table-justify
+category: module_object
+parent: table
+---
+
+幅の広い画面ですべてのセルを均等幅にする。
+
+``` example
+<table class="table table-01 table-justify m-b">
+    <tbody>
+        <tr>
+            <th>吾輩は猫である</th>
+            <td>名前はまだ無い。どこで生れたかとんと見当がつかぬ。何でも薄暗いじめじめした所でニャーニャー泣いていた事だけは記憶している。</td>
+        </tr>
+    </tbody>
+</table>
+
+<table class="table table-01 table-justify m-b">
+    <tbody>
+        <tr>
+            <th>吾輩は猫である</th>
+            <td>名前はまだ無い。どこで生れたかとんと見当がつかぬ。</td>
+            <td>何でも薄暗いじめじめした所でニャーニャー泣いていた事だけは記憶している。</td>
+        </tr>
+    </tbody>
+</table>
+
+<table class="table table-01 table-justify m-b">
+    <tbody>
+        <tr>
+            <th>吾輩は猫である</th>
+            <td>名前はまだ無い。</td>
+            <td>どこで生れたかとんと見当がつかぬ。</td>
+            <td>何でも薄暗いじめじめした所でニャーニャー泣いていた事だけは記憶している。</td>
+        </tr>
+    </tbody>
+</table>
+
+<table class="table table-01 table-justify m-b">
+    <tbody>
+        <tr>
+            <th>吾輩は猫である</th>
+            <td>名前はまだ無い。</td>
+            <td>どこで生れたかとんと見当がつかぬ。</td>
+            <td>何でも薄暗いじめじめした所でニャーニャー</td>
+            <td>泣いていた事だけは記憶している。</td>
+        </tr>
+    </tbody>
+</table>
+```
+
+*/
+@media (min-width: 768px) {
+  .table.table-justify {
+    table-layout: fixed;
+  }
+}
+
+/*doc
+---
+title: .title
+name: title
+category: module_utility
+---
+
+見出しの体裁に関するスタイル。必ずtitle-(type)クラスを付与する。マージンは.m-(size)クラスで別途指定する。
+
+*/
+.title {
+  margin: 0;
+  padding: 0;
+  background: transparent none;
+  border: 0 none;
+  color: #333333;
+  font-size: 1rem;
+  font-weight: 700;
+  text-align: left;
+  line-height: 1.5;
+  border-radius: 0;
+}
+.title:before, .title:after {
+  display: none;
+}
+
+/*doc
+---
+title: .title-01
+name: title-01
+category: module_utility
+parent: title
+---
+
+``` example
+<h1 class="title title-01">これはh1要素です</h1>
+<p class="title title-01">これはp要素です</p>
+```
+
+*/
+.title.title-01 {
+  font-size: 2.5rem;
+  font-weight: 300;
+  font-family: "YuMincho", "-apple-system", "Roboto", "Open Sans", "Arial", "Helvetica", sans-serif;
+  text-align: center;
+}
+
+/*doc
+---
+title: .title-02
+name: title-02
+category: module_utility
+parent: title
+---
+
+``` example
+<h2 class="title title-02">これはh2要素です</h2>
+<p class="title title-02">これはp要素です</p>
+```
+
+*/
+.title.title-02 {
+  max-width: 640px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid #333333;
+  font-size: 2rem;
+  font-weight: 300;
+  font-family: "YuMincho", "-apple-system", "Roboto", "Open Sans", "Arial", "Helvetica", sans-serif;
+  text-align: center;
+}
+
+/*doc
+---
+title: .title-03
+name: title-03
+category: module_utility
+parent: title
+---
+
+``` example
+<h3 class="title title-03">これはh3要素です</h3>
+<p class="title title-03">これはp要素です</p>
+```
+
+*/
+.title.title-03 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  font-family: "YuMincho", "-apple-system", "Roboto", "Open Sans", "Arial", "Helvetica", sans-serif;
+}
+
+/*doc
+---
+title: .title-04
+name: title-04
+category: module_utility
+parent: title
+---
+
+``` example
+<h4 class="title title-04">これはh4要素です</h4>
+<p class="title title-04">これはp要素です</p>
+```
+
+*/
+.title.title-04 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  font-family: "YuMincho", "-apple-system", "Roboto", "Open Sans", "Arial", "Helvetica", sans-serif;
+}
+
+/*doc
+---
+title: .title-05
+name: title-05
+category: module_utility
+parent: title
+---
+
+``` example
+<h5 class="title title-05">これはh5要素です</h5>
+<p class="title title-05">これはp要素です</p>
+```
+
+*/
+.title.title-05 {
+  font-size: 1.125rem;
+  font-weight: 700;
+  font-family: "YuMincho", "-apple-system", "Roboto", "Open Sans", "Arial", "Helvetica", sans-serif;
+}
+
+/*doc
+---
+title: .title-06
+name: title-06
+category: module_utility
+parent: title
+---
+
+``` example
+<h6 class="title title-06">これはh6要素です</h6>
+<p class="title title-06">これはp要素です</p>
+```
+
+*/
+.title.title-06 {
+  font-size: 1rem;
+  font-weight: 700;
+  font-family: "YuMincho", "-apple-system", "Roboto", "Open Sans", "Arial", "Helvetica", sans-serif;
+}
+
+/*doc
+---
+title: .backtotop
+name: backtotop
+category: module_component
+---
+
+ページ先頭へ戻るナビゲーションを提供するコンポーネント。画面左下に絶対配置される。
+
+``` example
+<div class="backtotop">
+    <a href="#top">↑<span class="sr">ページ先頭</span></a>
+</div>
+```
+
+*/
+.backtotop {
+  position: fixed;
+  width: 3rem;
+  right: 1rem;
+  bottom: 1rem;
+  z-index: 101;
+}
+@media (min-width: 1024px) {
+  .backtotop {
+    right: 50%;
+    margin-right: -520px;
+    -webkit-transform: translate(1.5rem, 0);
+    -ms-transform: translate(1.5rem, 0);
+    transform: translate(1.5rem, 0);
+  }
+}
+@media (min-width: 1280px) {
+  .backtotop {
+    margin-right: -600px;
+  }
+}
+.js-hiraku-offcanvas-body-left .backtotop, .js-hiraku-offcanvas-body-right .backtotop {
+  display: none;
+}
+.backtotop a {
+  display: block;
+  width: 3rem;
+  height: 3rem;
+  line-height: 2.75rem;
+  vertical-align: middle;
+  text-align: center;
+  font-size: 1.5rem;
+  border-radius: 1.5rem;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.35);
+}
+.backtotop a, .backtotop a:visited {
+  color: #333333;
+  background-color: #fff;
+}
+.backtotop a:hover, .backtotop a:focus {
+  text-decoration: none;
+}
+.backtotop a .icon {
+  font-size: 1rem;
+  position: relative;
+}
+.backtotop .backtotop-line {
+  display: inline-block;
+  position: relative;
+  width: 2px;
+  height: 16px;
+  background-color: #333333;
+  border-radius: 1px;
+  vertical-align: middle;
+}
+@media (min-width: 768px) {
+  .backtotop .backtotop-line {
+    height: 20px;
+  }
+}
+.backtotop .backtotop-line:before, .backtotop .backtotop-line:after {
+  content: "";
+  display: block;
+  position: absolute;
+  background-color: #333333;
+  width: 2px;
+  height: 12px;
+  border-radius: 1px;
+}
+@media (min-width: 768px) {
+  .backtotop .backtotop-line:before, .backtotop .backtotop-line:after {
+    height: 16px;
+  }
+}
+.backtotop .backtotop-line:before {
+  top: -2px;
+  left: -4px;
+  transform: rotate(45deg);
+}
+@media (min-width: 768px) {
+  .backtotop .backtotop-line:before {
+    top: -3px;
+    left: -5px;
+  }
+}
+.backtotop .backtotop-line:after {
+  top: -2px;
+  left: 4px;
+  transform: rotate(-45deg);
+}
+@media (min-width: 768px) {
+  .backtotop .backtotop-line:after {
+    top: -3px;
+    left: 5px;
+  }
+}
+
+/*doc
+---
+title: .block
+name: block
+category: module_component
+---
+
+新着情報など、サイト内で配置が不定となる可能性があるコンポーネントを表示する。。必ず他のコンポーネントを含む。
+
+``` example
+<div class="block">
+    <div class="block-header">
+        <h2 class="block-title">見出し</h2>
+        <p class="block-subtitle">サブ見出し</p>
+        <p class="block-text">キャプションキャプションキャプションキャプション</p>
+    </div>
+    <div class="block-contents">
+        <div class="bg-third bg-fade p-sm line-c">(other component)</div>
+    </div>
+    <div class="block-footer">
+        <p class="block-link"><a href="#" class="btn btn-block btn-lg btn-first btn-mild">more</a></p>
+    </div>
+</div>
+```
+
+*/
+.block {
+  position: relative;
+}
+.block .block-header {
+  position: relative;
+  padding: 0 0 1.875rem;
+}
+.block .block-header:before, .block .block-header:after {
+  content: "";
+  display: table;
+}
+.block .block-header:after {
+  clear: both;
+}
+.block .block-footer {
+  position: relative;
+  padding: 1.875rem 0 0;
+}
+.block .block-footer:before, .block .block-footer:after {
+  content: "";
+  display: table;
+}
+.block .block-footer:after {
+  clear: both;
+}
+.block .block-title {
+  margin: 0;
+  font-size: 2rem;
+  font-family: "-apple-system", "BlinkMacSystemFont", "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
+  font-weight: 300;
+  text-align: center;
+  letter-spacing: .1em;
+}
+.block .block-title a {
+  color: #333333;
+}
+.block .block-subtitle {
+  margin: .5rem 0 0;
+  font-size: 0.75rem;
+  color: #6c7277;
+  text-align: center;
+  letter-spacing: .1rem;
+}
+.block .block-text {
+  margin: 1.5rem 0 0;
+  text-align: center;
+}
+.block .block-link {
+  margin: 0;
+  text-align: center;
+}
+
+/*doc
+---
+title: .blockset
+name: blockset
+category: module_component
+parent: block
+---
+
+.blockが連続して複数配置される可能性がある場合に、.blockを包括する領域。
+
+```
+<div class="blockset">
+
+    <div class="block"></div>
+    <div class="block"></div>
+    <div class="block"></div>
+    <div class="block"></div>
+
+</div><!-- /.blockset -->
+```
+
+*/
+.blockset:before, .blockset:after {
+  content: "";
+  display: table;
+}
+.blockset:after {
+  clear: both;
+}
+
+.block.block-lead {
+  height: 100vh;
+}
+.block.block-lead .lead {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.block.block-card {
+  padding: 1.875rem 0;
+}
+@media (min-width: 1024px) {
+  .block.block-card {
+    padding: 2.8125rem 0;
+  }
+}
+.block.block-card .card-01 .card-thumb {
+  padding-bottom: 52.3560209%;
+}
+
+.block-instagram .card-02 {
+  margin-bottom: 0;
+  box-shadow: none;
+}
+.block-instagram .card-02 .card-thumb {
+  padding-bottom: 100%;
+}
+.block-instagram .card-02 .card-contents {
+  padding-top: 0.625rem;
+  font-size: 0.75rem;
+}
+
+.block.block-sns {
+  padding: 1.875rem 0;
+}
+
+/*doc
+---
+title: .box
+name: box
+category: module_component
+---
+
+文章を入れる前提となる、余白を持った箱状のコンポーネントを表示する。  
+画面幅によって余白が変化する。必ず.box-(type)クラスを付与する必要がある。
+
+*/
+.box {
+  position: relative;
+  margin-bottom: 1.25rem;
+  padding: 0.625rem;
+}
+.box:before, .box:after {
+  content: "";
+  display: table;
+}
+.box:after {
+  clear: both;
+}
+@media (min-width: 768px) {
+  .box {
+    padding: 1.25rem;
+  }
+}
+@media (min-width: 1280px) {
+  .box {
+    margin-bottom: 1.875rem;
+    padding: 1.875rem;
+  }
+}
+
+/*doc
+---
+title: .box-(type)
+name: box-01
+category: module_component
+parent: box
+---
+
+```
+<div class="box box-01">
+    <p>吾輩は猫である。名前はまだ無い。どこで生れたかとんと見当がつかぬ。何でも薄暗いじめじめした所でニャーニャー泣いていた事だけは記憶している。<br>
+    吾輩はここで始めて人間というものを見た。しかもあとで聞くとそれは書生という人間中で一番獰悪な種族であったそうだ。</p>
+    <p>この書生というのは時々我々を捕えて煮て食うという話である。
+    しかしその当時は何という考もなかったから別段恐しいとも思わなかった。ただ彼の掌に載せられてスーと持ち上げられた時何だかフワフワした感じがあったばかりである。</p>
+</div>
+
+<div class="box box-02">
+    <p>吾輩は猫である。名前はまだ無い。どこで生れたかとんと見当がつかぬ。何でも薄暗いじめじめした所でニャーニャー泣いていた事だけは記憶している。<br>
+    吾輩はここで始めて人間というものを見た。しかもあとで聞くとそれは書生という人間中で一番獰悪な種族であったそうだ。</p>
+    <p>この書生というのは時々我々を捕えて煮て食うという話である。
+    しかしその当時は何という考もなかったから別段恐しいとも思わなかった。ただ彼の掌に載せられてスーと持ち上げられた時何だかフワフワした感じがあったばかりである。</p>
+</div>
+
+<div class="box box-03">
+    <p>吾輩は猫である。名前はまだ無い。どこで生れたかとんと見当がつかぬ。何でも薄暗いじめじめした所でニャーニャー泣いていた事だけは記憶している。<br>
+    吾輩はここで始めて人間というものを見た。しかもあとで聞くとそれは書生という人間中で一番獰悪な種族であったそうだ。</p>
+    <p>この書生というのは時々我々を捕えて煮て食うという話である。
+    しかしその当時は何という考もなかったから別段恐しいとも思わなかった。ただ彼の掌に載せられてスーと持ち上げられた時何だかフワフワした感じがあったばかりである。</p>
+</div>
+
+<div class="box box-04">
+    <p>吾輩は猫である。名前はまだ無い。どこで生れたかとんと見当がつかぬ。何でも薄暗いじめじめした所でニャーニャー泣いていた事だけは記憶している。<br>
+    吾輩はここで始めて人間というものを見た。しかもあとで聞くとそれは書生という人間中で一番獰悪な種族であったそうだ。</p>
+    <p>この書生というのは時々我々を捕えて煮て食うという話である。
+    しかしその当時は何という考もなかったから別段恐しいとも思わなかった。ただ彼の掌に載せられてスーと持ち上げられた時何だかフワフワした感じがあったばかりである。</p>
+</div>
+```
+
+*/
+.box.box-01 {
+  background-color: #d8eaff;
+}
+
+.box.box-02 {
+  background-color: #eeeeee;
+}
+
+.box.box-03 {
+  border: 2px solid #4499dd;
+}
+
+.box.box-04 {
+  border: 2px solid #55b677;
+}
+
+/*doc
+---
+title: .card
+name: card
+category: module_component
+---
+
+新着情報のエントリー繰り返し部分などに使用する、カード状のコンポーネントを表示する。  
+必ずcard-(type)クラスを付与する。
+サムネイルの高さを4:3で固定しているので、.card-thumbの下余白を任意調整すること。
+
+*/
+.card {
+  background-color: #fff;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.35);
+  color: #333333;
+  margin-bottom: 1.25rem;
+  position: relative;
+}
+.card .card-thumb {
+  overflow: hidden;
+  position: relative;
+  display: block;
+  height: 0;
+  padding-bottom: 75%;
+  background: #000;
+  z-index: 101;
+}
+.card .card-object {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 101%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+.card .card-inner {
+  display: block;
+  position: relative;
+}
+.card > a {
+  color: #333333;
+  text-decoration: none;
+  transition: .3s all;
+}
+.card > a:hover, .card > a:focus {
+  color: #333333;
+  text-decoration: none;
+}
+.card .card-header,
+.card .card-contents,
+.card .card-footer {
+  padding: 0.625rem;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  word-break: break-word;
+}
+.card .card-header:before, .card .card-header:after,
+.card .card-contents:before,
+.card .card-contents:after,
+.card .card-footer:before,
+.card .card-footer:after {
+  content: "";
+  display: table;
+}
+.card .card-header:after,
+.card .card-contents:after,
+.card .card-footer:after {
+  clear: both;
+}
+@media (min-width: 768px) {
+  .card .card-header,
+  .card .card-contents,
+  .card .card-footer {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+}
+.card .card-header {
+  z-index: 102;
+}
+.card .card-contents {
+  position: relative;
+  z-index: 103;
+}
+.card .card-new {
+  position: absolute;
+  margin: 0;
+  top: -3px;
+  right: 0.625rem;
+  font-family: "YuMincho", "-apple-system", "Roboto", "Open Sans", "Arial", "Helvetica", sans-serif;
+  font-weight: 700;
+  line-height: 1;
+  z-index: 104;
+}
+.card .card-new .label {
+  border-radius: 0 0 0.125rem 0.125rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
+}
+.card .card-link {
+  padding-top: 1.25rem;
+  text-align: center;
+}
+
+/*doc
+---
+title: .card-01
+name: card-01
+category: module_component
+parent: card
+---
+
+サムネイルの上が.card-header、下が.card-contentsとなる。
+
+``` example
+<div style="width: 300px;">
+
+<div class="card card-01">
+    <a href="#" class="card-inner">
+        <div class="card-new"><span class="label label-important">New</span></div>
+        <div class="card-thumb"><img src="http://placehold.jp/24/9ed8db/ffffff/400x300.png?text=dummy_image" class="card-object" /></div>
+        <div class="card-contents">
+            <h3 class="title title-06 m-bsm"><span class="label">カテゴリー</span>カードのタイトルですカードのタイトルですカードのタイトルです</h3>
+            <time>2017-12-28</time>
+            <p>吾輩は猫である。名前はまだ無い。どこで生れたかとんと見当がつかぬ。</p>
+            <p class="card-link">
+                <span href="#" class="btn btn-block btn-first btn-flat">ボタン</span>
+            </p>
+        </div><!-- /.card-contents -->
+    </a>
+</div>
+
+<div class="card card-01">
+    <div class="card-header">
+        <h3 class="title title-06">カードのタイトルですカードのタイトルですカードのタイトルです</h3>
+    </div><!-- /.card-header -->
+
+    <div class="card-thumb" style="padding-bottom: 50%;"><img src="http://placehold.jp/24/9ed8db/ffffff/400x200.png?text=dummy_image" class="card-object" /></div>
+
+    <div class="card-contents">
+        <p>吾輩は猫である。名前はまだ無い。どこで生れたかとんと見当がつかぬ。</p>
+    </div><!-- /.card-contents -->
+</div>
+
+</div>
+
+```
+
+*/
+/*doc
+---
+title: .card-02
+name: card-02
+category: module_component
+parent: card
+---
+
+.card-headerは常に表示、.card-contentsはホバーするか、.is-activeクラスを付与すると表示される。モバイル端末ではJavaScript等を併用しなければ.card-contentsの内容が読めない。
+
+``` example
+<div style="width: 300px;">
+
+<div class="card card-02">
+    <a href="#" class="card-inner">
+        <div class="card-new"><span class="label label-important">New</span></div>
+        <div class="card-thumb"><img src="http://placehold.jp/24/9ed8db/ffffff/400x300.png?text=dummy_image" class="card-object" /></div>
+
+        <div class="card-header">
+            <h3 class="title title-06">カードのタイトルですカードのタイトルですカードのタイトルです</h3>
+            <time>2017-12-28</time>
+        </div><!-- /.card-header -->
+
+        <div class="card-contents">
+            <p>吾輩は猫である。名前はまだ無い。どこで生れたかとんと見当がつかぬ。</p>
+        </div><!-- /.card-contents -->
+    </a>
+</div>
+
+</div>
+
+<div style="width: 300px;">
+
+<div class="card card-02">
+    <a href="#" class="card-inner">
+        <div class="card-thumb"><img src="http://placehold.jp/24/9ed8db/ffffff/400x300.png?text=dummy_image" class="card-object" /></div>
+        <div class="card-contents">
+            <h3 class="title title-03 text-inverse m-b">タイトル</h3>
+            <p>吾輩は猫である。名前はまだ無い。どこで生れたかとんと見当がつかぬ。</p>
+            <time>2017-12-28</time>
+        </div><!-- /.card-contents -->
+    </a>
+</div>
+
+</div>
+
+```
+
+*/
+.card.card-02 {
+  overflow: hidden;
+}
+.card.card-02 .card-header {
+  position: absolute;
+  top: auto;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #fff;
+}
+.card.card-02 .card-contents {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding-top: 1.875rem;
+  color: #fff;
+  background-color: #000;
+  opacity: 0;
+  transition: .3s all;
+}
+.card.card-02 > a:hover .card-contents, .card.card-02 > a:focus .card-contents {
+  opacity: .85;
+}
+.card.card-02.is-active .card-contents {
+  opacity: .85;
+}
+
+/*doc
+---
+title: .headline
+name: headline
+category: module_component
+---
+
+新着情報のエントリー繰り返し部分などに使用する、日付とタイトルを並列したコンポーネントを表示する。  
+特定幅を下回るとタイトルがブロック要素となる。
+
+``` example
+<div class="headline">
+    <time class="headline-date" datetime="2017-08-01T09:00:00+09:00">2017年08月01日</time>
+    <p class="headline-category">
+        <a href="#" class="label label-first">カテゴリー</a>
+    </p>
+    <h3 class="headline-title"><a href="#">吾輩は猫である。名前はまだ無い。</a></h3>
+</div><!-- /.headline -->
+
+<div class="headline">
+    <time class="headline-date" datetime="2017-08-01T09:00:00+09:00">2017年08月01日</time>
+    <p class="headline-category">
+        <a href="#" class="label label-second">カテゴリー</a>
+    </p>
+    <h3 class="headline-title"><a href="#">どこで生れたかとんと見当がつかぬ。何でも薄暗いじめじめした所でニャーニャー泣いていた事だけは記憶している。</a></h3>
+</div><!-- /.headline -->
+
+<div class="headline">
+    <time class="headline-date" datetime="2017-08-01T09:00:00+09:00">2017年08月01日</time>
+    <p class="headline-category">
+        <a href="#" class="label label-third">カテゴリー</a>
+    </p>
+    <h3 class="headline-title"><a href="#">掌の上で少し落ちついて書生の顔を見たのがいわゆる人間というものの見始であろう。この時妙なものだと思った感じが今でも残っている。</a></h3>
+</div><!-- /.headline -->
+```
+
+*/
+.headline {
+  position: relative;
+  margin-bottom: 0.9375rem;
+}
+@media (min-width: 768px) {
+  .headline {
+    display: table;
+  }
+}
+.headline .headline-date,
+.headline .headline-category,
+.headline .headline-title {
+  font-size: 1rem;
+  font-family: "-apple-system", "BlinkMacSystemFont", "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
+  font-weight: 300;
+  line-height: 1.5;
+}
+@media (min-width: 768px) {
+  .headline .headline-date,
+  .headline .headline-category,
+  .headline .headline-title {
+    vertical-align: middle;
+  }
+}
+.headline .headline-date {
+  display: inline;
+  padding-right: 0.625rem;
+}
+@media (min-width: 768px) {
+  .headline .headline-date {
+    display: table-cell;
+    width: 1%;
+    padding-right: 1.25rem;
+    white-space: nowrap;
+  }
+}
+.headline .headline-category {
+  display: inline;
+}
+@media (min-width: 768px) {
+  .headline .headline-category {
+    display: table-cell;
+    width: 1%;
+    padding-right: 1.25rem;
+    white-space: nowrap;
+  }
+}
+.headline .headline-category .label {
+  min-width: 5.5rem;
+  padding-left: 0;
+  padding-right: 0;
+  margin-right: 0;
+}
+.headline .headline-title {
+  display: block;
+  margin: .25rem 0 0;
+}
+@media (min-width: 768px) {
+  .headline .headline-title {
+    display: table-cell;
+    width: 99%;
+    margin-top: 0;
+  }
+}
+.headline .headline-title a {
+  color: #333333;
+  text-decoration: none;
+}
+.headline .headline-title a:hover, .headline .headline-title a:focus {
+  color: #2aa7e6;
+  text-decoration: underline;
+}
+
+/*doc
+---
+title: .hero
+name: hero
+category: module_component
+---
+
+メインビジュアルなどに使用される全面背景を持つコンポーネントを表示する。  
+画像の場合は.hero-img、動画の場合は.hero-movieを付与すること。
+背景が暗色であることが前提となっているので、適当調整すること。
+
+``` example
+<div class="hero hero-img">
+    <img class="hero-object" src="http://placehold.jp/96/99de74/ffffff/1600x1000.png?text=dummy_image">
+    <div class="hero-contents">
+        <h2 class="hero-title">画像全面</h2>
+        <p class="hero-text">吾輩は猫である。名前はまだ無い。<br>どこで生れたかとんと見当がつかぬ。</p>
+    </div><!-- /.hero-contents -->
+</div><!-- /.hero -->
+```
+
+*/
+.hero {
+  overflow: hidden;
+  position: relative;
+  display: block;
+  width: 100%;
+  background-color: #fff;
+}
+.hero.hero-movie {
+  height: 0;
+  padding-top: 56.25%;
+}
+.hero.hero-img .hero-object {
+  display: block;
+  width: 100%;
+  height: auto;
+  z-index: 12;
+}
+.hero .mbYTP_wrapper {
+  z-index: 12 !important;
+}
+.hero .YTPOverlay.raster {
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAEElEQVQImWNgYGD4z0AZAABABAEAuUSdjgAAAABJRU5ErkJggg==);
+}
+.hero .hero-contents {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  width: 100%;
+  color: #333333;
+  line-height: 1.25;
+  text-align: center;
+  z-index: 14;
+}
+@media (min-width: 1024px) {
+  .hero .hero-contents {
+    max-width: 1040px;
+  }
+}
+@media (min-width: 1280px) {
+  .hero .hero-contents {
+    max-width: 1200px;
+  }
+}
+.hero .hero-title {
+  margin: 0;
+  font-size: 2.5rem;
+  font-family: "YuMincho", "-apple-system", "Roboto", "Open Sans", "Arial", "Helvetica", sans-serif;
+  font-weight: 300;
+  text-shadow: 0px 0px 0.25rem #fff, 1px 1px 0.5rem #fff;
+  letter-spacing: .05em;
+}
+@media (min-width: 768px) {
+  .hero .hero-title {
+    font-size: 2.75rem;
+  }
+}
+@media (min-width: 1280px) {
+  .hero .hero-title {
+    font-size: 3rem;
+  }
+}
+.hero .hero-text {
+  margin: .5rem 0 0;
+  font-size: 0.875rem;
+  text-shadow: 0px 0px 0.25rem #fff, 1px 1px 0.5rem #fff;
+}
+@media (min-width: 768px) {
+  .hero .hero-text {
+    font-size: 1rem;
+  }
+}
+@media (min-width: 1280px) {
+  .hero .hero-text {
+    font-size: 1.125rem;
+  }
+}
+.hero .hero-link {
+  position: absolute;
+  bottom: 1.25rem;
+  right: 1.25rem;
+  color: #333333;
+  line-height: 1;
+  z-index: 15;
+}
+.hero .hero-link a {
+  color: #333333;
+}
+.hero .hero-link .fa {
+  font-size: 2rem;
+}
+
+/*doc
+---
+title: .hero-inverse
+name: hero-inverse
+category: module_component
+parent: hero
+---
+
+暗色向けに文字色等を反転する。
+
+``` example
+<div class="hero hero-inverse">
+    <div class="hero-cover" style="background-image: url(http://placehold.jp/96/99de74/ffffff/1600x1000.png?text=dummy_image);"></div>
+    <div class="hero-contents">
+        <h2 class="hero-title">画像全面</h2>
+        <p class="hero-text">吾輩は猫である。名前はまだ無い。<br>どこで生れたかとんと見当がつかぬ。</p>
+    </div><!-- /.hero-contents -->
+</div><!-- /.hero -->
+```
+
+*/
+.hero-inverse {
+  background-color: #000;
+}
+.hero-inverse .hero-contents {
+  color: #fff;
+}
+.hero-inverse .hero-title {
+  text-shadow: 1px 1px 0.5rem #000;
+}
+.hero-inverse .hero-text {
+  text-shadow: 1px 1px 0.5rem #000;
+}
+.hero-inverse .hero-link {
+  color: #fff;
+}
+.hero-inverse .hero-link a {
+  color: #fff;
+}
+
+/*doc
+---
+title: .flip
+name: flip
+category: module_component
+---
+
+全面背景とボックスを持つコンポーネントを表示する。  
+必ず.flip-(type)クラスを付与する必要があり、XGA以上でタイプによりデザインが変化する。  
+vhが非対応のブラウザがまだ多いため、高さは固定値としている。 背景が暗色であることが前提となっているので、適当調整すること。
+*/
+.flip {
+  position: relative;
+  width: 100%;
+}
+@media (max-width: 1023.9px) {
+  .flip {
+    height: auto !important;
+  }
+}
+.flip .flip-cover {
+  width: 100%;
+  height: 210.9375px;
+  background: #000 none no-repeat center center;
+  background-size: cover;
+  z-index: 21;
+}
+@media (min-width: 1024px) {
+  .flip .flip-cover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+  }
+}
+.flip .flip-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+@media (max-width: 1023.9px) {
+  .flip .flip-container {
+    height: auto !important;
+  }
+}
+@media (min-width: 1024px) {
+  .flip .flip-container {
+    max-width: 1040px;
+  }
+}
+@media (min-width: 1280px) {
+  .flip .flip-container {
+    max-width: 1200px;
+  }
+}
+.flip .flip-contents {
+  display: table;
+  width: 100%;
+  position: relative;
+  background-color: #fff;
+  color: #333333;
+  line-height: 1.5;
+  text-align: center;
+  z-index: 22;
+}
+@media (min-width: 1024px) {
+  .flip .flip-contents {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    -webkit-transform: translate(0, -50%);
+    -ms-transform: translate(0, -50%);
+    transform: translate(0, -50%);
+  }
+}
+.flip .flip-contents .flip-contents-inner {
+  display: table-cell;
+  padding: 1.25rem 0.625rem;
+  vertical-align: middle;
+}
+@media (min-width: 1024px) {
+  .flip .flip-contents .flip-contents-inner {
+    padding: 0.625rem;
+  }
+}
+
+/*doc
+---
+title: .flip-01
+name: flip-01
+category: module_component
+parent: flip
+---
+
+背景画像がコンテナ幅の半分を埋める。
+
+``` example
+<div class="flip flip-01">
+    <div class="flip-container">
+        <div class="flip-cover" style="background-image: url(http://placehold.jp/96/c0dd69/ffffff/1600x1000.png?text=dummy_image)"></div>
+        <div class="flip-contents">
+            <div class="flip-contents-inner">
+                <div class="bg-third bg-fade p-sm line-c">(other component)</div>
+            </div><!-- /.flip-contents-inner -->
+        </div><!-- /.flip-contents -->
+    </div><!-- /.flip-container -->
+</div><!-- /.flip -->
+```
+*/
+@media (min-width: 1024px) {
+  .flip.flip-01 {
+    height: 100vh;
+  }
+}
+@media (min-width: 1024px) {
+  .flip.flip-01 .flip-cover {
+    width: 50%;
+    left: auto;
+    right: 0;
+  }
+}
+@media (min-width: 1024px) {
+  .flip.flip-01 .flip-contents {
+    width: 50%;
+  }
+}
+@media (min-width: 1024px) {
+  .flip.flip-01 .flip-contents .flip-contents-inner {
+    height: 100%;
+  }
+}
+
+/*doc
+---
+title: .flip-02
+name: flip-02
+category: module_component
+parent: flip
+---
+
+コンテンツ高さが内容に応じて可変となる。
+
+``` example
+<div class="flip flip-02">
+    <div class="flip-cover" style="background-image: url(http://placehold.jp/96/559922/ffffff/1600x1000.png?text=dummy_image)"></div>
+    <div class="flip-container">
+        <div class="flip-contents">
+            <div class="flip-contents-inner">
+                <div class="bg-third bg-fade p-sm line-c">(other component)</div>
+            </div><!-- /.flip-contents-inner -->
+        </div><!-- /.flip-contents -->
+    </div><!-- /.flip-container -->
+</div><!-- /.flip -->
+```
+*/
+@media (min-width: 1024px) {
+  .flip.flip-02 {
+    height: 100vh;
+    padding-top: 0;
+  }
+}
+@media (min-width: 1024px) {
+  .flip.flip-02 .flip-contents {
+    width: 50%;
+    min-height: 25%;
+  }
+}
+
+/*doc
+---
+title: .flip-03
+name: flip-03
+category: module_component
+parent: flip
+---
+
+コンテンツ高さは常に一定の上下余白を引いた値となる。
+
+``` example
+<div class="flip flip-03">
+    <div class="flip-cover" style="background-image: url(http://placehold.jp/96/f6aacc/ffffff/1600x1000.png?text=dummy_image)"></div>
+    <div class="flip-container">
+        <div class="flip-contents">
+            <div class="flip-contents-inner">
+                <div class="bg-third bg-fade p-sm line-c">(other component)</div>
+            </div><!-- /.flip-contents-inner -->
+        </div><!-- /.flip-contents -->
+    </div><!-- /.flip-container -->
+</div><!-- /.flip -->
+```
+*/
+@media (min-width: 1024px) {
+  .flip.flip-03 {
+    height: 100vh;
+  }
+}
+@media (min-width: 1024px) {
+  .flip.flip-03 .flip-contents {
+    width: 50%;
+    height: 90%;
+  }
+}
+@media (min-width: 1024px) {
+  .flip.flip-03 .flip-contents .flip-contents-inner {
+    border: 4px solid #333333;
+    height: 100%;
+  }
+}
+
+/*doc
+---
+title: .flip-r
+name: flip-r
+category: module_component
+parent: flip
+---
+
+コンテンツの位置が逆となる。
+
+``` example
+<div class="flip flip-01 flip-r">
+    <div class="flip-container">
+        <div class="flip-cover" style="background-image: url(http://placehold.jp/96/c0dd69/ffffff/1600x1000.png?text=dummy_image)"></div>
+        <div class="flip-contents">
+            <div class="flip-contents-inner">
+                <div class="bg-third bg-fade p-sm line-c">(other component)</div>
+            </div><!-- /.flip-contents-inner -->
+        </div><!-- /.flip-contents -->
+    </div><!-- /.flip-container -->
+</div><!-- /.flip -->
+
+<div class="flip flip-02 flip-r">
+    <div class="flip-cover" style="background-image: url(http://placehold.jp/96/559922/ffffff/1600x1000.png?text=dummy_image)"></div>
+    <div class="flip-container">
+        <div class="flip-contents">
+            <div class="flip-contents-inner">
+                <div class="bg-third bg-fade p-sm line-c">(other component)</div>
+            </div><!-- /.flip-contents-inner -->
+        </div><!-- /.flip-contents -->
+    </div><!-- /.flip-container -->
+</div><!-- /.flip -->
+
+<div class="flip flip-03 flip-r">
+    <div class="flip-cover" style="background-image: url(http://placehold.jp/96/f6aacc/ffffff/1600x1000.png?text=dummy_image)"></div>
+    <div class="flip-container">
+        <div class="flip-contents">
+            <div class="flip-contents-inner">
+                <div class="bg-third bg-fade p-sm line-c">(other component)</div>
+            </div><!-- /.flip-contents-inner -->
+        </div><!-- /.flip-contents -->
+    </div><!-- /.flip-container -->
+</div><!-- /.flip -->
+```
+*/
+.flip.flip-r.flip-01 .flip-cover {
+  left: 0;
+  right: auto;
+}
+@media (min-width: 1024px) {
+  .flip.flip-r .flip-contents {
+    left: auto;
+    right: 0;
+  }
+}
+
+/*doc
+---
+title: .form
+name: form
+category: module_component
+---
+
+フォームに関するスタイル。必ずform-(option)クラスを付与する。ボタン関連は.btnを参照。
+
+*/
+/*doc
+---
+title: .form-group
+name: form-group
+category: module_component
+parent: form
+---
+
+システムで可能な限りフォームの各入力セットを包括する。
+
+``` example
+<div class="form form-group">
+    <label for="demo01-01" class="form form-label">氏名</label>
+    <input type="text" class="form form-input form-50" id="demo01-01" name="demo00" value="" placeholder="山田一郎" />
+</div>
+<div class="form form-group">
+    <label for="demo01-02" class="form form-label form-100">メッセージ</label>
+    <textarea id="demo01-02" name="demo02" rows="5" class="form form-input form-100" placeholder="メッセージをどうぞ"></textarea>
+</div>
+```
+*/
+.form.form-group {
+  margin-bottom: 1.25rem;
+  line-height: 1.5;
+}
+.form.form-group:before, .form.form-group:after {
+  content: "";
+  display: table;
+}
+.form.form-group:after {
+  clear: both;
+}
+
+/*doc
+---
+title: .form-input
+name: form-input
+category: module_component
+parent: form
+---
+
+テキスト入力を即すフィールドに付与する。.form-(size)の指定がない限り属性の幅に従う。
+
+``` example
+<div class="form form-group">
+    <input type="text" class="form form-input" name="demo02" size="10" value="" placeholder="山田一郎" />
+</div>
+<div class="form form-group">
+    <textarea name="demo03" rows="5" cols="60" class="form form-input" placeholder="メッセージをどうぞ"></textarea>
+</div>
+```
+
+*/
+.form.form-input {
+  display: block;
+  padding: .375rem .5rem;
+  background: #fff none;
+  border: 1px solid #cccccc;
+  color: #333333;
+  font-size: 1rem;
+  font-family: "-apple-system", "BlinkMacSystemFont", "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
+  line-height: 1.25;
+  border-radius: 0.125rem;
+  -webkit-appearance: none;
+}
+.form.form-input.is-error, .is-error .form.form-input {
+  background-color: #ffe9ee;
+  border-color: #dd4455;
+}
+
+/*doc
+---
+title: .form-label
+name: form-label
+category: module_component
+parent: form
+---
+
+ラベルに付与する。
+
+*/
+.form.form-label {
+  display: inline-block;
+  padding: .375rem .5rem;
+  line-height: 1.25;
+  vertical-align: middle;
+}
+
+/*doc
+---
+title: .form-(percentage)
+name: form-size
+category: module_component
+parent: form
+---
+
+可能な要素であれば入力項目の幅を広げる。
+
+``` example
+<div class="form form-group">
+    <input type="text" class="form form-input form-15" name="demo04_01" size="10" value="15" />
+</div>
+<div class="form form-group">
+    <input type="text" class="form form-input form-25" name="demo04_02" size="10" value="25" />
+</div>
+<div class="form form-group">
+    <input type="text" class="form form-input form-33" name="demo04_03" size="10" value="33" />
+</div>
+<div class="form form-group">
+    <input type="text" class="form form-input form-50" name="demo04_04" size="10" value="50" />
+</div>
+<div class="form form-group">
+    <input type="text" class="form form-input form-75" name="demo04_05" size="10" value="75" />
+</div>
+<div class="form form-group">
+    <input type="text" class="form form-input form-100" name="demo04_06" size="10" value="100" />
+</div>
+```
+
+*/
+.form.form-15 {
+  width: 15%;
+  min-width: 100px;
+}
+
+.form.form-25 {
+  width: 25%;
+  min-width: 100px;
+}
+
+.form.form-33 {
+  width: 33.33333333%;
+  min-width: 150px;
+}
+
+.form.form-50 {
+  width: 50%;
+  min-width: 200px;
+}
+
+.form.form-75 {
+  width: 75%;
+  min-width: 200px;
+}
+
+.form.form-100 {
+  width: 100%;
+  min-width: 200px;
+}
+
+/*doc
+---
+title: .form-error
+name: form-error
+category: module_component
+parent: form
+---
+
+フォームの入力を間違えたときに表示される補助テキスト。
+
+*/
+.form.form-error {
+  margin-top: 0.3125rem;
+  color: #dd4455;
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+/*doc
+---
+title: .form-message
+name: form-message
+category: module_component
+parent: form
+---
+
+フォームの前書き部分。
+
+*/
+.form.form-message {
+  margin-bottom: 1.875rem;
+}
+
+/*doc
+---
+title: .form-preview
+name: form-preview
+category: module_component
+parent: form
+---
+
+フォームの確認部分。
+
+*/
+/*doc
+---
+title: .form-submit
+name: form-submit
+category: module_component
+parent: form
+---
+
+フォームの送信ボタン部分。
+
+*/
+.form.form-submit {
+  padding-top: 1.875rem;
+  line-height: 1.5;
+  text-align: center;
+}
+.form.form-submit:before, .form.form-submit:after {
+  content: "";
+  display: table;
+}
+.form.form-submit:after {
+  clear: both;
+}
+.form.form-submit form {
+  display: inline-block;
+}
+.form.form-submit .btn {
+  min-width: 12em;
+}
+
+/*doc
+---
+title: .form-return
+name: form-return
+category: module_component
+parent: form
+---
+
+フォームの送信後に指定したページへ誘導する部分。
+
+*/
+.form.form-return {
+  padding-top: 1.875rem;
+  line-height: 1.5;
+  text-align: center;
+}
+.form.form-return:before, .form.form-return:after {
+  content: "";
+  display: table;
+}
+.form.form-return:after {
+  clear: both;
+}
+
+/*doc
+---
+title: .lead
+name: lead
+category: module_component
+---
+
+強調された見出しとテキストを持つコンポーネントを表示する。  
+.title、.text、.list、.btnを含む可能性がある。文字サイズは通常より大きくなる。
+
+``` example
+<div class="lead">
+    <div class="lead-header">
+        <h2 class="title title-02">見出しと文章</h2>
+    </div><!-- /.lead-header -->
+    <div class="lead-contents">
+        <p class="m-b">吾輩は猫である。名前はまだ無い。どこで生れたかとんと見当がつかぬ。</p>
+        <ul class="list list-horizontal">
+            <li>リスト</li>
+            <li>リストリスト</li>
+            <li>リストリ</li>
+        </ul>
+    </div><!-- /.lead-contents -->
+    <div class="lead-footer">
+        <p class="lead-link"><a href="#" class="btn btn-block btn-lg btn-first">ボタン</a></p>
+    </div><!-- /.lead-footer -->
+</div><!-- /.lead -->
+```
+*/
+.lead {
+  min-width: 300px;
+  margin: 0 auto;
+  padding: 0 0.625rem;
+}
+@media (min-width: 1024px) {
+  .lead {
+    width: 480px;
+  }
+}
+.lead .lead-header,
+.lead .lead-contents,
+.lead .lead-footer {
+  font-size: 1.125rem;
+  word-break: break-word;
+  text-align: center;
+}
+.lead .lead-header {
+  margin-bottom: 1.5rem;
+}
+.lead .lead-contents {
+  font-size: 0.875rem;
+}
+.lead .lead-footer {
+  margin-top: 1rem;
+}
+
+/*doc
+---
+title: .nav
+name: nav
+category: module_component
+---
+
+クリック範囲が広いナビゲーションを表示する。a要素の包括要素に指定しなければならない。
+
+``` example
+<div class="line-c">
+    <nav class="nav">
+        <a href="#">ナビ</a><a href="#">ナビナビ</a><span class="nav-label">ラベルです</span><a href="#">ナビ</a><a href="#">ナビナビナビ</a>
+    </nav>
+</div>
+```
+
+*/
+.nav {
+  display: inline-block;
+  line-height: 1.5;
+}
+.nav a {
+  display: inline-block;
+  margin-right: 0.3125rem;
+  padding: .5rem 1rem;
+  border: 1px solid #cccccc;
+  color: #333333;
+  text-decoration: none;
+  transition: .3s all;
+}
+.nav a:last-child {
+  margin-right: 0;
+}
+.nav a:hover, .nav a:focus {
+  background-color: #d8eaff;
+  color: #333333;
+  text-decoration: none;
+}
+.nav .stay,
+.nav .stay > a,
+.nav .stay > span {
+  background-color: #eeeeee;
+}
+.nav .stay:hover, .nav .stay:focus,
+.nav .stay > a:hover,
+.nav .stay > a:focus,
+.nav .stay > span:hover,
+.nav .stay > span:focus {
+  background-color: #eeeeee;
+}
+.nav .nav-label {
+  display: inline-block;
+  margin: 0 0.3125rem;
+  padding: .5rem 0;
+}
+
+/*doc
+---
+title: .nav-vertical
+name: nav-vertical
+category: module_component
+parent: nav
+---
+
+三段までの階層構造と複数行のテキストを持たせることができる。ul要素、li要素を包括していなければならない。
+
+``` example
+<nav class="nav nav-vertical">
+    <ul>
+        <li><a href="#">ナビゲーション</a></li>
+        <li><a href="#">ナビゲーションナビゲーション</a>
+            <ul>
+                <li><a href="#">ナビゲーション</a>
+                    <ul>
+                        <li><a href="#">ナビゲーションナビゲーションナビゲーションナビゲーションナビゲーションナビゲーション</a></li>
+                        <li><a href="#">ナビゲーションナビゲーション</a></li>
+                        <li><a href="#">ナビゲーション</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">ナビゲーション</a></li>
+                <li><a href="#">ナビゲーションナビゲーションナビゲーションナビゲーションナビゲーションナビゲーションナビゲーション</a></li>
+            </ul>
+        </li>
+        <li><a href="#">ナビゲーションナビゲーションナビゲーションナビゲーションナビゲーション</a></li>
+        <li><a href="#">ナビゲーションナビゲーション</a></li>
+        <li><a href="#">ナビゲーション</a></li>
+    </ul>
+</nav>
+```
+*/
+.nav.nav-vertical {
+  border-top: 1px solid #cccccc;
+}
+.nav.nav-vertical ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+.nav.nav-vertical ul li {
+  position: relative;
+  display: block;
+  margin: 0;
+  padding: 0;
+  letter-spacing: normal;
+  list-style-type: none;
+}
+.nav.nav-vertical ul li a {
+  display: block;
+  margin: 0;
+  border-width: 0 0 1px;
+}
+.nav.nav-vertical ul li ul li {
+  font-size: .8em;
+}
+.nav.nav-vertical ul li ul li a {
+  padding-left: 1.875rem;
+}
+.nav.nav-vertical ul li ul li ul li a {
+  padding-left: 3.75rem;
+}
+
+/*doc
+---
+title: .nav-horizontal
+name: nav-horizontal
+category: module_component
+parent: nav
+---
+
+二段までの階層構造を持たせることができる。ul要素、li要素を包括していなければならない。モバイル端末で複数行となったときの表示には対応していない。
+
+``` example
+<div class="line-c">
+    <nav class="nav nav-horizontal">
+        <ul>
+            <li><a href="#">ナビゲーション</a></li>
+            <li><a href="#">ナビゲ</a>
+                <ul>
+                    <li><a href="#">ナビゲーション</a></li>
+                    <li><a href="#">ナビゲーション</a></li>
+                    <li><a href="#">ナビゲーションナビゲーションナビゲーションナビゲーションナビゲーションナビゲーションナビゲーション</a></li>
+                </ul>
+            </li>
+            <li><a href="#">ナビ</a></li>
+            <li><a href="#">ナビゲーションナ</a></li>
+            <li><a href="#">ナビゲー</a></li>
+        </ul>
+    </nav>
+</div>
+```
+*/
+.nav.nav-horizontal ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+.nav.nav-horizontal ul li {
+  margin: 0;
+  padding: 0;
+}
+.nav.nav-horizontal > ul {
+  display: table;
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  letter-spacing: -.4rem;
+}
+.nav.nav-horizontal > ul > li {
+  position: relative;
+  display: table-cell;
+  letter-spacing: normal;
+}
+.nav.nav-horizontal > ul > li > a {
+  display: block;
+  margin: 0;
+  border: 0 none;
+}
+.nav.nav-horizontal > ul > li > ul {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 200%;
+  min-width: 200px;
+  border: 1px solid #cccccc;
+  z-index: 101;
+}
+.nav.nav-horizontal > ul > li > ul > li {
+  display: table-row;
+  font-size: 0.875rem;
+}
+.nav.nav-horizontal > ul > li > ul > li > a {
+  display: table-cell;
+  width: 100%;
+  padding: .5rem 1rem;
+  border: 0 none;
+  background-color: #fff;
+  text-align: left;
+}
+.nav.nav-horizontal > ul > li > ul > li > a:hover, .nav.nav-horizontal > ul > li > ul > li > a:focus {
+  background-color: #d8eaff;
+  text-decoration: none;
+}
+.nav.nav-horizontal > ul > li > ul.is-open {
+  display: table;
+  -moz-animation-delay: 0;
+  -moz-animation-duration: 0.3s;
+  -moz-animation-timing-function: ease;
+  -moz-animation-name: nav-open;
+  -moz-animation-fill-mode: forwards;
+  -o-animation-delay: 0;
+  -o-animation-duration: 0.3s;
+  -o-animation-timing-function: ease;
+  -o-animation-name: nav-open;
+  -o-animation-fill-mode: forwards;
+  animation-delay: 0;
+  animation-duration: 0.3s;
+  animation-timing-function: ease;
+  animation-name: nav-open;
+  animation-fill-mode: forwards;
+}
+.nav.nav-horizontal > ul > li:hover > ul {
+  display: table;
+  -moz-animation-delay: 0;
+  -moz-animation-duration: 0.3s;
+  -moz-animation-timing-function: ease;
+  -moz-animation-name: nav-open;
+  -moz-animation-fill-mode: forwards;
+  -o-animation-delay: 0;
+  -o-animation-duration: 0.3s;
+  -o-animation-timing-function: ease;
+  -o-animation-name: nav-open;
+  -o-animation-fill-mode: forwards;
+  animation-delay: 0;
+  animation-duration: 0.3s;
+  animation-timing-function: ease;
+  animation-name: nav-open;
+  animation-fill-mode: forwards;
+}
+
+@-webkit-keyframes nav-open {
+  0% {
+    height: 0;
+    opacity: 0;
+  }
+  100% {
+    height: auto;
+    opacity: 1;
+  }
+}
+@-moz-keyframes nav-open {
+  0% {
+    height: 0;
+    opacity: 0;
+  }
+  100% {
+    height: auto;
+    opacity: 1;
+  }
+}
+@-o-keyframes nav-open {
+  0% {
+    height: 0;
+    opacity: 0;
+  }
+  100% {
+    height: auto;
+    opacity: 1;
+  }
+}
+@keyframes nav-open {
+  0% {
+    height: 0;
+    opacity: 0;
+  }
+  100% {
+    height: auto;
+    opacity: 1;
+  }
+}
+/*doc
+---
+title: .nav-justify
+name: nav-justify
+category: module_component
+parent: nav
+---
+
+.nav-horizontalの外観に加え、ナビゲーションの全体幅が100%、各ボタンが均等幅となる。
+
+``` example
+<div class="line-c">
+    <nav class="nav nav-horizontal nav-justify">
+        <ul>
+            <li><a href="#">ナビゲーション</a></li>
+            <li><a href="#">ナビゲ</a>
+                <ul>
+                    <li><a href="#">ナビゲーション</a></li>
+                    <li><a href="#">ナビゲーション</a></li>
+                    <li><a href="#">ナビゲーションナビゲーションナビゲーションナビゲーションナビゲーションナビゲーションナビゲーション</a></li>
+                </ul>
+            </li>
+            <li><a href="#">ナビ</a></li>
+            <li><a href="#">ナビゲーションナ</a></li>
+            <li><a href="#">ナビゲー</a></li>
+        </ul>
+    </nav>
+</div>
+```
+*/
+.nav.nav-horizontal.nav-justify {
+  width: 100%;
+}
+.nav.nav-horizontal.nav-justify > ul {
+  width: 100%;
+  table-layout: fixed;
+}
+.nav.nav-horizontal.nav-justify > ul > li > a {
+  display: block;
+  width: 100%;
+  padding-left: 0;
+  padding-right: 0;
+  text-align: center;
+}
+.nav.nav-horizontal.nav-justify > ul > li > ul {
+  width: 100%;
+}
+
+/*doc
+---
+title: .nav-pager
+name: nav-pager
+category: module_component
+parent: nav
+---
+
+ページネーションを表示する。.nav-prev, .nav-next以外のa要素は正方形となる。複数行に対応していない。  
+アイコンは:before,:after疑似要素で作成しているので適当調整すること。
+
+``` example
+<div class="line-c">
+    <nav class="nav nav-pager">
+        <a href="#" class="nav-prev">前のページ</a>
+        <a href="#">1</a>
+        <span class="nav-label">...</span>
+        <a href="#">8</a>
+        <a href="#">9</a>
+        <a href="#">10</a>
+        <a href="#">11</a>
+        <a href="#">12</a>
+        <span class="nav-label">...</span>
+        <a href="#">999</a>
+        <a href="#" class="nav-next">次のページ</a>
+    </nav>
+</div>
+```
+
+*/
+.nav.nav-pager {
+  line-height: 1;
+}
+.nav.nav-pager a {
+  padding: 0;
+  width: 2.5rem;
+  height: 2.5rem;
+  line-height: 2.4rem;
+  vertical-align: middle;
+  text-align: center;
+}
+.nav.nav-pager a.nav-prev {
+  width: 10rem;
+}
+.nav.nav-pager a.nav-prev:before {
+  content: "<";
+  display: inline-block;
+  margin-right: 0.3125rem;
+}
+.nav.nav-pager a.nav-next {
+  width: 10rem;
+}
+.nav.nav-pager a.nav-next:after {
+  content: ">";
+  display: inline-block;
+  margin-left: 0.3125rem;
+}
+
+/*doc
+---
+title: .nav-serial
+name: nav-serial
+category: module_component
+parent: nav
+---
+
+複数行に対応した、前後移動リンクを表示する。  
+アイコンは:before,:after疑似要素で作成しているので適当調整すること。
+
+``` example
+<nav class="nav nav-serial">
+    <a href="#" class="nav-prev">エントリータイトルエントリータイトルエントリータイトルエントリータイトルエントリータイトルエントリータイトル</a>
+    <a href="#" class="nav-next">エントリータイトルエントリータイトルエントリータイトルエントリータイトルエントリータイトルエントリータイトル</a>
+</nav>
+```
+
+*/
+.nav.nav-serial {
+  font-size: 0.875rem;
+}
+.nav.nav-serial:before, .nav.nav-serial:after {
+  content: "";
+  display: table;
+}
+.nav.nav-serial:after {
+  clear: both;
+}
+.nav.nav-serial a.nav-prev {
+  float: left;
+  position: relative;
+  max-width: 640px;
+  margin: 0;
+  padding: 0 0 0 2rem;
+  border: 0 none;
+}
+.nav.nav-serial a.nav-prev + .nav-next {
+  margin-top: .5rem;
+}
+.nav.nav-serial a.nav-prev:before {
+  position: absolute;
+  left: .5rem;
+  top: 50%;
+  -webkit-transform: translate(0, -50%);
+  -ms-transform: translate(0, -50%);
+  transform: translate(0, -50%);
+  content: "<";
+}
+.nav.nav-serial a.nav-next {
+  float: right;
+  position: relative;
+  max-width: 600px;
+  margin: 0;
+  padding: 0 2rem 0 0;
+  border: 0 none;
+}
+.nav.nav-serial a.nav-next:after {
+  position: absolute;
+  right: .5rem;
+  top: 50%;
+  -webkit-transform: translate(0, -50%);
+  -ms-transform: translate(0, -50%);
+  transform: translate(0, -50%);
+  content: ">";
+}
+
+/*doc
+---
+title: .pagehead
+name: pagehead
+category: module_component
+---
+
+ページタイトルとしての役割を持つコンポーネントを表示する。  
+必ず.pagehead-(type)クラスを付与する必要がある。
+
+*/
+/*doc
+---
+title: .pagehead-01
+name: pagehead-01
+category: module_component
+parent: pagehead
+---
+
+シンプルな中央寄せのページタイトル。
+
+``` example
+<div class="pagehead pagehead-01">
+    <h1 class="pagehead-title">ページタイトル</h1>
+    <p class="pagehead-subtitle">吾輩は猫である</p>
+    <p class="pagehead-caption">名前はまだ無い。どこで生れたかとんと見当がつかぬ。</p>
+</div><!-- /.pagehead -->
+```
+*/
+.pagehead {
+  width: 100%;
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 3.75rem 0.625rem;
+}
+.pagehead .pagehead-title {
+  font-size: 1.75rem;
+  font-weight: 300;
+  font-family: "YuMincho", "-apple-system", "Roboto", "Open Sans", "Arial", "Helvetica", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  line-height: 1.5;
+  letter-spacing: .1em;
+}
+@media (min-width: 425px) {
+  .pagehead .pagehead-title {
+    font-size: 2rem;
+  }
+}
+@media (min-width: 1024px) {
+  .pagehead .pagehead-title {
+    font-size: 2.25rem;
+  }
+}
+.pagehead .pagehead-subtitle {
+  font-size: 1.125rem;
+  font-weight: 300;
+  font-family: "YuMincho", "-apple-system", "Roboto", "Open Sans", "Arial", "Helvetica", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  line-height: 1.5;
+  letter-spacing: .1em;
+}
+.pagehead .pagehead-subtitle:before {
+  content: "-";
+  margin-right: .25rem;
+}
+.pagehead .pagehead-subtitle:after {
+  content: "-";
+  margin-left: .25rem;
+}
+@media (min-width: 425px) {
+  .pagehead .pagehead-subtitle {
+    font-size: 1.25rem;
+  }
+}
+@media (min-width: 1024px) {
+  .pagehead .pagehead-subtitle {
+    font-size: 1.5rem;
+  }
+}
+.pagehead .pagehead-caption {
+  margin-top: 0.625rem;
+  line-height: 1.75;
+  text-align: center;
+}
+
+/*doc
+---
+title: .post
+name: post
+category: module_component
+---
+
+CMSの投稿の詳細としての役割を持つコンポーネントを表示する。  
+必ず.post-(type)クラスを付与する必要がある。
+
+*/
+.post {
+  padding-bottom: 3.75rem;
+}
+
+.post-header {
+  background-color: #4499dd;
+  color: #fff;
+  margin-bottom: 1.875rem;
+  padding: 1.875rem 0;
+}
+.post-header:before, .post-header:after {
+  content: "";
+  display: table;
+}
+.post-header:after {
+  clear: both;
+}
+@media (min-width: 1024px) {
+  .post-header {
+    margin-bottom: 3.75rem;
+    padding: 3.75rem 0;
+  }
+}
+
+.post-title {
+  font-size: 1.75rem;
+  font-weight: normal;
+  text-align: center;
+}
+@media (min-width: 1024px) {
+  .post-title {
+    font-size: 2rem;
+  }
+}
+
+.post-contents {
+  word-break: break-word;
+}
+.post-contents:before, .post-contents:after {
+  content: "";
+  display: table;
+}
+.post-contents:after {
+  clear: both;
+}
+
+.post-footer:before, .post-footer:after {
+  content: "";
+  display: table;
+}
+.post-footer:after {
+  clear: both;
+}
+
+/*doc
+---
+title: .post-01
+name: post-01
+category: module_component
+parent: post
+---
+
+固定ページ用。
+*/
+/*doc
+---
+title: .post-02
+name: post-02
+category: module_component
+parent: post
+---
+
+ランディングページ用。
+*/
+/*doc
+---
+title: .share
+name: share
+category: module_component
+---
+
+SNSの共有ボタン群を表示する。
+
+``` example
+<div class="share">
+  <ul class="share-list">
+    <li class="share-item">SNSボタン</li>
+    <li class="share-item">SNSボタン</li>
+    <li class="share-item">SNSボタン</li>
+  </ul>
+</div><!-- /.share -->
+```
+
+*/
+.share {
+  padding-bottom: 1.25rem;
+}
+.share .share-list {
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  letter-spacing: -.4rem;
+  line-height: 1.25;
+}
+.share .share-list .share-item {
+  display: inline-block;
+  margin: 0;
+  padding: 0 .5rem;
+  letter-spacing: normal;
+  vertical-align: middle;
+}
+.share .share-list .share-item iframe,
+.share .share-list .share-item img {
+  vertical-align: middle;
+}
+
+/*doc
+---
+title: .slider
+name: slider
+category: module_component
+---
+
+スライドショーを表示する。必ず.slider-(type)クラスを付与する必要がある。
+
+*/
+.slider {
+  margin-bottom: 0;
+}
+@media (min-width: 1024px) {
+  .slider {
+    position: relative;
+    z-index: 10;
+  }
+}
+.slider .slick-dots {
+  bottom: 0.20833rem;
+}
+.slider .slick-dots li button:before {
+  content: "";
+  font-family: sans-serif;
+  width: 12px;
+  height: 3px;
+  background-color: rgba(0, 0, 0, 0.5);
+  border: 1px solid #fff;
+  border-radius: 2px;
+  transition: .3s all;
+  opacity: 1;
+}
+.slider .slick-dots li.slick-active button:before {
+  width: 9px;
+  height: 9px;
+  -webkit-transform: translate(2px, -3px);
+  -ms-transform: translate(2px, -3px);
+  transform: translate(2px, -3px);
+  border-radius: 50%;
+}
+.slider .slick-dots li button:hover:before,
+.slider .slick-dots li button:focus:before {
+  -webkit-transform: translate(-2px, -6px);
+  -ms-transform: translate(-2px, -6px);
+  transform: translate(-2px, -6px);
+  width: 12px;
+  height: 12px;
+  border-width: 2px;
+  background-color: #000;
+  border-color: #fff;
+  border-radius: 50%;
+}
+.slider .slider-item {
+  position: relative;
+  width: 100%;
+  background-color: #fff;
+}
+.slider .slider-item .slider-inner {
+  display: block;
+}
+.slider .slider-item a.slider-inner {
+  color: #333333;
+  text-decoration: none;
+}
+.slider .slider-item .slider-box {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 100%;
+  -webkit-transform: translate(0, -50%);
+  -ms-transform: translate(0, -50%);
+  transform: translate(0, -50%);
+  z-index: 220;
+}
+.slider .slider-item .slider-box:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 230;
+}
+@media (min-width: 1024px) {
+  .slider .slider-item .slider-box:before {
+    max-width: 1040px;
+  }
+}
+@media (min-width: 1280px) {
+  .slider .slider-item .slider-box:before {
+    max-width: 1200px;
+  }
+}
+.slider .slider-item .slider-contents {
+  position: relative;
+  color: #333333;
+  line-height: 1.25;
+  text-align: center;
+  z-index: 240;
+}
+.slider .slider-item.slider-inverse .slider-contents {
+  color: #fff;
+}
+.slider .slider-item .slider-edit {
+  position: absolute;
+  top: 1.25rem;
+  left: 1.25rem;
+  z-index: 250;
+}
+.slider .slider-item .slider-title {
+  margin: 0;
+  font-size: 2.5rem;
+  font-family: "YuMincho", "-apple-system", "Roboto", "Open Sans", "Arial", "Helvetica", sans-serif;
+  font-weight: 300;
+  text-shadow: 0px 0px 0.25rem #fff, 1px 1px 0.5rem #fff;
+  letter-spacing: .05em;
+}
+.slider .slider-item.slider-inverse .slider-title {
+  text-shadow: 1px 1px 0.5rem #000;
+}
+@media (min-width: 768px) {
+  .slider .slider-item .slider-title {
+    font-size: 2.75rem;
+  }
+}
+@media (min-width: 1280px) {
+  .slider .slider-item .slider-title {
+    font-size: 3rem;
+  }
+}
+.slider .slider-item .slider-text {
+  margin: .5rem 0 0;
+  font-size: 0.875rem;
+  text-shadow: 0px 0px 0.25rem #fff, 1px 1px 0.5rem #fff;
+}
+.slider .slider-item.slider-inverse .slider-text {
+  text-shadow: 1px 1px 0.5rem #000;
+}
+@media (min-width: 768px) {
+  .slider .slider-item .slider-text {
+    font-size: 1rem;
+  }
+}
+@media (min-width: 1280px) {
+  .slider .slider-item .slider-text {
+    font-size: 1.125rem;
+  }
+}
+.slider .slider-item .slider-link {
+  padding: 0.625rem 0.625rem 0 0;
+  font-size: .75rem;
+  line-height: 1.75;
+}
+@media (min-width: 1280px) {
+  .slider .slider-item .slider-link {
+    font-size: 1rem;
+  }
+}
+
+/*doc
+---
+title: .slider-01
+name: slider-01
+category: module_component
+parent: slider
+---
+
+常にCSSかJSで高さを調整するタイプのスライドショーを表示する。  
+画像はbackground-imageとしてインラインスタイルで指定するため、意図しないトリミングが発生する可能性がある。 
+
+``` example
+<div class="slider slider-01" id="slider-001" style="margin: 0 -30px;">
+    <div class="slider-item js-vh" data-vh="75">
+
+        <div class="slider-cover" style="background-image: url(/themes/zeroichi_lp/docs/images/slider_01.jpg);"></div>
+
+        <div class="slider-box">
+            <div class="l-container">
+                <div class="slider-contents">
+                    <p class="slider-title">スライド一枚目</p>
+                    <p class="slider-text">吾輩は猫である。名前はまだ無い。どこで生れたかとんと見当がつかぬ。</p>
+                    <p class="slider-link"><a href="#" class="btn btn-first">ボタン</a></p>
+                </div><!-- /.slider-contents -->
+            </div><!-- /.l-container -->
+        </div><!-- /.slider-box -->
+
+    </div><!-- /.slider-item -->
+
+    <div class="slider-item js-vh" data-vh="75">
+        <a href="#" class="slider-inner">
+
+            <div class="slider-cover" style="background-image: url(/themes/zeroichi_lp/docs/images/slider_02.jpg);"></div>
+
+            <div class="slider-box">
+                <div class="l-container">
+                    <div class="slider-contents">
+                        <p class="slider-title">スライド二枚目</p>
+                        <p class="slider-text">スライド全体がリンクとなっています</p>
+                    </div><!-- /.slider-contents -->
+                </div><!-- /.l-container -->
+            </div><!-- /.slider-box -->
+
+        </a><!-- /.slider-inner -->
+    </div><!-- /.slider-item -->
+
+    <div class="slider-item js-vh" data-vh="75">
+
+        <div class="slider-cover" style="background-image: url(/themes/zeroichi_lp/docs/images/slider_03.jpg);"></div>
+
+        <div class="slider-box">
+            <div class="l-container">
+                <div class="slider-contents">
+                    <p class="slider-title">スライド三枚目</p>
+                </div><!-- /.slider-contents -->
+            </div><!-- /.l-container -->
+        </div><!-- /.slider-box -->
+
+    </div><!-- /.slider-item -->
+</div><!-- /.slider -->
+
+<script>
+    $('#slider-001').slick({
+        infinite: true,
+        autoplay: true,
+        fade: true,
+        speed: 1500,
+        autoplaySpeed: 5000,
+        pauseOnHover: false,
+        arrows: false,
+        dots: true
+    });
+</script>
+```
+
+*/
+.slider.slider-01 .slider-item {
+  min-height: 300px;
+}
+.slider.slider-01 .slider-item .slider-cover {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: transparent center center no-repeat;
+  background-size: cover;
+  z-index: 210;
+}
+
+/*doc
+---
+title: .slider-02
+name: slider-02
+category: module_component
+parent: slider
+---
+
+画像の縦横比に追随するタイプのスライドショーを表示する。  
+画像はimg要素として指定するため、デバイスによって高さが変動する。レスポンシブイメージを推薦。  
+
+``` example
+<div class="slider slider-02" id="slider-002" style="margin: 0 -30px;">
+    <div class="slider-item">
+
+        <picture>
+            <source media="(max-width:640px)"
+                            srcset="/themes/zeroichi_lp/docs/images/slider_01_s.jpg 640w"
+                            sizes="100vw">
+            <source srcset="/themes/zeroichi_lp/docs/images/slider_01.jpg 1280w"
+                            sizes="(max-width:1280px) 100vw, 1280px">
+            <img class="slider-img" alt="" src="/themes/zeroichi_lp/docs/images/slider_01.jpg">
+        </picture>
+
+        <div class="slider-box">
+            <div class="l-container">
+                <div class="slider-contents">
+                    <p class="slider-title">スライド一枚目</p>
+                    <p class="slider-text">吾輩は猫である。名前はまだ無い。どこで生れたかとんと見当がつかぬ。</p>
+                    <p class="slider-link"><a href="#" class="btn btn-first">ボタン</a></p>
+                </div><!-- /.slider-contents -->
+            </div><!-- /.l-container -->
+        </div><!-- /.slider-box -->
+
+    </div><!-- /.slider-item -->
+
+    <div class="slider-item">
+        <a href="#" class="slider-inner">
+
+            <picture>
+                <source media="(max-width:640px)"
+                                srcset="/themes/zeroichi_lp/docs/images/slider_02_s.jpg 640w"
+                                sizes="100vw">
+                <source srcset="/themes/zeroichi_lp/docs/images/slider_02.jpg 1280w"
+                                sizes="(max-width:1280px) 100vw, 1280px">
+                <img class="slider-img" alt="" src="/themes/zeroichi_lp/docs/images/slider_02.jpg">
+            </picture>
+
+            <div class="slider-box">
+                <div class="l-container">
+                    <div class="slider-contents">
+                        <p class="slider-title">スライド二枚目</p>
+                        <p class="slider-text">スライド全体がリンクとなっています</p>
+                    </div><!-- /.slider-contents -->
+                </div><!-- /.l-container -->
+            </div><!-- /.slider-box -->
+
+        </a><!-- /.slider-inner -->
+    </div><!-- /.slider-item -->
+
+    <div class="slider-item">
+
+        <picture>
+            <source media="(max-width:640px)"
+                            srcset="/themes/zeroichi_lp/docs/images/slider_03_s.jpg 640w"
+                            sizes="100vw">
+            <source srcset="/themes/zeroichi_lp/docs/images/slider_03.jpg 1280w"
+                            sizes="(max-width:1280px) 100vw, 1280px">
+            <img class="slider-img" alt="" src="/themes/zeroichi_lp/docs/images/slider_03.jpg">
+        </picture>
+
+    </div><!-- /.slider-item -->
+</div><!-- /.slider -->
+
+<script>
+    $('#slider-002').slick({
+        infinite: true,
+        autoplay: true,
+        fade: true,
+        speed: 1500,
+        autoplaySpeed: 5000,
+        pauseOnHover: false,
+        arrows: false,
+        dots: true
+    });
+</script>
+```
+
+*/
+.slider.slider-02 {
+  margin-bottom: 0;
+}
+@media (min-width: 1024px) {
+  .slider.slider-02 {
+    position: relative;
+    z-index: 10;
+  }
+}
+.slider.slider-02 .slider-item .slider-img {
+  display: block;
+  position: relative;
+  width: 100%;
+  height: auto;
+  z-index: 210;
+}
+
+/*doc
+---
+title: .bg
+name: bg
+category: module_utility
+---
+
+背景に関するスタイル。オブジェクト・コンポーネントを可能な限り上書きする。.bgクラスを付与する必要はない。
+
+*/
+/*doc
+---
+title: .bg-(color)
+name: bg-color
+category: module_utility
+parent: bg
+---
+
+背景に色をつける。
+
+``` example
+<div class="m-b bg-first" style="padding: 5px;">bg-first</div>
+<div class="m-b bg-second" style="padding: 5px;">bg-second</div>
+<div class="m-b bg-third" style="padding: 5px;">bg-third</div>
+<div class="m-b bg-important" style="padding: 5px;">bg-important</div>
+<div class="m-b bg-inverse" style="padding: 5px;">bg-inverse</div>
+```
+
+*/
+/*doc
+---
+title: .bg-fade
+name: bg-fade
+category: module_utility
+parent: bg
+---
+
+背景に薄い色をつける。文字色は変化しない。.bg-inverseには使用できない。
+
+``` example
+<div class="m-b bg-first bg-fade" style="padding: 5px;">bg-first bg-fade</div>
+<div class="m-b bg-second bg-fade" style="padding: 5px;">bg-second bg-fade</div>
+<div class="m-b bg-third bg-fade" style="padding: 5px;">bg-third bg-fade</div>
+<div class="m-b bg-important bg-fade" style="padding: 5px;">bg-important bg-fade</div>
+```
+
+*/
+.bg-first {
+  background-color: #4499dd;
+}
+.bg-first:not(.bg-fade) {
+  color: #fff;
+}
+.bg-first.bg-fade {
+  background-color: #d8eaff;
+}
+
+.bg-second {
+  background-color: #333333;
+}
+.bg-second:not(.bg-fade) {
+  color: #fff;
+}
+.bg-second.bg-fade {
+  background-color: #eeeeee;
+}
+
+.bg-third {
+  background-color: #55b677;
+}
+.bg-third:not(.bg-fade) {
+  color: #fff;
+}
+.bg-third.bg-fade {
+  background-color: #e3f9ec;
+}
+
+.bg-important {
+  background-color: #dd4455;
+}
+.bg-important:not(.bg-fade) {
+  color: #fff;
+}
+.bg-important.bg-fade {
+  background-color: #ffe9ee;
+}
+
+.bg-inverse {
+  color: #fff;
+  background-color: #000;
+}
+
+/*
+clear
+------------------------------
+*/
+.clear {
+  clear: both;
+}
+
+.clearfix:after {
+  clear: both;
+  display: table;
+  content: " ";
+}
+.clearfix:before {
+  display: table;
+  content: " ";
+}
+
+/*doc
+---
+title: .float
+name: float
+category: module_utility
+---
+
+画像回り込みに関するスタイル。オブジェクト・コンポーネントを可能な限り上書きする。.floatクラスを付与する必要はない。
+
+*/
+/*doc
+---
+title: .float-(direction)
+name: float-left
+category: module_utility
+parent: float
+---
+
+任意の方向へ回り込ませる。要素が幅を持っている必要がある。
+
+``` example
+<p><img src="http://placehold.jp/64/cccccc/ffffff/320x240.png?text=dummy_image" alt="" class="img-responsive float-l m-b m-r" />吾輩は猫である。名前はまだ無い。どこで生れたかとんと見当がつかぬ。何でも薄暗いじめじめした所でニャーニャー泣いていた事だけは記憶している。吾輩はここで始めて人間というものを見た。しかもあとで聞くとそれは書生という人間中で一番獰悪な種族であったそうだ。この書生というのは時々我々を捕えて煮て食うという話である。しかしその当時は何という考もなかったから別段恐しいとも思わなかった。ただ彼の掌に載せられてスーと持ち上げられた時何だかフワフワした感じがあったばかりである。</p>
+```
+
+*/
+.float-l {
+  float: left;
+}
+
+.float-r {
+  float: right;
+}
+
+/*doc
+---
+title: .font
+name: font
+category: module_utility
+---
+
+フォントに関するスタイル。オブジェクト・コンポーネントを可能な限り上書きする。.fontクラスを付与する必要はない。
+
+*/
+/*doc
+---
+title: .font-num
+name: font-num
+category: module_utility
+parent: font
+---
+
+英数字用のフォントに変更する。
+
+``` example
+<p class="font-num">abcdefg1234567890</p>
+```
+
+*/
+.font-num {
+  font-family: "Roboto", "Open Sans", "Arial", "Helvetica", sans-serif;
+}
+
+/*doc
+---
+title: .font-body
+name: font-body
+category: module_utility
+parent: font
+---
+
+body要素のフォントに変更する。
+
+``` example
+<p class="font-01">ここは装飾フォントですが、<span class="font-root">ここからbody要素のフォントに変更しました</span></p>
+```
+
+*/
+.font-root {
+  font-family: "-apple-system", "BlinkMacSystemFont", "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
+}
+
+/*doc
+---
+title: .font-01
+name: font-01
+category: module_utility
+parent: font
+---
+
+装飾フォント01に変更する。この指定では太字フォントにはできない。
+
+``` example
+<p class="font-01">装飾フォント01に変更しました</p>
+```
+
+*/
+.font-01 {
+  font-weight: 300;
+  font-family: "YuMincho", "-apple-system", "Roboto", "Open Sans", "Arial", "Helvetica", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/*doc
+---
+title: .hidden
+name: hidden
+category: module_utility
+---
+
+特定条件で要素を隠す。.hiddenクラスを付与する必要はない。
+
+*/
+/*doc
+---
+title: .hidden-(windowsize)
+name: hidden
+category: module_utility
+parent: hidden
+---
+
+特定幅の範囲のときだけ非表示となる。
+
+*/
+@media (max-width: 320.9px) {
+  .hidden-default {
+    display: none;
+  }
+}
+@media (min-width: 321px) and (max-width: 375.9px) {
+  .hidden-xxs {
+    display: none;
+  }
+}
+@media (min-width: 376px) and (max-width: 424.9px) {
+  .hidden-xs {
+    display: none;
+  }
+}
+@media (min-width: 425px) and (max-width: 767.9px) {
+  .hidden-sm {
+    display: none;
+  }
+}
+@media (min-width: 768px) and (max-width: 1023.9px) {
+  .hidden-md {
+    display: none;
+  }
+}
+@media (min-width: 1024px) and (max-width: 1279.9px) {
+  .hidden-lg {
+    display: none;
+  }
+}
+@media (min-width: 1280px) {
+  .hidden-xl {
+    display: none;
+  }
+}
+/*doc
+---
+title: .hidden-(windowsize)-up
+name: hidden-up
+category: module_utility
+parent: hidden
+---
+
+特定幅を超えると非表示となる。
+
+*/
+.hidden-default-up {
+  display: none;
+}
+
+@media (min-width: 321px) {
+  .hidden-xxs-up {
+    display: none;
+  }
+}
+@media (min-width: 376px) {
+  .hidden-xs-up {
+    display: none;
+  }
+}
+@media (min-width: 425px) {
+  .hidden-sm-up {
+    display: none;
+  }
+}
+@media (min-width: 768px) {
+  .hidden-md-up {
+    display: none;
+  }
+}
+@media (min-width: 1024px) {
+  .hidden-lg-up {
+    display: none;
+  }
+}
+@media (min-width: 1280px) {
+  .hidden-xl-up {
+    display: none;
+  }
+}
+/*doc
+---
+title: .hidden-(windowsize)-down
+name: hidden-down
+category: module_utility
+parent: hidden
+---
+
+特定幅を下回ると非表示となる。
+
+*/
+@media (max-width: 320.9px) {
+  .hidden-default-down {
+    display: none;
+  }
+}
+@media (max-width: 375.9px) {
+  .hidden-xxs-down {
+    display: none;
+  }
+}
+@media (max-width: 424.9px) {
+  .hidden-xs-down {
+    display: none;
+  }
+}
+@media (max-width: 767.9px) {
+  .hidden-sm-down {
+    display: none;
+  }
+}
+@media (max-width: 1023.9px) {
+  .hidden-md-down {
+    display: none;
+  }
+}
+@media (max-width: 1279.9px) {
+  .hidden-lg-down {
+    display: none;
+  }
+}
+.hidden-xl-down {
+  display: none;
+}
+
+/*doc
+---
+title: .img
+name: img
+category: module_object
+---
+
+画像に関するスタイル。.imgクラスを付与する必要はない。
+
+*/
+/*doc
+---
+title: .img-responsive
+name: img-responsive
+category: module_object
+parent: img
+---
+
+画像が包括要素よりも大きくなった場合のみ、縦横比を保って伸縮させる。
+
+``` example
+<img src="http://placehold.jp/64/cccccc/ffffff/800x600.png?text=dummy_image" alt="" class="img-responsive" />
+```
+
+*/
+.img-responsive {
+  max-width: 100%;
+  height: auto;
+}
+
+/*doc
+---
+title: .img-fullw
+name: img-fullw
+category: module_object
+parent: img
+---
+
+画像を常に包括要素の幅いっぱいとなるよう、縦横比を保って伸縮させる。（下のサンプルは包括要素の幅をウィンドウの50%としている）
+
+``` example
+<div style="width: 50%;">
+    <img src="http://placehold.jp/32/cccccc/ffffff/480x320.png?text=dummy_image" alt="" class="img-fullw" />
+</div>
+```
+
+*/
+.img-fullw {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/*doc
+---
+title: .img-fullh
+name: img-fullh
+category: module_object
+parent: img
+---
+
+画像を常に包括要素の高さいっぱいとなるよう、縦横比を保って伸縮させる。（下のサンプルは包括要素の高さをウィンドウの50%としている）
+
+``` example
+<div style="height: 50vh;">
+    <img src="http://placehold.jp/16/cccccc/ffffff/150x300.png?text=dummy_image" alt="" class="img-fullh" />
+</div>
+```
+
+*/
+.img-fullh {
+  display: block;
+  width: auto;
+  height: 100%;
+}
+
+/*doc
+---
+title: .img-round
+name: img-round
+category: module_object
+parent: img
+---
+
+画像を正円にする。元々の画像が正方形となっている必要がある。
+
+``` example
+<img src="http://placehold.jp/32/a96/ffffff/300x300.png?text=dummy_image" alt="" class="img-round" />
+```
+
+*/
+.img-round {
+  border-radius: 50%;
+}
+
+/*doc
+---
+title: .img-radius
+name: img-radius
+category: module_object
+parent: img
+---
+
+画像を角丸にする。元々の画像が正方形となっている必要がある。
+
+``` example
+<img src="http://placehold.jp/32/a9c/ffffff/300x300.png?text=dummy_image" alt="" class="img-radius" />
+```
+
+*/
+.img-radius {
+  border-radius: .5rem;
+}
+
+/*doc
+---
+title: .line
+name: line
+category: module_utility
+---
+
+行の体裁に関するスタイル。オブジェクト・コンポーネントを可能な限り上書きする。.fontクラスを付与する必要はない。
+
+*/
+/*doc
+---
+title: .line-(direction)
+name: line-direction
+category: module_utility
+parent: line
+---
+
+インライン要素の寄せ方向を変更する。
+
+``` example
+<p class="line-c">line-c_吾輩は猫である。名前はまだ無い。どこで生れたかとんと見当がつかぬ。<br>何でも薄暗いじめじめした所で<br>ニャーニャー泣いていた事だけは記憶している。</p>
+<p class="line-r">line-r_吾輩は猫である。名前はまだ無い。どこで生れたかとんと見当がつかぬ。<br>何でも薄暗いじめじめした所で<br>ニャーニャー泣いていた事だけは記憶している。</p>
+```
+
+*/
+.line-l {
+  text-align: left;
+}
+
+.line-c {
+  text-align: center;
+}
+
+.line-r {
+  text-align: right;
+}
+
+/*doc
+---
+title: .line-(size)
+name: line-size
+category: module_utility
+parent: line
+---
+
+行高さを変更する。
+
+``` example
+<p class="line-none">line-lg_吾輩は猫である。名前はまだ無い。どこで生れたかとんと見当がつかぬ。<br>何でも薄暗いじめじめした所で<br>ニャーニャー泣いていた事だけは記憶している。</p>
+<p class="line-xs">line-lg_吾輩は猫である。名前はまだ無い。どこで生れたかとんと見当がつかぬ。<br>何でも薄暗いじめじめした所で<br>ニャーニャー泣いていた事だけは記憶している。</p>
+<p class="line-sm">line-lg_吾輩は猫である。名前はまだ無い。どこで生れたかとんと見当がつかぬ。<br>何でも薄暗いじめじめした所で<br>ニャーニャー泣いていた事だけは記憶している。</p>
+<p class="line-md">line-lg_吾輩は猫である。名前はまだ無い。どこで生れたかとんと見当がつかぬ。<br>何でも薄暗いじめじめした所で<br>ニャーニャー泣いていた事だけは記憶している。</p>
+<p class="line-lg">line-lg_吾輩は猫である。名前はまだ無い。どこで生れたかとんと見当がつかぬ。<br>何でも薄暗いじめじめした所で<br>ニャーニャー泣いていた事だけは記憶している。</p>
+<p class="line-xl">line-lg_吾輩は猫である。名前はまだ無い。どこで生れたかとんと見当がつかぬ。<br>何でも薄暗いじめじめした所で<br>ニャーニャー泣いていた事だけは記憶している。</p>
+```
+
+*/
+.line-none {
+  line-height: 1;
+}
+
+.line-xs {
+  line-height: 1.25;
+}
+
+.line-sm {
+  line-height: 1.5;
+}
+
+.line-root,
+.line-md {
+  line-height: 1.75;
+}
+
+.line-lg {
+  line-height: 1.75;
+}
+
+.line-xl {
+  line-height: 2;
+}
+
+/*doc
+---
+title: .m
+name: m
+category: module_utility
+---
+
+外部余白を増やす。オブジェクト・コンポーネントを可能な限り上書きする。.mクラスを付与する必要はない。
+
+``` example
+<div class="m-xs bg-first bg-fade" style="padding: 5px; border: 1px solid #999;">m-xs</div>
+<div class="m-sm bg-first bg-fade" style="padding: 5px; border: 1px solid #999;">m-sm</div>
+<div class="m bg-first bg-fade" style="padding: 5px; border: 1px solid #999;">m-b</div>
+<div class="m-lg bg-first bg-fade" style="padding: 5px; border: 1px solid #999;">m-lg</div>
+<div class="m-xl bg-first bg-fade" style="padding: 5px; border: 1px solid #999;">m-xl</div>
+```
+
+*/
+/*doc
+---
+title: .m-(direction)
+name: m-direction
+category: module_utility
+parent: m
+---
+
+t, l, b, r: 上左下右のみ　　x: 左右のみ　　y: 上下のみ
+
+``` example
+<div class="m-bxs bg-second bg-fade" style="padding: 5px; border: 1px solid #999;">m-bxs</div>
+<div class="m-bsm bg-second bg-fade" style="padding: 5px; border: 1px solid #999;">m-bsm</div>
+<div class="m-b bg-second bg-fade" style="padding: 5px; border: 1px solid #999;">m-b</div>
+<div class="m-blg bg-second bg-fade" style="padding: 5px; border: 1px solid #999;">m-blg</div>
+<div class="m-bxl bg-second bg-fade" style="padding: 5px; border: 1px solid #999;">m-bxl</div>
+
+<div class="m-xxs bg-third bg-fade" style="padding: 5px; border: 1px solid #999;">m-xxs</div>
+<div class="m-xsm bg-third bg-fade" style="padding: 5px; border: 1px solid #999;">m-xsm</div>
+<div class="m-x bg-third bg-fade" style="padding: 5px; border: 1px solid #999;">m-x</div>
+<div class="m-xlg bg-third bg-fade" style="padding: 5px; border: 1px solid #999;">m-xlg</div>
+<div class="m-xxl bg-third bg-fade" style="padding: 5px; border: 1px solid #999;">m-xxl</div>
+```
+
+*/
+.m-0 {
+  margin: 0;
+}
+
+.m-t0 {
+  margin-top: 0;
+}
+
+.m-r0 {
+  margin-right: 0;
+}
+
+.m-b0 {
+  margin-bottom: 0;
+}
+
+.m-l0 {
+  margin-left: 0;
+}
+
+.m-x0 {
+  margin-right: 0;
+  margin-left: 0;
+}
+
+.m-y0 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.m-xs {
+  margin: 0.3125rem;
+}
+
+.m-txs {
+  margin-top: 0.3125rem;
+}
+
+.m-rxs {
+  margin-right: 0.3125rem;
+}
+
+.m-bxs {
+  margin-bottom: 0.3125rem;
+}
+
+.m-lxs {
+  margin-left: 0.3125rem;
+}
+
+.m-xxs {
+  margin-right: 0.3125rem;
+  margin-left: 0.3125rem;
+}
+
+.m-yxs {
+  margin-top: 0.3125rem;
+  margin-bottom: 0.3125rem;
+}
+
+.m-sm {
+  margin: 0.625rem;
+}
+
+.m-tsm {
+  margin-top: 0.625rem;
+}
+
+.m-rsm {
+  margin-right: 0.625rem;
+}
+
+.m-bsm {
+  margin-bottom: 0.625rem;
+}
+
+.m-lsm {
+  margin-left: 0.625rem;
+}
+
+.m-xsm {
+  margin-right: 0.625rem;
+  margin-left: 0.625rem;
+}
+
+.m-ysm {
+  margin-top: 0.625rem;
+  margin-bottom: 0.625rem;
+}
+
+.m {
+  margin: 1.25rem;
+}
+
+.m-t {
+  margin-top: 1.25rem;
+}
+
+.m-r {
+  margin-right: 1.25rem;
+}
+
+.m-b {
+  margin-bottom: 1.25rem;
+}
+
+.m-l {
+  margin-left: 1.25rem;
+}
+
+.m-x {
+  margin-right: 1.25rem;
+  margin-left: 1.25rem;
+}
+
+.m-y {
+  margin-top: 1.25rem;
+  margin-bottom: 1.25rem;
+}
+
+.m-lg {
+  margin: 1.875rem;
+}
+
+.m-tlg {
+  margin-top: 1.875rem;
+}
+
+.m-rlg {
+  margin-right: 1.875rem;
+}
+
+.m-blg {
+  margin-bottom: 1.875rem;
+}
+
+.m-llg {
+  margin-left: 1.875rem;
+}
+
+.m-xlg {
+  margin-right: 1.875rem;
+  margin-left: 1.875rem;
+}
+
+.m-ylg {
+  margin-top: 1.875rem;
+  margin-bottom: 1.875rem;
+}
+
+.m-xl {
+  margin: 3.75rem;
+}
+
+.m-txl {
+  margin-top: 3.75rem;
+}
+
+.m-rxl {
+  margin-right: 3.75rem;
+}
+
+.m-bxl {
+  margin-bottom: 3.75rem;
+}
+
+.m-lxl {
+  margin-left: 3.75rem;
+}
+
+.m-xxl {
+  margin-right: 3.75rem;
+  margin-left: 3.75rem;
+}
+
+.m-yxl {
+  margin-top: 3.75rem;
+  margin-bottom: 3.75rem;
+}
+
+/*doc
+---
+title: .p
+name: p
+category: module_utility
+---
+
+内部余白を増やす。オブジェクト・コンポーネントを可能な限り上書きする。.pクラスを付与する必要はない。
+
+``` example
+<div class="p-xs bg-first bg-fade" style="margin-bottom: 5px; border: 1px solid #999;">p-xs</div>
+<div class="p-sm bg-first bg-fade" style="margin-bottom: 5px; border: 1px solid #999;">p-sm</div>
+<div class="p bg-first bg-fade" style="margin-bottom: 5px; border: 1px solid #999;">p-b</div>
+<div class="p-lg bg-first bg-fade" style="margin-bottom: 5px; border: 1px solid #999;">p-lg</div>
+<div class="p-xl bg-first bg-fade" style="margin-bottom: 5px; border: 1px solid #999;">p-xl</div>
+```
+
+*/
+/*doc
+---
+title: .p-(direction)
+name: p-direction
+category: module_utility
+parent: p
+---
+
+t, l, b, r: 上左下右のみ　　x: 左右のみ　　y: 上下のみ
+
+``` example
+<div class="p-bxs bg-second bg-fade" style="margin-bottom: 5px; border: 1px solid #999;">p-bxs</div>
+<div class="p-bsm bg-second bg-fade" style="margin-bottom: 5px; border: 1px solid #999;">p-bsm</div>
+<div class="p-b bg-second bg-fade" style="margin-bottom: 5px; border: 1px solid #999;">p-b</div>
+<div class="p-blg bg-second bg-fade" style="margin-bottom: 5px; border: 1px solid #999;">p-blg</div>
+<div class="p-bxl bg-second bg-fade" style="margin-bottom: 5px; border: 1px solid #999;">p-bxl</div>
+
+<div class="p-xxs bg-third bg-fade" style="margin-bottom: 5px; border: 1px solid #999;">p-xxs</div>
+<div class="p-xsm bg-third bg-fade" style="margin-bottom: 5px; border: 1px solid #999;">p-xsm</div>
+<div class="p-x bg-third bg-fade" style="margin-bottom: 5px; border: 1px solid #999;">p-x</div>
+<div class="p-xlg bg-third bg-fade" style="margin-bottom: 5px; border: 1px solid #999;">p-xlg</div>
+<div class="p-xxl bg-third bg-fade" style="margin-bottom: 5px; border: 1px solid #999;">p-xxl</div>
+```
+
+*/
+.p-0 {
+  padding: 0;
+}
+
+.p-t0 {
+  padding-top: 0;
+}
+
+.p-r0 {
+  padding-right: 0;
+}
+
+.p-b0 {
+  padding-bottom: 0;
+}
+
+.p-l0 {
+  padding-left: 0;
+}
+
+.p-x0 {
+  padding-right: 0;
+  padding-left: 0;
+}
+
+.p-y0 {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.p-xs {
+  padding: 0.3125rem;
+}
+
+.p-txs {
+  padding-top: 0.3125rem;
+}
+
+.p-rxs {
+  padding-right: 0.3125rem;
+}
+
+.p-bxs {
+  padding-bottom: 0.3125rem;
+}
+
+.p-lxs {
+  padding-left: 0.3125rem;
+}
+
+.p-xxs {
+  padding-right: 0.3125rem;
+  padding-left: 0.3125rem;
+}
+
+.p-yxs {
+  padding-top: 0.3125rem;
+  padding-bottom: 0.3125rem;
+}
+
+.p-sm {
+  padding: 0.625rem;
+}
+
+.p-tsm {
+  padding-top: 0.625rem;
+}
+
+.p-rsm {
+  padding-right: 0.625rem;
+}
+
+.p-bsm {
+  padding-bottom: 0.625rem;
+}
+
+.p-lsm {
+  padding-left: 0.625rem;
+}
+
+.p-xsm {
+  padding-right: 0.625rem;
+  padding-left: 0.625rem;
+}
+
+.p-ysm {
+  padding-top: 0.625rem;
+  padding-bottom: 0.625rem;
+}
+
+.p {
+  padding: 1.25rem;
+}
+
+.p-t {
+  padding-top: 1.25rem;
+}
+
+.p-r {
+  padding-right: 1.25rem;
+}
+
+.p-b {
+  padding-bottom: 1.25rem;
+}
+
+.p-l {
+  padding-left: 1.25rem;
+}
+
+.p-x {
+  padding-right: 1.25rem;
+  padding-left: 1.25rem;
+}
+
+.p-y {
+  padding-top: 1.25rem;
+  padding-bottom: 1.25rem;
+}
+
+.p-lg {
+  padding: 1.875rem;
+}
+
+.p-tlg {
+  padding-top: 1.875rem;
+}
+
+.p-rlg {
+  padding-right: 1.875rem;
+}
+
+.p-blg {
+  padding-bottom: 1.875rem;
+}
+
+.p-llg {
+  padding-left: 1.875rem;
+}
+
+.p-xlg {
+  padding-right: 1.875rem;
+  padding-left: 1.875rem;
+}
+
+.p-ylg {
+  padding-top: 1.875rem;
+  padding-bottom: 1.875rem;
+}
+
+.p-xl {
+  padding: 3.75rem;
+}
+
+.p-txl {
+  padding-top: 3.75rem;
+}
+
+.p-rxl {
+  padding-right: 3.75rem;
+}
+
+.p-bxl {
+  padding-bottom: 3.75rem;
+}
+
+.p-lxl {
+  padding-left: 3.75rem;
+}
+
+.p-xxl {
+  padding-right: 3.75rem;
+  padding-left: 3.75rem;
+}
+
+.p-yxl {
+  padding-top: 3.75rem;
+  padding-bottom: 3.75rem;
+}
+
+/*doc
+---
+title: .position
+name: position
+category: module_utility
+---
+
+親要素に対し、余白を確保しての絶対配置をする。親要素にpositionが指定されていることが前提となる。オブジェクト・コンポーネントを可能な限り上書きする。.positionクラスを付与する必要はない。
+
+*/
+/*doc
+---
+title: .position-(top,center,bottom)(left,center,right)
+name: position-tl
+category: module_utility
+parent: position
+---
+
+tl: 左上　　tc: 中央上　　tr: 右上  
+cl: 左中央　　cc: 完全な中央　　cr: 右中央  
+bl: 左下　　bc: 中央下　　br: 右下
+
+``` example
+<p>position-tl</p>
+<div class="bg-first bg-fade" style="position: relative; margin-bottom: 5px; width: 200px; height: 200px;"><span class="bg-inverse position-tl" style="width: 10px; height: 10px;"></span></div>
+
+<p>position-cr</p>
+<div class="bg-second bg-fade" style="position: relative; margin-bottom: 5px; width: 200px; height: 200px;"><span class="bg-inverse position-cr" style="width: 10px; height: 10px;"></span></div>
+```
+
+*/
+.position-tl {
+  position: absolute;
+  top: 0.625rem;
+  left: 0.625rem;
+  z-index: 99;
+}
+
+.position-tc {
+  position: absolute;
+  top: 0.625rem;
+  left: 50%;
+  -webkit-transform: translate(-50%, 0);
+  -ms-transform: translate(-50%, 0);
+  transform: translate(-50%, 0);
+  z-index: 99;
+}
+
+.position-tr {
+  position: absolute;
+  top: 0.625rem;
+  right: 0.625rem;
+  z-index: 99;
+}
+
+.position-cl {
+  position: absolute;
+  top: 50%;
+  left: 0.625rem;
+  -webkit-transform: translate(0, -50%);
+  -ms-transform: translate(0, -50%);
+  transform: translate(0, -50%);
+  z-index: 99;
+}
+
+.position-cc {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, 0);
+  -ms-transform: translate(-50%, 0);
+  transform: translate(-50%, 0);
+  z-index: 99;
+}
+
+.position-cr {
+  position: absolute;
+  top: 50%;
+  right: 0.625rem;
+  -webkit-transform: translate(0, -50%);
+  -ms-transform: translate(0, -50%);
+  transform: translate(0, -50%);
+  z-index: 99;
+}
+
+.position-bl {
+  position: absolute;
+  bottom: 0.625rem;
+  left: 0.625rem;
+  z-index: 99;
+}
+
+.position-bc {
+  position: absolute;
+  bottom: 0.625rem;
+  left: 50%;
+  -webkit-transform: translate(-50%, 0);
+  -ms-transform: translate(-50%, 0);
+  transform: translate(-50%, 0);
+  z-index: 99;
+}
+
+.position-br {
+  position: absolute;
+  bottom: 0.625rem;
+  right: 0.625rem;
+  z-index: 99;
+}
+
+/*doc
+---
+title: .sr
+name: sr
+category: module_utility
+---
+
+スクリーンリーダーのみが認識する、非表示要素を作成する。
+
+``` example
+<a href="#" class="btn btn-first btn-round"><i class="icon icon-twitter"></i><span class="sr">Twitter</span></a>
+```
+
+*/
+.sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+.sr.sr-focus:active, .sr.sr-focus:focus {
+  position: static;
+  width: auto;
+  height: auto;
+  margin: 0;
+  overflow: visible;
+  clip: auto;
+}
+
+/*doc
+---
+title: .text
+name: text
+category: module_utility
+---
+
+文字に関するスタイル。オブジェクト・コンポーネントを可能な限り上書きする。.textクラスを付与する必要はない。
+
+*/
+/*doc
+---
+title: .text-(color)
+name: text-color
+category: module_utility
+parent: text
+---
+
+色を変更する。
+
+``` example
+<p class="text-first">text-first_吾輩は猫である。名前はまだ無い。どこで生れたかとんと見当がつかぬ。</p>
+<p class="text-second">text-second_吾輩は猫である。名前はまだ無い。どこで生れたかとんと見当がつかぬ。</p>
+<p class="text-third">text-third_吾輩は猫である。名前はまだ無い。どこで生れたかとんと見当がつかぬ。</p>
+<p class="text-important">text-important_吾輩は猫である。名前はまだ無い。どこで生れたかとんと見当がつかぬ。</p>
+<p class="text-info">text-info_吾輩は猫である。名前はまだ無い。どこで生れたかとんと見当がつかぬ。</p>
+<div class="bg-inverse">
+    <p class="text-inverse">text-inverse_吾輩は猫である。名前はまだ無い。どこで生れたかとんと見当がつかぬ。</p>
+</div>
+```
+
+*/
+.text-first {
+  color: #2288bb;
+}
+
+.text-second {
+  color: #333333;
+}
+
+.text-third {
+  color: #119c44;
+}
+
+.text-info {
+  color: #119c44;
+}
+
+.text-important {
+  color: #dd0022;
+}
+
+.text-inverse {
+  color: #fff;
+}
+
+.text-mild {
+  color: #6c7277;
+}
+
+/*doc
+---
+title: .text-(size)
+name: text-size
+category: module_utility
+parent: text
+---
+
+サイズを変更する。現在の文字サイズに対する相対値となるが、.text-mdのみhtml要素の文字サイズに戻す。
+
+``` example
+<p class="text-xxs">text-xxs_吾輩は猫である。名前はまだ無い。どこで生れたかとんと見当がつかぬ。</p>
+<p class="text-xs">text-xs_吾輩は猫である。名前はまだ無い。どこで生れたかとんと見当がつかぬ。</p>
+<p class="text-sm">text-sm_吾輩は猫である。名前はまだ無い。どこで生れたかとんと見当がつかぬ。</p>
+
+<p class="text-lg">text-lg_吾輩は猫である。名前はまだ無い。どこで生れたかとんと見当がつかぬ。</p>
+<p class="text-xl">text-xl_吾輩は猫である。名前はまだ無い。どこで生れたかとんと見当がつかぬ。</p>
+<p class="text-xxl">text-xxl_吾輩は猫である。<span class="text-md">名前はまだ無い。text-md_どこで生れたか</span>とんと見当がつかぬ。</p>
+```
+
+*/
+.text-xxs {
+  font-size: .625em;
+}
+
+.text-xs {
+  font-size: .75em;
+}
+
+.text-sms {
+  font-size: .8125em;
+}
+
+.text-sm {
+  font-size: .875em;
+}
+
+.text-sml {
+  font-size: .9375em;
+}
+
+.text-md,
+.text-root {
+  font-size: 1rem;
+}
+
+.text-lg {
+  font-size: 1.25em;
+}
+
+.text-xl {
+  font-size: 1.5em;
+}
+
+.text-xxl {
+  font-size: 2em;
+}
+
+/*doc
+---
+title: Status
+name: status
+category: status
+---
+
+状態に関するフラグ用クラス。オブジェクト・コンポーネントを上書きする。  
+単独で付与することはなく、実際の定義は各オブジェクト・コンポーネント内で指定している。
+
+*/
+/*doc
+---
+title: .stay
+name: current
+category: status
+parent: status
+---
+
+.navのリンクが現在のページとなったときに付与される。a要素か、直接の親要素のいずれかに付与する。
+
+``` example
+<div class="m-b line-c">
+<nav class="nav">
+    <a href="#">リンク</a>
+    <a href="#" class="stay">イマココ</a>
+    <a href="#">リンク</a>
+</nav>
+</div>
+
+<div class="m-b line-c">
+<nav class="nav nav-horizontal">
+    <ul>
+        <li><a href="#">ナビゲーション</a></li>
+        <li class="stay"><a href="#">イマココ</a></li>
+        <li><a href="#">ナビ</a></li>
+    </ul>
+</nav>
+</div>
+```
+
+*/
+/*doc
+---
+title: .is-active (active)
+name: action-active
+category: status
+parent: status
+---
+
+何らかのアクションが発動したときに付与される。要素そのものに付与する。
+
+*/
+/*doc
+---
+title: .is-open (open)
+name: action-open
+category: status
+parent: status
+---
+
+「開く」アクションが発動したときに付与される。要素そのものに付与する。
+
+``` example
+<div class="line-c p-bxl">
+    <nav class="nav nav-horizontal nav-justify">
+        <ul>
+            <li><a href="#">ナビゲーション</a></li>
+            <li><a href="#">ナビゲ</a>
+                <ul class="is-open">
+                    <li><a href="#">ナビゲーション</a></li>
+                    <li><a href="#">ナビゲーション</a></li>
+                    <li><a href="#">ナビゲーションナビゲーションナビゲーションナビゲーションナビゲーションナビゲーションナビゲーション</a></li>
+                </ul>
+            </li>
+            <li><a href="#">ナビ</a></li>
+            <li><a href="#">ナビゲーションナ</a></li>
+            <li><a href="#">ナビゲー</a></li>
+        </ul>
+    </nav>
+</div>
+```
+
+*/
+/*doc
+---
+title: .is-error
+name: error
+category: status
+parent: status
+---
+
+エラーとなったときに付与される。要素そのものか、明確な親要素のいずれかに付与する。
+
+``` example
+<div class="line-c p-bxl">
+
+	<div class="form-group is-error">
+		<textarea name="demo" rows="5" class="form form-input">SPAMっぽい文章</textarea>
+	</div>
+
+</div>
+```
+
+*/
