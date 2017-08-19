@@ -234,8 +234,8 @@ elements:
             label: 記事ループ-カード
           loop_list:
             label: 記事ループ-リスト
-          loop_media:
-            label: 記事ループ-メディア
+          loop_summary:
+            label: 記事ループ-サマリー
           topicpath_archive_date:
             label: トピックパス-アーカイブ-年月別
           topicpath_category:
@@ -252,50 +252,4 @@ elements:
             label: パーツ-ページネーション
           parts_similar:
             label: パーツ-関連記事
-        widget:
-          widget_banner:
-            label: ウィジェット-バナー
-          widget_category_archive:
-            label: ウィジェット-カテゴリーアーカイブリスト
-          widget_local_nav_page:
-            label: ウィジェット-ローカルナビ-ページ
-          widget_monthly_archive:
-            label: ウィジェット-月別アーカイブリスト
-          widget_blog_recent:
-            label: ウィジェット-ブログ新着
-          widget_search:
-            label: ウィジェット-検索フォーム
-        widgetset:
-          widgetset_contents_after_body_blog:
-            label: コンテンツ-本文の後-ブログ
-            order: 1000
-            widgets: []
-          widgetset_contents_after_body_page:
-            label: コンテンツ-本文の後-ページ
-            order: 1000
-            widgets: []
-          widgetset_contents_bottom:
-            label: コンテンツ-下段
-            order: 1000
-            widgets: []
-          widgetset_home_bottom:
-            label: ホーム-下段
-            order: 1000
-            widgets: []
-          widgetset_home_middle_01:
-            label: ホーム-中段1
-            order: 1000
-            widgets: []
-          widgetset_home_middle_02:
-            label: ホーム-中段2
-            order: 1000
-            widgets: []
-          widgetset_sub_blog:
-            label: サブメニュー-ブログ
-            order: 1000
-            widgets: []
-          widgetset_sub_page:
-            label: サブメニュー-ページ
-            order: 1000
-            widgets: []
     importer: template_set

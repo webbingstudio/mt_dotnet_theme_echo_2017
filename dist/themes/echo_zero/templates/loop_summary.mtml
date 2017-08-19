@@ -1,0 +1,70 @@
+<mt:Ignore>
+# =======================
+# 
+# 記事ループ-サマリー
+# 
+# 記事一覧で、記事を繰り返している部分のテンプレート。サムネイルが左に表示される形式で表示する。
+# 
+# usage:
+#   <mt:Include module="記事ループ-サマリー" />
+# 
+# usage (with options):
+#   <mt:SetVar name="__loop_tag__" value="p" />
+#   <mt:SetVar name="__loop_category__" value="0" />
+#   <mt:SetVar name="__loop_date__" value="0" />
+#   <mt:SetVar name="__loop_summary__" value="0" />
+#   <mt:SetVar name="__loop_whatsnew__" value="0" />
+#   <mt:Include module="記事ループ-サマリー" />
+# 
+# default:
+#   __loop_tag__ = h3
+#   __loop_category__ = 1
+#   __loop_date__ = 1
+#   __loop_summary__ = 1
+#   __loop_whatsnew__ = 1
+# 
+# vars:
+#   ec_static_path
+#   ec_entry_date
+#   __entry_eyecatch__
+# 
+# =======================
+</mt:Ignore>
+<mt:Unless name="__loop_tag__"><mt:SetVar name="__loop_tag__" value="h3" /></mt:Unless>
+<mt:Unless name="__loop_category__" eq="0"><mt:SetVar name="__loop_category__" value="1" /></mt:Unless>
+<mt:Unless name="__loop_date__" eq="0"><mt:SetVar name="__loop_date__" value="1" /></mt:Unless>
+<mt:Unless name="__loop_summary__" eq="0"><mt:SetVar name="__loop_summary__" value="1" /></mt:Unless>
+<mt:Unless name="__loop_whatsnew__" eq="0"><mt:SetVar name="__loop_whatsnew__" value="1" /></mt:Unless>
+
+<mt:Ignore>
+# サムネイルの取得
+# -----------------------
+</mt:Ignore>
+<mt:CustomFieldAsset identifier="EcEntryEyecatch">
+    <mt:AssetThumbnailURL width="480" setvar="__entry_eyecatch__" note="アイキャッチ画像" />
+</mt:CustomFieldAsset>
+<mt:Unless name="__entry_eyecatch__">
+    <mt:EntryAssets type="image" sort_order="ascend" sort_by="created_on" limit="1">
+        <mt:AssetThumbnailURL width="480" setvar="__entry_eyecatch__" note="アイキャッチ画像" />
+    </mt:EntryAssets>
+    <mt:Unless name="__entry_eyecatch__">
+        <mt:SetVarBlock name="__entry_eyecatch__"><mt:Var name="ec_static_path" />images/common/noimg_191_100.jpg</mt:SetVarBlock>
+    </mt:Unless>
+</mt:Unless>
+
+
+
+
+
+
+
+
+
+
+
+<mt:SetVar name="__loop_tag__" value="" />
+<mt:SetVar name="__loop_category__" value="" />
+<mt:SetVar name="__loop_date__" value="" />
+<mt:SetVar name="__loop_summary__" value="" />
+<mt:SetVar name="__loop_whatsnew__" value="" />
+<mt:SetVar name="__entry_eyecatch__" value="" />
