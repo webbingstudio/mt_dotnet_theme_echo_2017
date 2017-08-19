@@ -5,12 +5,10 @@
 # 
 # METAなどを展開する。変数の定義は直前に読み込むコンフィグテンプレートで行う。
 # 
-# require:
+# vars:
 #     ec_meta_title
 #     ec_blog_name
 #     ec_static_path
-# 
-# need:
 #     ec_meta_description
 #     ec_meta_keywords
 #     ec_is_home
@@ -100,11 +98,13 @@
 <link rel="alternate" type="application/atom+xml" title="Recent Entries" href="<mt:BlogURL />atom.xml">
 <mt:CanonicalLink />
 
-<link rel="stylesheet" href="<mt:Var name="ec_static_path" />css/common.css">
 <link rel="stylesheet" href="<mt:Var name="ec_static_path" />css/hiraku.css">
 <link rel="stylesheet" href="<mt:Var name="ec_static_path" />css/slick.css">
 <link rel="stylesheet" href="<mt:Var name="ec_static_path" />css/slick-theme.css">
-<link rel="stylesheet" href="<mt:Var name="ec_static_path" />css/mt_ex.css">
+<link rel="stylesheet" href="<mt:Var name="ec_static_path" />css/echo.css">
+
+<link rel="stylesheet" href="<mt:Var name="ec_static_path" />css/echo-theme.css">
+<link rel="stylesheet" href="<mt:Var name="ec_static_path" />css/styles.css">
 
 <mt:Var name="ec_blog_html_head" />
 <mt:Var name="ec_singular_html_head" />
